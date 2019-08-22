@@ -8,12 +8,33 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Channels',
+    link: 'channel'
+  },
+  {
+    title: 'Others',
+    children:
+      [
+        {
+          title: 'Musics',
+          link: 'musics'
+        },
+        {
+          title: 'Youtube',
+          link: 'youtube'
+        }
+      ]
+  },
+  {
+    title: 'Profile',
+    link: '/pages/profile',
+  },
+  {
     title: 'FEATURES',
     group: true,
   },
   {
     title: 'Auth',
-    icon: 'lock-outline',
     children: [
       {
         title: 'Login',

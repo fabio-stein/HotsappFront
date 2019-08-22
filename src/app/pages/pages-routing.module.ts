@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChannelSearchComponent } from './channel/channel-search/channel-search.component';
 
 const routes: Routes = [{
   path: '',
@@ -16,6 +17,15 @@ const routes: Routes = [{
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
+    },
+    {
+      path: 'channel',
+      pathMatch: 'full',
+      redirectTo: 'channel/search'
+    },
+    {
+      path: 'channel/search',
+      component: ChannelSearchComponent
     },
   ],
 }];

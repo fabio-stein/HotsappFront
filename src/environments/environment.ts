@@ -1,13 +1,14 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-
 export const environment = {
   production: false,
+  version: '0.0.1',
+  API_ENDPOINT: "http://localhost:5000",
+  firebase: {
+    apiKey: "AIzaSyCPLpQuOVbDa0SudKuEOL9nWhR_ckqeGLI",
+    authDomain: "gooleyclub.firebaseapp.com",
+    databaseURL: "https://gooleyclub.firebaseio.com",
+    projectId: "gooleyclub",
+    storageBucket: "gooleyclub.appspot.com",
+    messagingSenderId: "181549511784"
+  },
+  youtube_api_key: "AIzaSyAiBjs5D7VYTnO0EexrmMrdPK4Ch3X8MPU"
 };

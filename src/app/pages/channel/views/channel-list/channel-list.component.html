@@ -1,0 +1,33 @@
+<nb-list nbInfiniteList listenWindowScroll [threshold]="5" (bottomThreshold)="loadNext()">
+  <nb-list-item *ngFor="let channel of Channels">
+    <div class="row" [routerLink]="'/pages/channel/'+channel.chId">
+      <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+        <img class="CoverImage" [src]="channel.chImage">
+      </div>
+      <div class="col-12 col-sm-8 col-md-9 col-lg-10">
+        <div class="row">
+          <div class="col-auto">
+            <h5>{{channel.chName}}</h5>
+          </div>
+          <div *ngIf="showDashboardOption" class="col-auto ml-auto">
+            <nb-actions size="small">
+              <nb-action [link]="'/pages/dashboard/'+channel.chId" nbTooltip="Dashboard" icon="fa fa-cog"></nb-action>
+            </nb-actions>
+          </div>
+          <div class="col-12">
+            <i class="fa fa-star"></i>213
+            <i class="fa fa-users"></i>23
+          </div>
+          <div class="col-12 mt-3">
+            <span>Playing now: Music name demo test</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-list-item>
+
+  <nb-list-item *ngFor="let _ of placeholders">
+    <!--<nb-news-post-placeholder></nb-news-post-placeholder>-->
+    <div class="col-12 mx-6" style="background-color: gainsboro;"> <br><br><br><br><br> </div>
+  </nb-list-item>
+</nb-list>
