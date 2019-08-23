@@ -9,7 +9,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Channels',
-    link: 'channel'
+    link: 'channel',
   },
   {
     title: 'Others',
@@ -17,13 +17,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
       [
         {
           title: 'Musics',
-          link: 'musics'
+          link: 'musics',
         },
         {
           title: 'Youtube',
-          link: 'youtube'
-        }
-      ]
+          link: 'youtube',
+        },
+      ],
   },
   {
     title: 'Profile',

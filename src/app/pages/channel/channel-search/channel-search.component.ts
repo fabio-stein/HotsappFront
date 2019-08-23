@@ -7,14 +7,14 @@ import { ChannelViewModel } from '../views/ChannelViewModel';
 @Component({
   selector: 'channel-search',
   templateUrl: './channel-search.component.html',
-  styleUrls: ['./channel-search.component.scss']
+  styleUrls: ['./channel-search.component.scss'],
 })
 export class ChannelSearchComponent implements OnInit {
   @ViewChild(ChannelListComponent, null) listComponent: ChannelListComponent;
 
   filter: ActionChannelSearch = {
 
-  }
+  };
   channels: ChannelViewModel[];
 
   modelChanged: Subject<string> = new Subject<string>();
@@ -32,10 +32,10 @@ export class ChannelSearchComponent implements OnInit {
   onTabChange(e) {
     //Use badgeStatus property to simulate id
     switch (e.badgeStatus) {
-      case "app-all":
+      case 'app-all':
         this.filter.Mine = null;
         break;
-      case "app-mine":
+      case 'app-mine':
         this.filter.Mine = true;
         break;
     }

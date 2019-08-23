@@ -11,18 +11,18 @@ export class ChannelService {
     }
 
     Add(Channel: ChannelViewModel) {
-        let url = environment.API_ENDPOINT + "/api/Channel/Add";
+        const url = environment.API_ENDPOINT + '/api/Channel/Add';
         return this._http.post(url, Channel).toPromise();
     }
 
     Get(): Promise<ChannelViewModel[]> {
-        let url = environment.API_ENDPOINT + "/api/Channel/Get";
+        const url = environment.API_ENDPOINT + '/api/Channel/Get';
         return this._http.post<ChannelViewModel[]>(url, {}).toPromise();
     }
 
     DeleteChannel(channel: number) {
-        let url = environment.API_ENDPOINT + "/api/Channel/Delete/" + channel;
-        return this._http.post<any>(url.toString(),{}).toPromise();
+        const url = environment.API_ENDPOINT + '/api/Channel/Delete/' + channel;
+        return this._http.post<any>(url.toString(), {}).toPromise();
     }
 
     /*GetPlaylist(channel: number): Promise<PlaylistItemView[]> {
@@ -88,7 +88,7 @@ export class ChannelService {
     }*/
 
     Search(action: ActionChannelSearch): Promise<ChannelViewModel[]> {
-        let url = environment.API_ENDPOINT + "/api/Channel/Search";
+        const url = environment.API_ENDPOINT + '/api/Channel/Search';
         return this._http.post<ChannelViewModel[]>(url.toString(), action).toPromise();
     }
 }

@@ -21,11 +21,11 @@ const routes: Routes = [{
     {
       path: 'channel',
       pathMatch: 'full',
-      redirectTo: 'channel/search'
+      redirectTo: 'channel/search',
     },
     {
       path: 'channel/search',
-      component: ChannelSearchComponent
+      component: ChannelSearchComponent,
     },
   ],
 }];

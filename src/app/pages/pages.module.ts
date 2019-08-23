@@ -22,16 +22,16 @@ import { ChannelService } from './channel/channel.service';
     NbAccordionModule,
     NbCheckboxModule,
     NbListModule,
-    NbActionsModule
+    NbActionsModule,
   ],
   declarations: [
     PagesComponent,
     ChannelSearchComponent,
-    ChannelListComponent
+    ChannelListComponent,
   ],
-  providers:[
-    ChannelService
-  ]
+  providers: [
+    ChannelService,
+  ],
 })
 export class PagesModule {
 }

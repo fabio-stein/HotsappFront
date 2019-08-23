@@ -1,9 +1,9 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 
-import { Observable, of as observableOf, Subscriber, observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { NbAuthStrategy, NbAuthStrategyClass, NbAuthResult, NbAuthJWTToken, NbAuthStrategyOptions, NbTokenService } from '@nebular/auth';
+import { NbAuthStrategy, NbAuthStrategyClass, NbAuthResult, NbAuthJWTToken, NbAuthStrategyOptions } from '@nebular/auth';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -37,7 +37,7 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
         private _firestore: AngularFirestore,
         private _http: HttpClient,
         private _toastr: NbToastrService) {
-        super()
+        super();
         this.user = _firebaseAuth.authState;
     }
 
@@ -53,18 +53,18 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
                 observer.next(e);
             }).catch(err => {
                 observer.next(this.errorResponse(err));
-            })
+            });
         });
     }
 
     async authenticateAsync(options?: FirebaseAuthOption): Promise<NbAuthResult> {
-        let providerUser = await this.providerSignIn(options.provider, options.data);
+        const providerUser = await this.providerSignIn(options.provider, options.data);
         if (this.defaultOptions.checkEmail == true) {
-            await this.checkValidEmailRequest(providerUser)
+            await this.checkValidEmailRequest(providerUser);
         }
-        let user = await this.user.take(1).toPromise();
-        let idToken = await user.getIdToken();
-        let tokenResult = await this.loginWithIdToken(idToken);
+        const user = await this.user.take(1).toPromise();
+        const idToken = await user.getIdToken();
+        const tokenResult = await this.loginWithIdToken(idToken);
         return this.createResult(tokenResult);
     }
 
@@ -79,27 +79,27 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
             null,
             [err]
             [err.message],
-            err
+            err,
         );
     }
 
     providerSignIn(provider: string, data: any): Promise<firebase.auth.UserCredential> {
         switch (provider) {
-            case "google":
+            case 'google':
                 return this._firebaseAuth.auth.signInWithPopup(
-                    new firebase.auth.GoogleAuthProvider()
+                    new firebase.auth.GoogleAuthProvider(),
                 );
-            case "email":
+            case 'email':
                 return this._firebaseAuth.auth.signInWithEmailAndPassword(data.email, data.password);
             default:
-                throw "Unknown signin provider: " + provider;
+                throw new Error('Unknown signin provider: ' + provider);
         }
     }
 
     async checkValidEmailRequest(data: firebase.auth.UserCredential) {
         if (!data.user.emailVerified) {
             await data.user.sendEmailVerification();
-            throw "You need to confirm your email first, a new link was sent! Check it and try again.";
+            throw new Error('You need to confirm your email first, a new link was sent! Check it and try again.');
         }
     }
 
@@ -108,81 +108,81 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
             setTimeout(() => {
                 res();
             }, 3000);
-        })
+        });
     }
 
     loginWithIdToken(token: string): Promise<NbAuthJWTToken> {
-        environment.API_ENDPOINT
-        let url = environment.API_ENDPOINT + "/api/auth/SignIn";
+        environment.API_ENDPOINT;
+        const url = environment.API_ENDPOINT + '/api/auth/SignIn';
 
         return new Promise((resolve, reject) => {
             this._http.post<any>(url.toString(), { idToken: token }).toPromise().then(data => {
-                let token = this.createToken<NbAuthJWTToken>(data.accessToken);
-                localStorage.setItem("refresh_token", data.refreshToken);
+                const token = this.createToken<NbAuthJWTToken>(data.accessToken);
+                localStorage.setItem('refresh_token', data.refreshToken);
                 resolve(token);
-            }).catch(err => reject(err))
-        })
+            }).catch(err => reject(err));
+        });
     }
 
     loginWithRefreshToken(token: string): Promise<NbAuthJWTToken> {
-        environment.API_ENDPOINT
-        let url = environment.API_ENDPOINT + "/api/auth/SignIn";
+        environment.API_ENDPOINT;
+        const url = environment.API_ENDPOINT + '/api/auth/SignIn';
 
         return new Promise((resolve, reject) => {
             this._http.post<any>(url.toString(), { refreshToken: token }).toPromise().then(data => {
-                let token = this.createToken<NbAuthJWTToken>(data.accessToken);
+                const token = this.createToken<NbAuthJWTToken>(data.accessToken);
                 resolve(token);
-            }).catch(err => reject(err))
-        })
+            }).catch(err => reject(err));
+        });
     }
 
     register(data?: any): Observable<NbAuthResult> {
-        let subject = new Subject<NbAuthResult>();
+        const subject = new Subject<NbAuthResult>();
         this.registerAsync(data).then(e => {
             subject.next(new NbAuthResult(true));
             subject.complete();
         }).catch(e => {
             subject.next(this.errorResponse(e));
             subject.complete();
-        })
+        });
         return subject.asObservable();
     }
 
     async registerAsync(data?: any) {
-        let afUser: firebase.auth.UserCredential = await this._firebaseAuth.auth.createUserWithEmailAndPassword(data.email, data.password)
+        const afUser: firebase.auth.UserCredential = await this._firebaseAuth.auth.createUserWithEmailAndPassword(data.email, data.password);
         // Update the profile in firebase auth
         await afUser.user.updateProfile({
             displayName: data.fullName,
-            photoURL: ""
-        })
+            photoURL: '',
+        });
         await afUser.user.sendEmailVerification();
         // Create the user in firestore
-        this._firestore.firestore.collection("users").doc(afUser.user.uid).set(
+        this._firestore.firestore.collection('users').doc(afUser.user.uid).set(
             {
                 uid: afUser.user.uid,
-            }
+            },
         );
-        this._toastr.success("Account created successfully, please check your email!", "Create Account", { duration: 5000 })
+        this._toastr.success('Account created successfully, please check your email!', 'Create Account', { duration: 5000 });
     }
 
     requestPassword(data?: any): Observable<NbAuthResult> {
-        let subject = new Subject<NbAuthResult>();
+        const subject = new Subject<NbAuthResult>();
         this._firebaseAuth.auth.sendPasswordResetEmail(data.email).then(() => {
-            subject.next(new NbAuthResult(true, null, null, null, ["Please check your email to reset the password"]));
+            subject.next(new NbAuthResult(true, null, null, null, ['Please check your email to reset the password']));
             subject.complete();
         }).catch(e => {
             subject.next(this.errorResponse(e));
             subject.complete();
-        })
+        });
         return subject.asObservable();
     }
 
     resetPassword(data?: any): Observable<NbAuthResult> {
-        throw "Not implemented";
+        throw new Error('Not implemented');
     }
 
     logout(data?: any): Observable<NbAuthResult> {
-        let subject = new Subject<NbAuthResult>();
+        const subject = new Subject<NbAuthResult>();
         this._firebaseAuth.auth.signOut().then(() => {
             localStorage.clear();
             subject.next(new NbAuthResult(true));
@@ -190,13 +190,13 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
         }).catch(e => {
             subject.next(this.errorResponse(e));
             subject.complete();
-        })
+        });
         return subject.asObservable();
     }
 
     refreshToken(data?: any): Observable<NbAuthResult> {
-        console.log("REFRESH TOKEN CALLED");
-        let token = localStorage.getItem("refresh_token");
+        console.log('REFRESH TOKEN CALLED');
+        const token = localStorage.getItem('refresh_token');
         return new Observable<NbAuthResult>((observable) => {
             this.loginWithRefreshToken(token).then(ret => {
                 observable.next(this.createResult(ret));
@@ -204,8 +204,8 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
                 observable.next(this.errorResponse(err));
             }).then(e => {
                 observable.complete();
-            })
+            });
 
-        })
+        });
     }
 }

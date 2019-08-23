@@ -32,13 +32,13 @@ export class LoginComponent {
       if (e) {
         this.redirectToDashboard();
       }
-    })
+    });
   }
 
   loginEmail() {
     this.errors = this.messages = [];
     this.submitted = true;
-    this.authProviderLogin("email", { email: this.user.email, password: this.user.password });
+    this.authProviderLogin('email', { email: this.user.email, password: this.user.password });
   }
 
   loginSocial(name) {
@@ -46,12 +46,12 @@ export class LoginComponent {
   }
 
   authProviderLogin(provider: string, data?: any) {
-    let param: FirebaseAuthOption = {
+    const param: FirebaseAuthOption = {
       provider: provider,
-      data: data
-    }
+      data: data,
+    };
     this.submitted = true;
-    this.auth.authenticate("firebase", param).subscribe(t => {
+    this.auth.authenticate('firebase', param).subscribe(t => {
       this.submitted = false;
       if (t.isSuccess()) {
         this.redirectToDashboard();
@@ -66,7 +66,7 @@ export class LoginComponent {
   }
 
   redirectToDashboard() {
-    console.log("Redirecting to dashboard");
+    console.log('Redirecting to dashboard');
     this.router.navigate(['/pages/dashboard']);
   }
 }

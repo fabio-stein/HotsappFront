@@ -5,13 +5,13 @@
  */
 export const environment = {
   production: true,
-  API_ENDPOINT: "http://api.sonoris.ga:5000",
+  API_ENDPOINT: 'http://api.sonoris.ga:5000',
   firebase: {
-    apiKey: "AIzaSyCPLpQuOVbDa0SudKuEOL9nWhR_ckqeGLI",
-    authDomain: "gooleyclub.firebaseapp.com",
-    databaseURL: "https://gooleyclub.firebaseio.com",
-    projectId: "gooleyclub",
-    storageBucket: "gooleyclub.appspot.com",
-    messagingSenderId: "181549511784"
-  }
+    apiKey: 'AIzaSyCPLpQuOVbDa0SudKuEOL9nWhR_ckqeGLI',
+    authDomain: 'gooleyclub.firebaseapp.com',
+    databaseURL: 'https://gooleyclub.firebaseio.com',
+    projectId: 'gooleyclub',
+    storageBucket: 'gooleyclub.appspot.com',
+    messagingSenderId: '181549511784',
+  },
 };

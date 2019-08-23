@@ -6,7 +6,7 @@ import { ChannelViewModel } from '../ChannelViewModel';
 @Component({
   selector: 'channel-list',
   templateUrl: './channel-list.component.html',
-  styleUrls: ['./channel-list.component.scss']
+  styleUrls: ['./channel-list.component.scss'],
 })
 export class ChannelListComponent implements OnInit {
   news = [];
@@ -34,8 +34,8 @@ export class ChannelListComponent implements OnInit {
   }
 
   loadNext() {
-    if (this.loading) { return }
-    if (this.isLast) { return }
+    if (this.loading) { return; }
+    if (this.isLast) { return; }
 
     this.loading = true;
     this.placeholders = new Array(this.pageSize);
@@ -48,14 +48,14 @@ export class ChannelListComponent implements OnInit {
       if (data.length == 0) {
         this.isLast = true;
       }
-    })
+    });
   }
 
 
 
   Channels: ChannelViewModel[] = [
 
-  ]
+  ];
 
   ngOnInit() {
   }

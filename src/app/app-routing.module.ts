@@ -18,11 +18,11 @@ const routes: Routes = [
   {
     path: 'pages',
     loadChildren: 'app/pages/pages.module#PagesModule',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth',
-    loadChildren: 'app/auth/auth.module#AuthModule'
+    loadChildren: 'app/auth/auth.module#AuthModule',
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },

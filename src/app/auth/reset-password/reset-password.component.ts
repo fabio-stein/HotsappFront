@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NB_AUTH_OPTIONS, NbAuthSocialLink, NbAuthService, getDeepFromObject } from '@nebular/auth';
+import { NB_AUTH_OPTIONS, NbAuthService, getDeepFromObject } from '@nebular/auth';
 
 @Component({
   selector: 'app-reset-password',
@@ -26,7 +26,7 @@ export class ResetPasswordComponent {
 
     this.activatedRoute.queryParams.subscribe(params => {
       this.code = params['oobCode'];
-      console.log(this.code); // Print the parameter to the console. 
+      console.log(this.code); // Print the parameter to the console.
     });
 
     this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
@@ -37,7 +37,7 @@ export class ResetPasswordComponent {
       if (e) {
         this.redirectToDashboard();
       }
-    })
+    });
   }
 
   resetPass(): void {
@@ -49,7 +49,7 @@ export class ResetPasswordComponent {
           .then((res: any) => {
             this.submitted = false;
             this.messages = [res];
-    
+
             this.redirectToDashboard()
           })
           .catch((err) => {

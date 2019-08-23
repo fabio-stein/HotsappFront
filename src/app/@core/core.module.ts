@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbDummyAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
+import { NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
@@ -10,13 +10,13 @@ import { FirebaseAuthStrategy } from '../auth/strategy/firebase-strategy';
 
 const socialLinks = [
   {
-    name: "facebook",
+    name: 'facebook',
     icon: 'socicon-facebook',
   },
   {
-    name: "google",
+    name: 'google',
     icon: 'socicon-google',
-  }
+  },
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -32,9 +32,9 @@ export const NB_CORE_PROVIDERS = [
       FirebaseAuthStrategy.setup({
         name: 'firebase',
         token: {
-          class: NbAuthJWTToken
+          class: NbAuthJWTToken,
         },
-        checkEmail: true
+        checkEmail: true,
       }),
     ],
     forms: {
@@ -80,7 +80,7 @@ export const NB_CORE_PROVIDERS = [
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
   AnalyticsService,
-  FirebaseAuthStrategy
+  FirebaseAuthStrategy,
 ];
 
 @NgModule({
@@ -90,7 +90,7 @@ export const NB_CORE_PROVIDERS = [
   exports: [
     NbAuthModule,
   ],
-  declarations: []
+  declarations: [],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

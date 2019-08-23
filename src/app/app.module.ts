@@ -58,7 +58,7 @@ import { HttpErrorInterceptor } from './@core/interceptors/HttpErrorInterceptor'
 
     FormsModule,
     NbCheckboxModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -71,10 +71,10 @@ import { HttpErrorInterceptor } from './@core/interceptors/HttpErrorInterceptor'
     {
       provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
       useValue: req => {
-        return (req.url.indexOf("/api/auth/") != -1)//Filter auth requests
-      }
+        return (req.url.indexOf('/api/auth/') != -1);//Filter auth requests
+      },
     },
-  ]
+  ],
 })
 export class AppModule {
 }

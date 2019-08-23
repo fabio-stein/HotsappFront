@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { NbTokenService, NbAuthToken, decodeJwtPayload, NbAuthStrategy, NB_AUTH_STRATEGIES, nbAuthCreateToken, NbAuthSimpleToken, NbAuthJWTToken } from '@nebular/auth';
+import { NbTokenService, NbAuthToken, NB_AUTH_STRATEGIES, NbAuthJWTToken } from '@nebular/auth';
 
 /**
  * @deprecated Service migrated to firebase-strategy
@@ -31,7 +31,7 @@ export class AuthService {
         else {
           this.userDetails = null;
         }
-      }
+      },
     );
   }
 
@@ -42,13 +42,13 @@ export class AuthService {
           // Update the profile in firebase auth
           afUser.user.updateProfile({
             displayName: fullName,
-            photoURL: ""
+            photoURL: '',
           }).then(() => afUser.user.sendEmailVerification());
           // Create the user in firestore
-          this._firestore.firestore.collection("users").doc(afUser.user.uid).set(
+          this._firestore.firestore.collection('users').doc(afUser.user.uid).set(
             {
-              uid: afUser.user.uid
-            }
+              uid: afUser.user.uid,
+            },
           );
         });
   }
@@ -70,18 +70,18 @@ export class AuthService {
   }
   signInWithTwitter() {
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.TwitterAuthProvider()
-    )
+      new firebase.auth.TwitterAuthProvider(),
+    );
   }
   signInWithFacebook() {
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
-    )
+      new firebase.auth.FacebookAuthProvider(),
+    );
   }
   signInWithGoogle() {
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    )
+      new firebase.auth.GoogleAuthProvider(),
+    );
   }
 
   isLoggedIn() {
@@ -98,16 +98,16 @@ export class AuthService {
   }
 
   loginWithIdToken(token: string): Promise<string> {
-    environment.API_ENDPOINT
-    let url = environment.API_ENDPOINT + "/api/auth/SignIn";
+    environment.API_ENDPOINT;
+    const url = environment.API_ENDPOINT + '/api/auth/SignIn';
 
     return new Promise((resolve, reject) => {
       this._http.post<any>(url.toString(), { idToken: token }).toPromise().then(data => {
-        let token = this.createToken(data.access_token);
+        const token = this.createToken(data.access_token);
         this.tokenService.set(token);
-        resolve("OK");
-      }).catch(err => reject(err))
-    })
+        resolve('OK');
+      }).catch(err => reject(err));
+    });
   }
 
   onTokenChange(): Observable<NbAuthToken> {
@@ -115,7 +115,7 @@ export class AuthService {
   }
 
   protected createToken(token: string): any {
-    let jwt = new NbAuthJWTToken(token, "firebase");
+    const jwt = new NbAuthJWTToken(token, 'firebase');
     return jwt;
   }
 }

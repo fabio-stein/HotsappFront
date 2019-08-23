@@ -19,7 +19,7 @@ import { NbAuthModule } from '@nebular/auth';
     LoginComponent,
     RegisterComponent,
     RequestPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +28,7 @@ import { NbAuthModule } from '@nebular/auth';
     DashboardModule,
     AuthRoutingModule,
     NbCheckboxModule,
-    NbAuthModule
+    NbAuthModule,
   ],
   exports: [
     LoginComponent,
@@ -38,7 +38,7 @@ import { NbAuthModule } from '@nebular/auth';
   ],
   providers: [
     AngularFireAuth,
-    AuthService
-  ]
+    AuthService,
+  ],
 })
 export class AuthModule { }

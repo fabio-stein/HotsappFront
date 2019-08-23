@@ -3,12 +3,11 @@ import {
     HttpInterceptor,
     HttpHandler,
     HttpRequest,
-    HttpResponse,
-    HttpErrorResponse
+    HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -24,21 +23,21 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     if (error.error instanceof ErrorEvent) {
                         errMsg = `Error: ${error.error.message}`;
                     } else if (error.error instanceof ProgressEvent) {
-                        errMsg = "Network error";
+                        errMsg = 'Network error';
                     }
                     else {  // Server Side Error
                         if (error.status == 401) {//Unauthorized
-                            errMsg = "Unauthorized";
-                            this.router.navigate(["/auth/login"])
+                            errMsg = 'Unauthorized';
+                            this.router.navigate(['/auth/login']);
                         } else if (typeof error.error !== typeof Object) {
                             errMsg = error.error;
                         } else {
                             errMsg = `Error code:${error.status}, Message: ${error.message}`;
                         }
                     }
-                    this.toastrService.danger(errMsg, "Error")
+                    this.toastrService.danger(errMsg, 'Error');
                     return throwError(errMsg);
-                })
-            )
+                }),
+            );
     }
-}   
+}

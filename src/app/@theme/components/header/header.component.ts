@@ -28,11 +28,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.menuService.onItemClick().subscribe(data => {
       switch (data.item.target) {
-        case "logout":
+        case 'logout':
           this.logout();
           break;
       }
-    })
+    });
     this.userService.getUser()
       .subscribe((user) => {
         this.user = user;

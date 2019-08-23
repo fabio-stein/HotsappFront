@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { NB_AUTH_OPTIONS, NbAuthSocialLink, NbAuthService, getDeepFromObject } from '@nebular/auth';
+import { NB_AUTH_OPTIONS, NbAuthService, getDeepFromObject } from '@nebular/auth';
 
 @Component({
   selector: 'app-request-password',
@@ -30,14 +30,14 @@ export class RequestPasswordComponent {
       if (e) {
         this.redirectToDashboard();
       }
-    })
+    });
   }
 
   requestPass() {
 
     this.errors = this.messages = [];
     this.submitted = true;
-    this.auth.requestPassword("firebase", { email: this.user.email }).subscribe(
+    this.auth.requestPassword('firebase', { email: this.user.email }).subscribe(
       (res) => {
         this.submitted = false;
         this.messages = res.getMessages();

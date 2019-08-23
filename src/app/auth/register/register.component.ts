@@ -33,24 +33,24 @@ export class RegisterComponent {
       if (e) {
         this.redirectToDashboard();
       }
-    })
+    });
   }
 
   register(): void {
     this.errors = this.messages = [];
     this.submitted = true;
 
-    this.auth.register("firebase", { email: this.user.email, password: this.user.password, fullName: this.user.fullName })
+    this.auth.register('firebase', { email: this.user.email, password: this.user.password, fullName: this.user.fullName })
       .subscribe(e => {
         this.submitted = false;
         this.messages = [];
         if (e.isSuccess()) {
-          this.redirectToDashboard()
+          this.redirectToDashboard();
         } else {
           this.submitted = false;
           this.errors = e.getMessages();
         }
-      })
+      });
   }
   /*
     loginSocial(name) {
@@ -62,7 +62,7 @@ export class RegisterComponent {
         console.warn("No login for " + name);
       }
     }
-  
+
     loginGoogle() {
       this.auth.signInWithGoogle()
         .then((success) => {
@@ -72,7 +72,7 @@ export class RegisterComponent {
           this.errors = [err];
         });
     }
-  
+
     loginFb() {
       this.auth.signInWithFacebook()
         .then((success) => {
@@ -84,7 +84,7 @@ export class RegisterComponent {
     }*/
 
   redirectToDashboard() {
-    console.log("Redirecting to dashboard");
+    console.log('Redirecting to dashboard');
     this.router.navigate(['/pages/dashboard']);
   }
 
