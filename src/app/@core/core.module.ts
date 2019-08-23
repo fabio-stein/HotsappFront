@@ -1,35 +1,22 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import { NbAuthModule, NbDummyAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { AnalyticsService } from './utils';
-import { UserData } from './data/users';
-import { UserService } from './mock/users.service';
-import { MockDataModule } from './mock/mock-data.module';
+import { AnalyticsService } from './utils/analytics.service';
+import { FirebaseAuthStrategy } from '../auth/strategy/firebase-strategy';
 
 const socialLinks = [
   {
-    url: 'https://github.com/akveo/nebular',
-    target: '_blank',
-    icon: 'github',
+    name: "facebook",
+    icon: 'socicon-facebook',
   },
   {
-    url: 'https://www.facebook.com/akveo/',
-    target: '_blank',
-    icon: 'facebook',
-  },
-  {
-    url: 'https://twitter.com/akveo_inc',
-    target: '_blank',
-    icon: 'twitter',
-  },
-];
-
-const DATA_SERVICES = [
-  { provide: UserData, useClass: UserService },
+    name: "google",
+    icon: 'socicon-google',
+  }
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -40,14 +27,14 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
 }
 
 export const NB_CORE_PROVIDERS = [
-  ...MockDataModule.forRoot().providers,
-  ...DATA_SERVICES,
   ...NbAuthModule.forRoot({
-
     strategies: [
-      NbDummyAuthStrategy.setup({
-        name: 'email',
-        delay: 3000,
+      FirebaseAuthStrategy.setup({
+        name: 'firebase',
+        token: {
+          class: NbAuthJWTToken
+        },
+        checkEmail: true
       }),
     ],
     forms: {
@@ -56,6 +43,21 @@ export const NB_CORE_PROVIDERS = [
       },
       register: {
         socialLinks: socialLinks,
+      },
+      validation: {
+        password: {
+          required: true,
+          minLength: 8,
+          maxLength: 42,
+        },
+        email: {
+          required: true,
+        },
+        fullName: {
+          required: true,
+          minLength: 4,
+          maxLenght: 42,
+        },
       },
     },
   }).providers,
@@ -78,6 +80,7 @@ export const NB_CORE_PROVIDERS = [
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
   AnalyticsService,
+  FirebaseAuthStrategy
 ];
 
 @NgModule({
@@ -87,7 +90,7 @@ export const NB_CORE_PROVIDERS = [
   exports: [
     NbAuthModule,
   ],
-  declarations: [],
+  declarations: []
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
