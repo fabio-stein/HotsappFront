@@ -3,3 +3,5 @@ export * from './footer/footer.component';
 export * from './search-input/search-input.component';
 export * from './switcher/switcher.component';
 export * from './layout-direction-switcher/layout-direction-switcher.component';
+export * from './croute-tabset/croute-tabset.component';
+export * from './confirm-dialog/confirm-dialog.component';

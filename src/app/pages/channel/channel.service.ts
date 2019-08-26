@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ActionChannelSearch } from './channel-search/action/ActionChannelSearch';
 import { ChannelViewModel } from './views/ChannelViewModel';
+import { ActionAddMedia } from './views/add-media/action/ActionAddMedia';
+import { ActionGetMediaInfo } from './views/add-media/action/ActionGetMediaInfo';
+import { ChannelStatusView } from './views/channel-control-view/ChannelStatusVIew';
+import { MediaView } from './views/channel-media/model/MediaView';
+import { PlaylistItemView } from './channel-dashboard/pages/channel-page-playlist/model/PlaylistItemView';
 
 @Injectable()
 export class ChannelService {
@@ -25,7 +30,7 @@ export class ChannelService {
         return this._http.post<any>(url.toString(), {}).toPromise();
     }
 
-    /*GetPlaylist(channel: number): Promise<PlaylistItemView[]> {
+    GetPlaylist(channel: number): Promise<PlaylistItemView[]> {
         let url = environment.API_ENDPOINT + "/api/ChannelPlaylist/GetList/" + channel;
         return this._http.get<PlaylistItemView[]>(url.toString()).toPromise();
     }
@@ -85,7 +90,7 @@ export class ChannelService {
     AddMedia(action: ActionAddMedia) {
         let url = environment.API_ENDPOINT + "/api/Media/AddMedia";
         return this._http.post(url.toString(), action).toPromise();
-    }*/
+    }
 
     Search(action: ActionChannelSearch): Promise<ChannelViewModel[]> {
         const url = environment.API_ENDPOINT + '/api/Channel/Search';

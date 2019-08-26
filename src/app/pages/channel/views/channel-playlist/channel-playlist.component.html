@@ -1,0 +1,15 @@
+<nb-list>
+  <nb-list-item *ngFor="let item of items">
+    <nb-actions size="medium">
+      <nb-action>
+        #{{item.index}}
+      </nb-action>
+      <nb-action class="w-100">
+        {{item.name}}
+      </nb-action>
+      <nb-action icon="fa fa-caret-up" (click)="moveUp(item)"></nb-action>
+      <nb-action icon="fa fa-caret-down" (click)="moveDown(item)"></nb-action>
+      <nb-action icon="fa fa-times" (click)="remove(item)"></nb-action>
+    </nb-actions>
+  </nb-list-item>
+</nb-list>

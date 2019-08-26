@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-auto">
+    <button class="btn btn-primary" (click)="addMediaClick()">Add Media</button>
+  </div>
+
+  <div class="col-12">
+    <nb-card>
+      <nb-card-header>Media</nb-card-header>
+      <nb-card-body class="p-0">
+        <channel-media [Channel]="Channel"></channel-media>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
