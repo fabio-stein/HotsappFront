@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule } from '@nebular/theme';
+import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -36,6 +36,7 @@ import { RouteTabsetComponent } from '../@theme/components';
     NbCheckboxModule,
     NbListModule,
     NbActionsModule,
+    NbIconModule
   ],
   declarations: [
     PagesComponent,
@@ -53,7 +54,7 @@ import { RouteTabsetComponent } from '../@theme/components';
     ChannelPagePlaylistComponent,
     ChannelPageMediaComponent,
     ChannelPageConfigurationComponent,
-    RouteTabsetComponent
+    RouteTabsetComponent,
   ],
   providers: [
     ChannelService,

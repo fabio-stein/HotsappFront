@@ -1,22 +1,22 @@
 <nb-list nbInfiniteList listenWindowScroll [threshold]="5" (bottomThreshold)="loadNext()">
   <nb-list-item *ngFor="let channel of Channels">
-    <div class="row" [routerLink]="'/pages/channel/'+channel.chId">
+    <div class="row" [routerLink]="'/pages/channel/'+channel.id">
       <div class="col-12 col-sm-4 col-md-3 col-lg-2">
-        <img class="CoverImage" [src]="channel.chImage">
+        <img class="CoverImage" [src]="channel.image">
       </div>
       <div class="col-12 col-sm-8 col-md-9 col-lg-10">
         <div class="row">
           <div class="col-auto">
-            <h5>{{channel.chName}}</h5>
+            <h5>{{channel.name}}</h5>
           </div>
           <div *ngIf="showDashboardOption" class="col-auto ml-auto">
             <nb-actions size="small">
-              <nb-action [link]="'/pages/dashboard/'+channel.chId" nbTooltip="Dashboard" icon="fa fa-cog"></nb-action>
+              <nb-action [link]="'/pages/dashboard/'+channel.id" nbTooltip="Dashboard" icon="star"></nb-action>
             </nb-actions>
           </div>
           <div class="col-12">
-            <i class="fa fa-star"></i>213
-            <i class="fa fa-users"></i>23
+            <i class="fa fa-star"></i>111
+            <i class="fa fa-users"></i>222
           </div>
           <div class="col-12 mt-3">
             <span>Playing now: Music name demo test</span>

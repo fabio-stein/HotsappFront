@@ -21,6 +21,7 @@ import {
   NbWindowModule,
   NbCheckboxModule,
   NbToastrService,
+  NbIconModule,
 } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth-guard.service';
@@ -58,6 +59,7 @@ import { HttpErrorInterceptor } from './@core/interceptors/HttpErrorInterceptor'
 
     FormsModule,
     NbCheckboxModule,
+    NbIconModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   bootstrap: [AppComponent],

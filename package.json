@@ -49,6 +49,7 @@
     "core-js": "2.5.1",
     "eva-icons": "^1.1.0",
     "firebase": "^6.4.1",
+    "font-awesome": "^4.7.0",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
     "nebular-icons": "1.1.0",
