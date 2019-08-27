@@ -1,33 +1,17 @@
 <nb-list nbInfiniteList listenWindowScroll [threshold]="5" (bottomThreshold)="loadNext()">
   <nb-list-item *ngFor="let channel of Channels">
     <div class="row" [routerLink]="'/pages/channel/'+channel.id">
-      <div class="col-12 col-sm-4 col-md-3 col-lg-2">
-        <img class="CoverImage" [src]="channel.image">
+      <div class="col-auto my-auto">
+        <nb-icon icon="play-circle" status="success"></nb-icon>
       </div>
-      <div class="col-12 col-sm-8 col-md-9 col-lg-10">
-        <div class="row">
-          <div class="col-auto">
-            <h5>{{channel.name}}</h5>
-          </div>
-          <div *ngIf="showDashboardOption" class="col-auto ml-auto">
-            <nb-actions size="small">
-              <nb-action [link]="'/pages/dashboard/'+channel.id" nbTooltip="Dashboard" icon="cog"></nb-action>
-            </nb-actions>
-          </div>
-          <div class="col-12">
-            <nb-icon icon="star"></nb-icon>111
-            <nb-icon icon="users"></nb-icon> 222
-          </div>
-          <div class="col-12 mt-3">
-            <span>Playing now: Music name demo test</span>
-          </div>
-        </div>
+      <div class="col-auto">
+        <h6 class="mb-0">{{channel.name}}</h6>
+      </div>
+      <div *ngIf="showDashboardOption" class="col-auto ml-auto">
+        <nb-actions size="small">
+          <nb-action [link]="'/pages/dashboard/'+channel.id" nbTooltip="Dashboard" icon="cog"></nb-action>
+        </nb-actions>
       </div>
     </div>
-  </nb-list-item>
-
-  <nb-list-item *ngFor="let _ of placeholders">
-    <!--<nb-news-post-placeholder></nb-news-post-placeholder>-->
-    <div class="col-12 mx-6" style="background-color: gainsboro;"> <br><br><br><br><br> </div>
   </nb-list-item>
 </nb-list>
