@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChannelService } from '../channel.service';
-import { ChannelViewModel } from './model/ChannelEditModel';
+import { ChannelEditModel } from './model/ChannelEditModel';
 
 @Component({
   selector: 'channel-edit',
@@ -13,9 +13,9 @@ export class ChannelEditComponent implements OnInit {
   isNew = true;
   submitted = false;
 
-  Channel: ChannelViewModel = {
-    chId: null,
-    chName: "TEST CHANNEL"
+  Channel: ChannelEditModel = {
+    Id: null,
+    Name: "TEST CHANNEL"
   };
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -32,7 +32,7 @@ export class ChannelEditComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    this._service.Add(this.Channel)
+    this._service.Create(this.Channel)
       .then(data => {
         console.log("ALWAYS");
       })

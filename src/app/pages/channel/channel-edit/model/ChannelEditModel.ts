@@ -1,6 +1,6 @@
-export class ChannelViewModel {
-    chId: number;
-    chName: string;
-    chImage?: string;
-    chCoverImage?: string;
+export class ChannelEditModel {
+    Id: number;
+    Name: string;
+    Image?: string;
+    CoverImage?: string;
 }

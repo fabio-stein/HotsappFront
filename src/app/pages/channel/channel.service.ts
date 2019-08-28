@@ -8,6 +8,7 @@ import { ActionGetMediaInfo } from './views/add-media/action/ActionGetMediaInfo'
 import { ChannelStatusView } from './views/channel-control-view/ChannelStatusVIew';
 import { MediaView } from './views/channel-media/model/MediaView';
 import { PlaylistItemView } from './channel-dashboard/pages/channel-page-playlist/model/PlaylistItemView';
+import { ChannelEditModel } from './channel-edit/model/ChannelEditModel';
 
 @Injectable()
 export class ChannelService {
@@ -15,8 +16,8 @@ export class ChannelService {
 
     }
 
-    Add(Channel: ChannelViewModel) {
-        const url = environment.API_ENDPOINT + '/api/Channel/Add';
+    Create(Channel: ChannelEditModel) {
+        const url = environment.API_ENDPOINT + '/api/Channel/Create';
         return this._http.post(url, Channel).toPromise();
     }
 
