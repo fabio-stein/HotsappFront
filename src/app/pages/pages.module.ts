@@ -22,6 +22,7 @@ import { ChannelPagePlaylistComponent } from './channel/channel-dashboard/pages/
 import { ChannelPageMediaComponent } from './channel/channel-dashboard/pages/channel-page-media/channel-page-media.component';
 import { ChannelPageConfigurationComponent } from './channel/channel-dashboard/pages/channel-page-configuration/channel-page-configuration.component';
 import { RouteTabsetComponent } from '../@theme/components';
+import { WalletComponent } from './wallet/wallet.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { RouteTabsetComponent } from '../@theme/components';
     ChannelPageMediaComponent,
     ChannelPageConfigurationComponent,
     RouteTabsetComponent,
+    WalletComponent,
   ],
   providers: [
     ChannelService,

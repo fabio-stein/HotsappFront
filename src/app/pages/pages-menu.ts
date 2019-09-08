@@ -18,6 +18,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: 'payment'
   },
   {
+    title: 'Wallet',
+    icon: 'coins',
+    link: 'wallet'
+  },
+  {
     title: 'Others',
     children:
       [

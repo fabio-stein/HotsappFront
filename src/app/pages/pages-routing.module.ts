@@ -12,6 +12,7 @@ import { ChannelPageMediaComponent } from './channel/channel-dashboard/pages/cha
 import { ChannelPageConfigurationComponent } from './channel/channel-dashboard/pages/channel-page-configuration/channel-page-configuration.component';
 import { ChannelPageComponent } from './channel/channel-page/channel-page.component';
 import { ChannelPageHomeComponent } from './channel/channel-page/pages/channel-page-home/channel-page-home.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 const routes: Routes = [{
   path: '',
@@ -88,6 +89,10 @@ const routes: Routes = [{
     {
       path: 'payment',
       loadChildren: 'app/pages/payment/payment.module#PaymentModule'
+    },
+    {
+      path: 'wallet',
+      component: WalletComponent
     }
   ],
 }];
