@@ -13,6 +13,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: 'channel',
   },
   {
+    title: 'Payment',
+    icon: 'list',
+    link: 'payment'
+  },
+  {
     title: 'Others',
     children:
       [

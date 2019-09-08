@@ -85,6 +85,10 @@ const routes: Routes = [{
       pathMatch: 'full',
       redirectTo: 'channel/search'
     },
+    {
+      path: 'payment',
+      loadChildren: 'app/pages/payment/payment.module#PaymentModule'
+    }
   ],
 }];
 
