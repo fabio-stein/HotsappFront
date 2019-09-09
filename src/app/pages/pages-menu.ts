@@ -19,50 +19,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Wallet',
-    icon: 'coins',
+    icon: 'wallet',
     link: 'wallet'
-  },
-  {
-    title: 'Others',
-    children:
-      [
-        {
-          title: 'Musics',
-          link: 'musics',
-        },
-        {
-          title: 'Youtube',
-          link: 'youtube',
-        },
-      ],
-  },
-  {
-    title: 'Profile',
-    link: '/pages/profile',
-  },
-  {
-    title: 'FEATURES',
-    group: true,
-  },
-  {
-    title: 'Auth',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
   },
 ];

@@ -5,7 +5,7 @@
  */
 export const environment = {
   production: true,
-  API_ENDPOINT: 'http://api.sonoris.ga:5000',
+  API_ENDPOINT: 'http://api.neonsistemas.ml:5000',
   paypalClientId: 'AQdu2Q3IOgK-68-H4JgKIyadz9PJAZqyFkHFZCdAxxyiKm6L0yf6ZJKZMFrHIjp9KzrT1W9w4lISj7cW',
   firebase: {
     apiKey: 'AIzaSyCPLpQuOVbDa0SudKuEOL9nWhR_ckqeGLI',
