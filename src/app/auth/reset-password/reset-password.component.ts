@@ -17,7 +17,7 @@ export class ResetPasswordComponent {
   messages: string[] = [];
   user: any = {};
 
-  validation = {};
+  validation: any = {};
 
   code: string;
 

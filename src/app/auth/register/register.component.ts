@@ -18,7 +18,7 @@ export class RegisterComponent {
   messages: string[] = [];
   user: any = {};
   socialLinks: NbAuthSocialLink[] = [];
-  validation = {};
+  validation: any = {};
 
   constructor(protected auth: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) protected config = {},

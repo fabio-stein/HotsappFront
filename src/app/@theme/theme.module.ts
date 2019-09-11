@@ -12,6 +12,7 @@ import {
   NbSelectModule,
   NbIconModule,
   NbThemeModule,
+  NbCardModule,
 } from '@nebular/theme';
 import { NbSecurityModule } from '@nebular/security';
 
@@ -21,6 +22,7 @@ import {
   LayoutDirectionSwitcherComponent,
   SearchInputComponent,
   SwitcherComponent,
+  ConfirmDialogComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -52,6 +54,7 @@ const NB_MODULES = [
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
+  NbCardModule
 ];
 const COMPONENTS = [
   SwitcherComponent,
@@ -62,6 +65,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  ConfirmDialogComponent
 ];
 const PIPES = [
   CapitalizePipe,

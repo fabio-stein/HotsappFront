@@ -19,7 +19,7 @@ export class LoginComponent {
   submitted: boolean = false;
   socialLinks: NbAuthSocialLink[] = [];
 
-  validation = {};
+  validation: any = {};
 
   constructor(protected auth: NbAuthService, @Inject(NB_AUTH_OPTIONS) protected config = {}, protected router: Router) {
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');

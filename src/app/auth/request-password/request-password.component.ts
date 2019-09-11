@@ -16,7 +16,7 @@ export class RequestPasswordComponent {
   messages: string[] = [];
   user: any = {};
 
-  validation = {};
+  validation: any = {};
 
   constructor(protected auth: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) protected config = {},
