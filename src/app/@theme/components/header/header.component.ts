@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: any;
   private destroy$: Subject<void> = new Subject<void>();
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out', target: 'logout' }];
+  userMenu = [
+    //{ title: 'Profile' },
+    { title: 'Log out', target: 'logout' }];
 
   themes = [
     {
@@ -34,10 +36,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       value: 'cosmic',
       name: 'Cosmic',
     },
-    {
+    /*{
       value: 'corporate',
       name: 'Corporate',
-    },
+    },*/
   ];
 
   currentTheme = 'default';
@@ -99,7 +101,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeTheme(themeName: string) {
     this.themeService.changeTheme(themeName);
   }
-  
+
   navigateHome() {
     this.menuService.navigateHome();
     return false;
