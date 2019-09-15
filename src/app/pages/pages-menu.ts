@@ -8,16 +8,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Channels',
-    icon: 'list',
-    link: 'channel',
-  },
-  {
-    title: 'Payment',
-    icon: 'list',
-    link: 'payment'
-  },
-  {
     title: 'Wallet',
     icon: 'wallet',
     link: 'wallet'

@@ -19,10 +19,6 @@ const routes: Routes = [{
       pathMatch: 'full',
     },
     {
-      path: 'payment',
-      loadChildren: 'app/pages/payment/payment.module#PaymentModule'
-    },
-    {
       path: 'wallet',
       component: WalletComponent
     }

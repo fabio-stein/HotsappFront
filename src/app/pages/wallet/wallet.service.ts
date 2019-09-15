@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class PaymentService{
+export class WalletService{
     constructor(private _http:HttpClient){
 
     }

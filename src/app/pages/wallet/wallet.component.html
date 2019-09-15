@@ -8,7 +8,10 @@
           </nb-card-header>
           <nb-card-body>
             <h6>Current balance:</h6>
-            <h2>10.00 credits</h2>
+            <h2>{{Balance}} credits</h2>
+
+            <button [disabled]="Updating" class="btn btn-primary" (click)="Update()">Refresh</button>
+            <button class="btn btn-primary ml-2" (click)="AddBalance()">Add Balance</button>
           </nb-card-body>
         </nb-card>
       </div>

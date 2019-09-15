@@ -8,6 +8,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RouteTabsetComponent } from '../@theme/components';
 import { WalletComponent } from './wallet/wallet.component';
+import { WalletService } from './wallet/wallet.service';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { WalletComponent } from './wallet/wallet.component';
     WalletComponent,
   ],
   providers: [
+    WalletService
   ],
 })
 export class PagesModule {

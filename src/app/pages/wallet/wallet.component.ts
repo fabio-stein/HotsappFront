@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WalletService } from './wallet.service';
 declare var window: any;
 @Component({
   selector: 'wallet',
@@ -7,9 +8,32 @@ declare var window: any;
 })
 export class WalletComponent implements OnInit {
 
-  constructor() { }
+  Balance = 0;
+  Updating = false;
+
+  constructor(private _service: WalletService) { }
+
+  async Update() {
+    this.Updating = true;
+    this.Balance = await this._service.GetCurrentBalance();
+    await new Promise((resolve) => setTimeout(resolve, 300));//sleep
+    this.Updating = false;
+  }
+
+  async CaptureOrder(orderId: string) {
+    await this._service.CaptureOrder(orderId);
+  }
+
+  async AddBalance() {
+    await this._service.AddBalance();
+    await this.Update();
+  }
 
   ngOnInit() {
+    this.Update()
+
+    let ref = this;
+
     window.paypal.Buttons({
       createOrder: function (data, actions) {
         return actions.order.create({
@@ -22,7 +46,7 @@ export class WalletComponent implements OnInit {
       },
       onApprove: function (data, actions) {
         console.log(data);
-        //ref.CaptureOrder(data.orderID);
+        ref.CaptureOrder(data.orderID);
       }
     }).render('#paypal-button-container-5');
 
@@ -38,7 +62,7 @@ export class WalletComponent implements OnInit {
       },
       onApprove: function (data, actions) {
         console.log(data);
-        //ref.CaptureOrder(data.orderID);
+        ref.CaptureOrder(data.orderID);
       }
     }).render('#paypal-button-container-20');
 
@@ -54,7 +78,7 @@ export class WalletComponent implements OnInit {
       },
       onApprove: function (data, actions) {
         console.log(data);
-        //ref.CaptureOrder(data.orderID);
+        ref.CaptureOrder(data.orderID);
       }
     }).render('#paypal-button-container-50');
   }
