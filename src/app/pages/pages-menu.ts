@@ -10,6 +10,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Wallet',
     icon: 'wallet',
-    link: 'wallet'
+    link: '/pages/wallet',
   },
 ];
