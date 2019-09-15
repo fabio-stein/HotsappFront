@@ -1,15 +1,15 @@
 export const environment = {
   production: false,
   version: '0.0.1',
-  API_ENDPOINT: 'http://localhost:5000',
+  API_ENDPOINT: 'http://localhost:5001',
   paypalClientId: 'ARnf-tKM_M-ehARaSDnjzn2Ioy4yZ4O7PfSCHtRhzn5Wk71eDR7Syqk4FejMg7fa3Zx4vpFPJPTzcn0U',
   firebase: {
-    apiKey: 'AIzaSyCPLpQuOVbDa0SudKuEOL9nWhR_ckqeGLI',
-    authDomain: 'gooleyclub.firebaseapp.com',
-    databaseURL: 'https://gooleyclub.firebaseio.com',
-    projectId: 'gooleyclub',
-    storageBucket: 'gooleyclub.appspot.com',
-    messagingSenderId: '181549511784',
-  },
-  youtube_api_key: 'AIzaSyAiBjs5D7VYTnO0EexrmMrdPK4Ch3X8MPU',
+    apiKey: "AIzaSyBwXsFNGmRzVQ48d_462QkqCMUC7BwYMTI",
+    authDomain: "hotsapp-staging.firebaseapp.com",
+    databaseURL: "https://hotsapp-staging.firebaseio.com",
+    projectId: "hotsapp-staging",
+    storageBucket: "",
+    messagingSenderId: "927528493911",
+    appId: "1:927528493911:web:2240bf2db5adc56ca15412"
+  }
 };
