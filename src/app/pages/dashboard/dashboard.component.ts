@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
     if (message != null) {
       this.lastId = message.id;
       this.messages.push({
-        text: message.message,
+        text: message.content,
         date: new Date(),
         reply: true,
         type: 'text',
