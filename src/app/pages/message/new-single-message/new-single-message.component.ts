@@ -12,4 +12,8 @@ export class NewSingleMessageComponent implements OnInit {
   ngOnInit() {
   }
 
+  OnSubmit(e){
+    console.log(e);
+  }
+
 }

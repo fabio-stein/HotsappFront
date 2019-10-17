@@ -14,7 +14,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Chat',
-    icon: 'comments'
+    icon: 'comments',
+    link: '/pages/chat'
+  },
+  {
+    title: 'Numbers',
+    icon: 'mobile-alt',
+    children:[
+      {
+        title: 'My Numbers',
+        link: '/pages/number/my'
+      },{
+        title: 'Buy New',
+        link: '/pages/number/buy'
+      }
+    ]
   },
   {
     title: 'Wallet',

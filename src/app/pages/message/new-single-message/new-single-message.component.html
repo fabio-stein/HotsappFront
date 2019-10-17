@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>Send Message</nb-card-header>
       <nb-card-body>
-        <form>
+        <form (ngSubmit)="OnSubmit($event)">
           <div class="form-group">
             <label for="number" class="label">Phone Number</label>
             <input type="tel" nbInput fullWidth id="number" placeholder="11 1234-56789">
