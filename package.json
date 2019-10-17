@@ -10,7 +10,7 @@
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
     "start": "ng serve",
-    "build": "node --max_old_space_size=756 node_modules/@angular/cli/bin/ng build",
+    "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
