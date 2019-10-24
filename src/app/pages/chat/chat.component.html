@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <nb-card size="large">
       <nb-card-header>
-        Chat (5554999958468) <a routerLink="/pages/number/my">Change</a>
+        Chat ({{currentNumber}}) <a routerLink="/pages/number/my">Change</a>
       </nb-card-header>
       <nb-card-body>
 
@@ -25,7 +25,7 @@
         Contacts
       </nb-card-header>
       <nb-card-body class="p-0">
-        <contact-list></contact-list>
+        <contact-list *ngIf="currentNumber" [currentNumber]="currentNumber" (OnContactSelected)="OnContactSelected($event)"></contact-list>
       </nb-card-body>
     </nb-card>
   </div>

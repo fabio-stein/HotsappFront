@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ChatService } from '../../chat.service';
 
 @Component({
   selector: 'contact-list',
@@ -6,17 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent implements OnInit {
+  @Input()
+  currentNumber: string;
+  @Output()
+  OnContactSelected: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor(private service: ChatService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let e = await this.service.GetContactUpdate(this.currentNumber);
+    this.contacts = [];
+
+    let list = e.map(function (n) {
+      return { numberId: n.numberId, picture: 'https://api.adorable.io/avatars/50/' + n.numberId, title: n.contactDateUTC }
+    });
+    this.contacts = list;
+    console.log(e);
   }
 
-  users = [
-    { name: 'Carla Espinosa', title: 'Nurse', picture: 'https://api.adorable.io/avatars/50/001.png' },
-    { name: 'Bob Kelso', title: 'Doctor of Medicine', picture: 'https://api.adorable.io/avatars/50/002.png' },
-    { name: 'Janitor', title: 'Janitor', picture: 'https://api.adorable.io/avatars/50/003.png' },
-    { name: 'Perry Cox', title: 'Doctor of Medicine', picture: 'https://api.adorable.io/avatars/50/004.png' },
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer', picture: 'https://api.adorable.io/avatars/50/005.png' },
-  ];
+  contacts = [];
+
+  selectContact(e: string) {
+    this.OnContactSelected.emit(e);
+  }
 }

@@ -16,6 +16,7 @@ import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
 import { ChatComponent } from './chat/chat.component';
 import { ContactListComponent } from './chat/components/contact-list/contact-list.component';
 import { NumberService } from './numbers/number.service';
+import { ChatService } from './chat/chat.service';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { NumberService } from './numbers/number.service';
   ],
   providers: [
     WalletService,
-    NumberService
+    NumberService,
+    ChatService
   ],
 })
 export class PagesModule {

@@ -1,6 +1,14 @@
 <nb-list>
-  <nb-list-item *ngFor="let user of users">
-    <nb-user [name]="user.name" [title]="user.title" [picture]="user.picture">
+  <nb-list-item>
+    <nb-actions>
+      <nb-action icon="plus"></nb-action>
+      <nb-action>
+        Add New
+      </nb-action>
+    </nb-actions>
+  </nb-list-item>
+  <nb-list-item *ngFor="let contact of contacts" (click)="selectContact(contact.numberId)">
+    <nb-user [name]="contact.numberId" [title]="contact.title | date:'short'" [picture]="contact.picture">
     </nb-user>
   </nb-list-item>
 </nb-list>

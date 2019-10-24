@@ -1,7 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -29,6 +29,10 @@ import { AuthService } from './auth/auth-service.service';
 import { NbAuthJWTInterceptor, NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';
 import { Router } from '@angular/router';
 import { HttpErrorInterceptor } from './@core/interceptors/HttpErrorInterceptor';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, "pt")
 
 @NgModule({
   declarations: [
@@ -72,6 +76,7 @@ import { HttpErrorInterceptor } from './@core/interceptors/HttpErrorInterceptor'
         return (req.url.indexOf('/api/auth/') != -1);//Filter auth requests
       },
     },
+    { provide: LOCALE_ID, useValue: 'pt' }
   ],
 })
 export class AppModule {

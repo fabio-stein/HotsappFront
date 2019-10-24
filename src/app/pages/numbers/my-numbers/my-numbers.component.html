@@ -16,7 +16,7 @@
         <nb-list>
           <nb-list-item *ngFor="let number of numbers" class="d-flex">
               <nb-actions size="medium" class="w-100">
-                  <nb-action icon="comments" link="/pages/chat"></nb-action>
+                  <nb-action icon="comments" [link]="'/pages/chat/'+number.numberId"></nb-action>
                   <nb-action>
                     {{number.numberId}}
                   </nb-action>
