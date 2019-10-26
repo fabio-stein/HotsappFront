@@ -12,6 +12,10 @@ export class ContactListComponent implements OnInit {
   @Output()
   OnContactSelected: EventEmitter<string> = new EventEmitter();
 
+  isAddingContact = false;
+  newContactNumber = null;
+  hasUnsavedContact = false;
+
   constructor(private service: ChatService) { }
 
   async ngOnInit() {
@@ -27,7 +31,25 @@ export class ContactListComponent implements OnInit {
 
   contacts = [];
 
+  clickAddContact() {
+    this.newContactNumber = null;
+    this.isAddingContact = true;
+    this.hasUnsavedContact = false;
+  }
+
   selectContact(e: string) {
     this.OnContactSelected.emit(e);
+    this.hasUnsavedContact = false;
+  }
+
+  cancelContactAdd() {
+    this.isAddingContact = false;
+    this.newContactNumber = null;
+  }
+
+  confirmContactAdd() {
+    this.isAddingContact = false;
+    this.OnContactSelected.emit(this.newContactNumber);
+    this.hasUnsavedContact = true;
   }
 }

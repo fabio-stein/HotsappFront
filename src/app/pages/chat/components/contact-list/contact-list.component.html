@@ -1,11 +1,32 @@
 <nb-list>
-  <nb-list-item>
+  <nb-list-item *ngIf="!isAddingContact">
     <nb-actions>
-      <nb-action icon="plus"></nb-action>
+      <nb-action icon="plus" (click)="clickAddContact()"></nb-action>
       <nb-action>
         Add New
       </nb-action>
     </nb-actions>
+  </nb-list-item>
+  <nb-list-item *ngIf="isAddingContact">
+    <div class="row">
+      <div class="col">
+        <input nbInput fullWidth placeholder="Contact number" [(ngModel)]="newContactNumber" />
+      </div>
+      <div class="col-auto p-0 m-auto">
+        <button nbButton ghost status="danger" size="small" (click)="cancelContactAdd()">
+          <nb-icon icon="times"></nb-icon>
+        </button>
+      </div>
+      <div class="col-auto pl-0 m-auto">
+        <button nbButton ghost status="primary" size="small" (click)="confirmContactAdd()">
+          <nb-icon icon="check"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </nb-list-item>
+  <nb-list-item *ngIf="hasUnsavedContact">
+    <nb-user [name]="newContactNumber" title="New Contact" [picture]="'https://api.adorable.io/avatars/50/'+newContactNumber">
+    </nb-user>
   </nb-list-item>
   <nb-list-item *ngFor="let contact of contacts" (click)="selectContact(contact.numberId)">
     <nb-user [name]="contact.numberId" [title]="contact.title | date:'short'" [picture]="contact.picture">
