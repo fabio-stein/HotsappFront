@@ -1,22 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { ChatService } from '../../chat.service';
+import { Subscription, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss']
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit, OnDestroy {
+  @Input()
+  currentNumber: string;
+  @Output()
+  OnContactSelected: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  isAddingContact = false;
+  newContactNumber = null;
+  hasUnsavedContact = false;
+  isUpdating = false;
+  subscription: Subscription;
+
+  constructor(private service: ChatService) { }
 
   ngOnInit() {
+    this.subscription = timer(0, 1000).pipe(
+      switchMap(() => this.getUpdate())
+    ).subscribe();
   }
 
-  users = [
-    { name: 'Carla Espinosa', title: 'Nurse', picture: 'https://api.adorable.io/avatars/50/001.png' },
-    { name: 'Bob Kelso', title: 'Doctor of Medicine', picture: 'https://api.adorable.io/avatars/50/002.png' },
-    { name: 'Janitor', title: 'Janitor', picture: 'https://api.adorable.io/avatars/50/003.png' },
-    { name: 'Perry Cox', title: 'Doctor of Medicine', picture: 'https://api.adorable.io/avatars/50/004.png' },
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer', picture: 'https://api.adorable.io/avatars/50/005.png' },
-  ];
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  async getUpdate() {
+    if (this.isUpdating) { return; }
+    try {
+      this.isUpdating = true;
+      let e = await this.service.GetContactUpdate(this.currentNumber);
+      this.contacts = [];
+
+      let list = e.map(function (n) {
+        return { numberId: n.numberId, picture: 'https://api.adorable.io/avatars/50/' + n.numberId, title: n.contactDateUTC }
+      });
+
+      if (this.hasUnsavedContact) {
+        let index = list.findIndex(n => n.numberId == this.newContactNumber)
+        if (index != -1) {
+          list.splice(index, 1);
+        }
+      }
+
+      this.contacts = list;
+    } catch (e) {
+      console.log(e);
+    }
+    this.isUpdating = false;
+  }
+
+  contacts = [];
+
+  clickAddContact() {
+    this.newContactNumber = null;
+    this.isAddingContact = true;
+    this.hasUnsavedContact = false;
+  }
+
+  selectContact(e: string) {
+    this.OnContactSelected.emit(e);
+    this.hasUnsavedContact = false;
+  }
+
+  cancelContactAdd() {
+    this.isAddingContact = false;
+    this.newContactNumber = null;
+  }
+
+  confirmContactAdd() {
+    this.isAddingContact = false;
+    this.OnContactSelected.emit(this.newContactNumber);
+    this.hasUnsavedContact = true;
+  }
 }
