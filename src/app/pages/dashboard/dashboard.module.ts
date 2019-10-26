@@ -3,7 +3,6 @@ import { NbCardModule, NbChatModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
-import { MessagesService } from './messages.service';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { MessagesService } from './messages.service';
     DashboardComponent,
   ],
   providers: [
-    MessagesService
   ]
 })
 export class DashboardModule { }

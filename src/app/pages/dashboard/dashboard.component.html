@@ -1,15 +1,12 @@
 <div class="row">
-  <nb-card class="col-md-6">
-    <nb-card-body>
-      <nb-chat title="Message" size="medium" status="success">
-        <nb-chat-message *ngFor="let message of messages" [type]="message.type" [message]="message.text"
-          [reply]="!message.reply" [sender]="message.user.name" [date]="message.date" [files]="message.files"
-          [quote]="message.quote" [latitude]="message.latitude" [longitude]="message.longitude"
-          [avatar]="message.user.avatar"></nb-chat-message>
-        <nb-chat-form (send)="sendMessage($event.message, 'John', 'https://i.gifer.com/no.gif', false)" [showButton]="false"
-          [dropFiles]="true">
-        </nb-chat-form>
-      </nb-chat>
-    </nb-card-body>
-  </nb-card>
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Dashboard
+      </nb-card-header>
+      <nb-card-body>
+        Test
+      </nb-card-body>
+    </nb-card>
+  </div>
 </div>
