@@ -18,6 +18,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/chat'
   },
   {
+    title: 'Bulk Messaging',
+    icon: 'copy'
+  },
+  {
     title: 'Numbers',
     icon: 'mobile-alt',
     children:[
@@ -29,6 +33,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/number/buy'
       }
     ]
+  },
+  {
+    title: 'Notify',
+    
   },
   {
     title: 'Wallet',
