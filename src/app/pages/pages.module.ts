@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbChatModule, NbSelectModule } from '@nebular/theme';
+import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbChatModule, NbSelectModule, NbRadioModule, NbProgressBarModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -35,7 +35,9 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
     NbInputModule,
     NbUserModule,
     NbChatModule,
-    NbSelectModule
+    NbSelectModule,
+    NbRadioModule,
+    NbProgressBarModule
   ],
   declarations: [
     PagesComponent,
