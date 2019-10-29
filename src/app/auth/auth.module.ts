@@ -10,7 +10,6 @@ import { AuthService } from './auth-service.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { ThemeModule } from '../@theme/theme.module';
-import { DashboardModule } from '../pages/dashboard/dashboard.module';
 import { NbCheckboxModule } from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
 
@@ -25,7 +24,6 @@ import { NbAuthModule } from '@nebular/auth';
     CommonModule,
     FormsModule,
     ThemeModule,
-    DashboardModule,
     AuthRoutingModule,
     NbCheckboxModule,
     NbAuthModule,

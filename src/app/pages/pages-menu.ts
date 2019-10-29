@@ -8,35 +8,42 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Single Message',
-    icon: 'envelope',
-    link: '/pages/single_message'
-  },
-  {
     title: 'Chat',
     icon: 'comments',
     link: '/pages/chat'
   },
   {
     title: 'Bulk Messaging',
-    icon: 'copy'
+    icon: 'copy',
+    link: '/pages/bulk_messaging'
   },
   {
     title: 'Numbers',
     icon: 'mobile-alt',
-    children:[
+    children: [
       {
         title: 'My Numbers',
         link: '/pages/number/my'
-      },{
+      }, {
         title: 'Buy New',
         link: '/pages/number/buy'
       }
     ]
   },
   {
-    title: 'Notify',
-    
+    title: 'Shop',
+    icon: 'shopping-cart',
+    children: [
+      {
+        title: 'Credits'
+      },
+      {
+        title: 'Numbers'
+      },
+      {
+        title: 'Messages'
+      }
+    ]
   },
   {
     title: 'Wallet',
