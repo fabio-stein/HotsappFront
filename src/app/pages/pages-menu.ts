@@ -8,11 +8,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Single Message',
-    icon: 'envelope',
-    link: '/pages/single_message'
-  },
-  {
     title: 'Chat',
     icon: 'comments',
     link: '/pages/chat'
@@ -36,8 +31,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ]
   },
   {
-    title: 'Notify',
-
+    title: 'Shop',
+    icon: 'shopping-cart',
+    children: [
+      {
+        title: 'Credits'
+      },
+      {
+        title: 'Numbers'
+      },
+      {
+        title: 'Messages'
+      }
+    ]
   },
   {
     title: 'Wallet',

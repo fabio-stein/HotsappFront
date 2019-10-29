@@ -8,8 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { RouteTabsetComponent } from '../@theme/components';
 import { WalletComponent } from './wallet/wallet.component';
 import { WalletService } from './wallet/wallet.service';
-import { MessageComponent } from './message/message.component';
-import { NewSingleMessageComponent } from './message/new-single-message/new-single-message.component';
 import { MyNumbersComponent } from './numbers/my-numbers/my-numbers.component';
 import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
 import { ChatComponent } from './chat/chat.component';
@@ -43,8 +41,6 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
     PagesComponent,
     RouteTabsetComponent,
     WalletComponent,
-    MessageComponent,
-    NewSingleMessageComponent,
     MyNumbersComponent,
     BuyNumberComponent,
     ChatComponent,
