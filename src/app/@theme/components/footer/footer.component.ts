@@ -5,14 +5,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="created-by">Hotsapp &copy; 2019</span>
-    <!--
+    
     <div class="socials">
-      <a href="#" target="_blank" class="ion ion-social-github"></a>
-      <a href="#" target="_blank" class="ion ion-social-facebook"></a>
-      <a href="#" target="_blank" class="ion ion-social-twitter"></a>
-      <a href="#" target="_blank" class="ion ion-social-linkedin"></a>
+      <a href="https://www.facebook.com/hotsappbrasil" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/hotsapp_br" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
-    -->
   `,
 })
 export class FooterComponent {
