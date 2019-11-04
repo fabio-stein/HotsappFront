@@ -12,4 +12,8 @@ export class BulkMessagingCampaignComponent implements OnInit {
   ngOnInit() {
   }
 
+  OnSubmit(e) {
+    console.log(e);
+  }
+
 }
