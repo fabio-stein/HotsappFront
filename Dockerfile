@@ -8,7 +8,6 @@ ARG env=prod
 # Move our files into directory name "app"
 WORKDIR /app
 COPY package.json package-lock.json  /app/
-RUN npm install @angular/cli -g
 RUN cd /app && npm install
 COPY .  /app
 
