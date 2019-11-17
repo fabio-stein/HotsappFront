@@ -9,6 +9,7 @@ import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
 import { ChatComponent } from './chat/chat.component';
 import { BulkMessagingComponent } from './bulk-messaging/bulk-messaging.component';
 import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-messaging-campaign/bulk-messaging-campaign.component';
+import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 
 const routes: Routes = [{
   path: '',
@@ -36,6 +37,11 @@ const routes: Routes = [{
     {
       path: 'number/buy',
       component: BuyNumberComponent,
+      pathMatch: 'full'
+    },
+    {
+      path: 'number/connector',
+      component: NumberConnectorComponent,
       pathMatch: 'full'
     },
     {

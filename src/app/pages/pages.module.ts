@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbChatModule, NbSelectModule, NbRadioModule, NbProgressBarModule } from '@nebular/theme';
+import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbChatModule, NbSelectModule, NbRadioModule, NbProgressBarModule, NbStepperModule, NbSpinnerModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteTabsetComponent } from '../@theme/components';
 import { WalletComponent } from './wallet/wallet.component';
 import { WalletService } from './wallet/wallet.service';
@@ -17,6 +17,8 @@ import { ChatService } from './chat/chat.service';
 import { BulkMessagingComponent } from './bulk-messaging/bulk-messaging.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-messaging-campaign/bulk-messaging-campaign.component';
+import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
+import { ConnectorService } from './numbers/number-connector/connector.service';
 
 @NgModule({
   imports: [
@@ -37,7 +39,10 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
     NbChatModule,
     NbSelectModule,
     NbRadioModule,
-    NbProgressBarModule
+    NbProgressBarModule,
+    NbStepperModule,
+    ReactiveFormsModule,
+    NbSpinnerModule
   ],
   declarations: [
     PagesComponent,
@@ -50,11 +55,13 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
     BulkMessagingComponent,
     DashboardComponent,
     BulkMessagingCampaignComponent,
+    NumberConnectorComponent,
   ],
   providers: [
     WalletService,
     NumberService,
-    ChatService
+    ChatService,
+    ConnectorService
   ],
 })
 export class PagesModule {

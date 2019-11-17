@@ -10,6 +10,7 @@
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
     "start": "ng serve",
+    "start:pt": "ng serve --aot --i18nFile=src/locale/messages.pt.xlf --i18nFormat=xlf --locale pt",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
