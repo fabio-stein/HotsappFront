@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NbStepperComponent, NbToastrService, NbDialogService } from '@nebular/theme';
 import { isNumber } from 'util';
 import { ConnectorService } from './connector.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'number-connector',
@@ -26,7 +27,8 @@ export class NumberConnectorComponent implements OnInit, OnDestroy {
   isSuccess: boolean = null;
   errorMessage: string = null;
 
-  constructor(private toastrService: NbToastrService, private dialogService: NbDialogService, private connectorService: ConnectorService) {
+  constructor(private toastrService: NbToastrService, private dialogService: NbDialogService, private connectorService: ConnectorService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -135,6 +137,10 @@ export class NumberConnectorComponent implements OnInit, OnDestroy {
 
   reset() {
     window.location.reload();
+  }
+
+  finish() {
+    this.router.navigate(['/pages/number/my']);
   }
 
 }
