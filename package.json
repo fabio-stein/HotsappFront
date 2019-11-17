@@ -12,7 +12,7 @@
     "start": "ng serve",
     "start:pt": "ng serve --aot --i18nFile=src/locale/messages.pt.xlf --i18nFormat=xlf --locale pt",
     "build": "ng build",
-    "build:prod": "node --max_old_space_size=756  ./node_modules/@angular/cli/bin/ng build --prod --aot",
+    "build:prod": "node --max-old-space-size=756  ./node_modules/@angular/cli/bin/ng build --prod --aot",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint",
