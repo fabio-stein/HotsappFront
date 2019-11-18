@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="pt" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1cd2846391d685bfe1deef3a20efad2f310591f8" datatype="html">
+        <source>Current balance:</source>
+        <target>Teste balança</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/wallet/wallet.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
