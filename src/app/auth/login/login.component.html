@@ -1,54 +1,54 @@
 <nb-auth-block>
-  <h2 class="title">Sign In</h2>
-  <small class="form-text sub-title">Hello! Sign in with your username or email</small>
+  <h2 class="title">Entrar</h2>
+  <small class="form-text sub-title">Olá! Entre com seu email ou redes sociais</small>
   <form (ngSubmit)="loginEmail()" #form="ngForm" autocomplete="nope">
     <div *ngIf="errors && errors.length > 0 && !submitted" class="alert alert-danger" role="alert">
-      <div><strong>Oh snap!</strong></div>
+      <div><strong>Ops!</strong></div>
       <div *ngFor="let error of errors">{{ error }}</div>
     </div>
     <div *ngIf="messages && messages.length > 0 && !submitted" class="alert alert-success" role="alert">
-      <div><strong>Hooray!</strong></div>
+      <div><strong>Sucesso!</strong></div>
       <div *ngFor="let message of messages">{{ message }}</div>
     </div>
     <div class="form-group">
-      <label for="input-email" class="sr-only">Email address</label>
+      <label for="input-email" class="sr-only">Endereço de email</label>
       <input name="email" [(ngModel)]="user.email" id="input-email" pattern=".+@.+\..+" class="form-control"
-        placeholder="Email address" #email="ngModel" [class.form-control-danger]="email.invalid && email.touched"
+        placeholder="Endereço de email" #email="ngModel" [class.form-control-danger]="email.invalid && email.touched"
         autofocus [required]="validation.password.required">
       <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
-        Email is required!
+        É necessário preencher o email!
       </small>
       <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.pattern">
-        Email should be the real one!
+        Email inválido!
       </small>
     </div>
     <div class="form-group">
-      <label for="input-password" class="sr-only">Password</label>
+      <label for="input-password" class="sr-only">Senha</label>
       <input name="password" [(ngModel)]="user.password" type="password" id="input-password" class="form-control"
-        placeholder="Password" #password="ngModel" [class.form-control-danger]="password.invalid && password.touched"
+        placeholder="Senha" #password="ngModel" [class.form-control-danger]="password.invalid && password.touched"
         [required]="validation.password.required" [minlength]="validation.password.minLength"
         [maxlength]="validation.password.maxLength">
       <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
-        Password is required!
+        É necessário preencher a senha!
       </small>
       <small class="form-text error"
         *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
-        Password should contains
-        from {{validation.password.minLength }}
-        to {{ validation.password.maxLength }} characters
+        A senha deve conter
+        de {{validation.password.minLength }}
+        a {{ validation.password.maxLength }} caracteres
       </small>
     </div>
     <div class="form-group accept-group col-sm-12">
-      <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe">Remember me</nb-checkbox>
-      <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>
+      <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe">Lembre-me</nb-checkbox>
+      <a class="forgot-password" routerLink="../request-password">Esqueceu a senha?</a>
     </div>
     <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
-      Sign In
+      Entrar
     </button>
   </form>
   <div class="links">
     <ng-container *ngIf="socialLinks && socialLinks.length > 0">
-      <small class="form-text">Or connect with:</small>
+      <small class="form-text">Ou conecte-se com:</small>
       <div class="socials">
         <ng-container *ngFor="let socialLink of socialLinks">
           <a (click)="loginSocial(socialLink.name)" [attr.class]="socialLink.icon"
@@ -57,7 +57,7 @@
       </div>
     </ng-container>
     <small class="form-text">
-      Don't have an account? <a routerLink="../register"><strong>Sign Up</strong></a>
+      Não tem uma conta? <a routerLink="../register"><strong>Cadastre-se</strong></a>
     </small>
   </div>
 </nb-auth-block>

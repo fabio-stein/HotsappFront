@@ -1,99 +1,99 @@
 <nb-auth-block>
-  <h2 class="title">Sign Up</h2>
+  <h2 class="title">Cadastro</h2>
   <form (ngSubmit)="register()" #form="ngForm">
     <div *ngIf="errors && errors.length > 0 && !submitted" class="alert alert-danger" role="alert">
-      <div><strong>Oh snap!</strong></div>
+      <div><strong>Ops!</strong></div>
       <div *ngFor="let error of errors">{{ error }}</div>
     </div>
     <div *ngIf="messages && messages.length > 0 && !submitted" class="alert alert-success" role="alert">
-      <div><strong>Hooray!</strong></div>
+      <div><strong>Sucesso!</strong></div>
       <div *ngFor="let message of messages">{{ message }}</div>
     </div>
     <div class="form-group">
-      <label for="input-name" class="sr-only">Full name</label>
+      <label for="input-name" class="sr-only">Nome completo</label>
       <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel"
-             class="form-control" placeholder="Full name"
+             class="form-control" placeholder="Nome completo"
              [class.form-control-danger]="fullName.invalid && fullName.touched"
              [required]="validation.fullName.required"
              [minlength]="validation.fullName.minLength"
              [maxlength]="validation.fullName.maxLength"
              autofocus>
       <small class="form-text error" *ngIf="fullName.invalid && fullName.touched && fullName.errors?.required">
-        Full name is required!
+        É necessário preencher seu nome completo!
       </small>
       <small
         class="form-text error"
         *ngIf="fullName.invalid && fullName.touched && (fullName.errors?.minlength || fullName.errors?.maxlength)">
-        Full name should contains
-        from {{validation.fullName.minLength}}
-        to {{validation.fullName.maxLength}}
-        characters
+        O nome completo deve ter
+        de {{validation.fullName.minLength}}
+        a {{validation.fullName.maxLength}}
+        caracteres
       </small>
     </div>
     <div class="form-group">
-      <label for="input-email" class="sr-only">Email address</label>
+      <label for="input-email" class="sr-only">Endereço de email</label>
       <input name="email" [(ngModel)]="user.email" id="input-email" #email="ngModel"
-             class="form-control" placeholder="Email address" pattern=".+@.+\..+"
+             class="form-control" placeholder="Endereço de email" pattern=".+@.+\..+"
              [class.form-control-danger]="email.invalid && email.touched"
              [required]="validation.email.required">
       <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
-        Email is required!
+        É necessário preencher o endereço de email
       </small>
       <small class="form-text error"
              *ngIf="email.invalid && email.touched && email.errors?.pattern">
-        Email should be the real one!
+        Endereço de email inválido!
       </small>
     </div>
     <div class="form-group">
       <label for="input-password" class="sr-only">Password</label>
       <input name="password" [(ngModel)]="user.password" type="password" id="input-password"
-             class="form-control" placeholder="Password" #password="ngModel"
+             class="form-control" placeholder="Senha" #password="ngModel"
              [class.form-control-danger]="password.invalid && password.touched"
              [required]="validation.password.required"
              [minlength]="validation.password.minLength"
              [maxlength]="validation.password.maxLength">
       <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
-        Password is required!
+        É necessário preencher a senha!
       </small>
       <small
         class="form-text error"
         *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
-        Password should contains
-        from {{ validation.password.minLength }}
-        to {{ validation.password.maxLength }}
-        characters
+        A senha deve conter
+        de {{ validation.password.minLength }}
+        a {{ validation.password.maxLength }}
+        caracteres
       </small>
     </div>
     <div class="form-group">
-      <label for="input-re-password" class="sr-only">Repeat password</label>
+      <label for="input-re-password" class="sr-only">Senha novamente</label>
       <input
         name="rePass" [(ngModel)]="user.confirmPassword" type="password" id="input-re-password"
-        class="form-control" placeholder="Confirm Password" #rePass="ngModel"
+        class="form-control" placeholder="Senha novamente" #rePass="ngModel"
         [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched"
         [required]="validation.password.required">
       <small class="form-text error"
              *ngIf="rePass.invalid && rePass.touched && rePass.errors?.required">
-        Password confirmation is required!
+        É necessário preencher a senha novamente!
       </small>
       <small
         class="form-text error"
         *ngIf="rePass.touched && password.value != rePass.value && !rePass.errors?.required">
-        Password does not match the confirm password.
+        As senhas digitadas são diferentes!
       </small>
     </div>
     <div class="form-group accept-group col-sm-12" *ngIf="getConfigValue('forms.register.terms')">
       <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">
-        Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
+        Aceito os <a href="#" target="_blank"><strong>Termos & condições</strong></a>
       </nb-checkbox>
     </div>
     <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success"
             [class.btn-pulse]="submitted">
-      Register
+      Cadastrar
     </button>
   </form>
   <div class="links">
     <ng-container *ngIf="socialLinks && socialLinks.length > 0">
-      <small class="form-text">Or connect with:</small>
+      <small class="form-text">Ou conecte-se com:</small>
       <div class="socials">
         <ng-container *ngFor="let socialLink of socialLinks">
         <a (click)="loginSocial(socialLink.name)"
@@ -103,7 +103,7 @@
       </div>
     </ng-container>
     <small class="form-text">
-      Already have an account? <a routerLink="../login"><strong>Sign in</strong></a>
+      Já possui uma conta? <a routerLink="../login"><strong>Fazer login</strong></a>
     </small>
   </div>
 </nb-auth-block>
