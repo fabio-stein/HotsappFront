@@ -11,11 +11,11 @@ import { FirebaseAuthStrategy } from '../auth/strategy/firebase-strategy';
 const socialLinks = [
   {
     name: 'facebook',
-    icon: 'socicon-facebook',
+    icon: 'fab fa-facebook',
   },
   {
     name: 'google',
-    icon: 'socicon-google',
+    icon: 'fab fa-google',
   },
 ];
 

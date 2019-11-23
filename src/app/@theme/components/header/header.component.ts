@@ -21,16 +21,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [
     //{ title: 'Profile' },
-    { title: 'Log out', target: 'logout' }];
+    { title: 'Sair', target: 'logout' }];
 
   themes = [
     {
       value: 'default',
-      name: 'Light',
+      name: 'Claro',
     },
     {
       value: 'dark',
-      name: 'Dark',
+      name: 'Escuro',
     },
     {
       value: 'cosmic',
