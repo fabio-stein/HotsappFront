@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NB_AUTH_OPTIONS, NbAuthSocialLink, NbAuthService, getDeepFromObject } from '@nebular/auth';
-import { FirebaseAuthOption } from '../strategy/firebase-strategy';
+import { FirebaseAuthOption } from '../../strategy/firebase-strategy';
 
 @Component({
   selector: 'app-login',
