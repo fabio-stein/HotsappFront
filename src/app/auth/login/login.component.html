@@ -1,63 +1,96 @@
-<nb-auth-block>
-  <h2 class="title">Entrar</h2>
-  <small class="form-text sub-title">Olá! Entre com seu email ou redes sociais</small>
-  <form (ngSubmit)="loginEmail()" #form="ngForm" autocomplete="nope">
-    <div *ngIf="errors && errors.length > 0 && !submitted" class="alert alert-danger" role="alert">
-      <div><strong>Ops!</strong></div>
-      <div *ngFor="let error of errors">{{ error }}</div>
-    </div>
-    <div *ngIf="messages && messages.length > 0 && !submitted" class="alert alert-success" role="alert">
-      <div><strong>Sucesso!</strong></div>
-      <div *ngFor="let message of messages">{{ message }}</div>
-    </div>
-    <div class="form-group">
-      <label for="input-email" class="sr-only">Endereço de email</label>
-      <input name="email" [(ngModel)]="user.email" id="input-email" pattern=".+@.+\..+" class="form-control"
-        placeholder="Endereço de email" #email="ngModel" [class.form-control-danger]="email.invalid && email.touched"
-        autofocus [required]="validation.password.required">
-      <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
+<h1 id="title" class="title">Entrar</h1>
+
+<nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+  <p class="alert-title"><b>Ops!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+  <p class="alert-title"><b>Sucesso!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+  </ul>
+</nb-alert>
+
+<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+
+  <div class="form-control-group">
+    <label class="label" for="input-email">Endereço de email:</label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.email"
+           #email="ngModel"
+           name="email"
+           id="input-email"
+           pattern=".+@.+\..+"
+           placeholder="Endereço de email"
+           autofocus
+           [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+           [required]="getConfigValue('forms.validation.email.required')"
+           [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+    <ng-container *ngIf="email.invalid && email.touched">
+      <p class="caption status-danger" *ngIf="email.errors?.required">
         É necessário preencher o email!
-      </small>
-      <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.pattern">
-        Email inválido!
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="input-password" class="sr-only">Senha</label>
-      <input name="password" [(ngModel)]="user.password" type="password" id="input-password" class="form-control"
-        placeholder="Senha" #password="ngModel" [class.form-control-danger]="password.invalid && password.touched"
-        [required]="validation.password.required" [minlength]="validation.password.minLength"
-        [maxlength]="validation.password.maxLength">
-      <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
-        É necessário preencher a senha!
-      </small>
-      <small class="form-text error"
-        *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
-        A senha deve conter
-        de {{validation.password.minLength }}
-        a {{ validation.password.maxLength }} caracteres
-      </small>
-    </div>
-    <div class="form-group accept-group col-sm-12">
-      <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe">Lembre-me</nb-checkbox>
-      <a class="forgot-password" routerLink="../request-password">Esqueceu a senha?</a>
-    </div>
-    <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
-      Entrar
-    </button>
-  </form>
-  <div class="links">
-    <ng-container *ngIf="socialLinks && socialLinks.length > 0">
-      <small class="form-text">Ou conecte-se com:</small>
-      <div class="socials">
-        <ng-container *ngFor="let socialLink of socialLinks">
-          <a (click)="loginSocial(socialLink.name)" [attr.class]="socialLink.icon"
-            [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
-        </ng-container>
-      </div>
+      </p>
+      <p class="caption status-danger" *ngIf="email.errors?.pattern">
+        Endereço de email inválido!
+      </p>
     </ng-container>
-    <small class="form-text">
-      Não tem uma conta? <a routerLink="../register"><strong>Cadastre-se</strong></a>
-    </small>
   </div>
-</nb-auth-block>
+
+  <div class="form-control-group">
+    <label class="label" for="input-password">Senha:</label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.password"
+           #password="ngModel"
+           name="password"
+           type="password"
+           id="input-password"
+           placeholder="Senha"
+           [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+           [required]="getConfigValue('forms.validation.password.required')"
+           [minlength]="getConfigValue('forms.validation.password.minLength')"
+           [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+           [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+    <ng-container *ngIf="password.invalid && password.touched ">
+      <p class="caption status-danger" *ngIf="password.errors?.required">
+        É necessário preencher a senha!
+      </p>
+      <p class="caption status-danger" *ngIf="(password.errors?.minlength || password.errors?.maxlength)">
+        A senha deve conter
+        de {{ getConfigValue('forms.validation.password.minLength') }}
+        a {{ getConfigValue('forms.validation.password.maxLength') }}
+        caracteres
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group accept-group">
+    <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Lembre-me</nb-checkbox>
+    <a class="forgot-password" routerLink="../request-password">Esqueceu a senha?</a>
+  </div>
+
+  <button nbButton
+          fullWidth
+          status="success"
+          [disabled]="submitted || !form.valid"
+          [class.btn-pulse]="submitted">
+    Entrar
+  </button>
+</form>
+
+<section *ngIf="socialLinks && socialLinks.length > 0" class="links" aria-label="Login com redes sociais">
+  Ou conecte-se com:
+  <div class="socials">
+    <ng-container *ngFor="let socialLink of socialLinks">
+      <a (click)="loginSocial(socialLink.name)"><i [class]="socialLink.icon"></i></a>
+    </ng-container>
+  </div>
+</section>
+
+<section class="another-action" aria-label="Cadastro">
+  Não possui uma conta? <a class="text-link" routerLink="../register">Cadastre-se</a>
+</section>

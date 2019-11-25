@@ -36,7 +36,7 @@ export class LoginComponent {
     });
   }
 
-  loginEmail() {
+  login() {
     this.errors = this.messages = [];
     this.submitted = true;
     this.authProviderLogin('email', { email: this.user.email, password: this.user.password });
