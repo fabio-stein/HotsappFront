@@ -1,109 +1,143 @@
-<nb-auth-block>
-  <h2 class="title">Cadastro</h2>
-  <form (ngSubmit)="register()" #form="ngForm">
-    <div *ngIf="errors && errors.length > 0 && !submitted" class="alert alert-danger" role="alert">
-      <div><strong>Ops!</strong></div>
-      <div *ngFor="let error of errors">{{ error }}</div>
-    </div>
-    <div *ngIf="messages && messages.length > 0 && !submitted" class="alert alert-success" role="alert">
-      <div><strong>Sucesso!</strong></div>
-      <div *ngFor="let message of messages">{{ message }}</div>
-    </div>
-    <div class="form-group">
-      <label for="input-name" class="sr-only">Nome completo</label>
-      <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel"
-             class="form-control" placeholder="Nome completo"
-             [class.form-control-danger]="fullName.invalid && fullName.touched"
-             [required]="validation.fullName.required"
-             [minlength]="validation.fullName.minLength"
-             [maxlength]="validation.fullName.maxLength"
-             autofocus>
-      <small class="form-text error" *ngIf="fullName.invalid && fullName.touched && fullName.errors?.required">
+<h1 id="title" class="title">Cadastro</h1>
+
+<nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+  <p class="alert-title"><b>Ops!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+  <p class="alert-title"><b>Sucesso!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+  </ul>
+</nb-alert>
+
+<form (ngSubmit)="register()" #form="ngForm" aria-labelledby="title">
+
+  <div class="form-control-group">
+    <label class="label" for="input-name">Nome completo:</label>
+    <input nbInput
+           [(ngModel)]="user.fullName"
+           #fullName="ngModel"
+           id="input-name"
+           name="fullName"
+           placeholder="Nome completo"
+           autofocus
+           fullWidth
+           fieldSize="large"
+           [status]="fullName.dirty ? (fullName.invalid  ? 'danger' : 'success') : 'basic'"
+           [required]="getConfigValue('forms.validation.fullName.required')"
+           [minlength]="getConfigValue('forms.validation.fullName.minLength')"
+           [maxlength]="getConfigValue('forms.validation.fullName.maxLength')"
+           [attr.aria-invalid]="fullName.invalid && fullName.touched ? true : null">
+    <ng-container *ngIf="fullName.invalid && fullName.touched">
+      <p class="caption status-danger" *ngIf="fullName.errors?.required">
         É necessário preencher seu nome completo!
-      </small>
-      <small
-        class="form-text error"
-        *ngIf="fullName.invalid && fullName.touched && (fullName.errors?.minlength || fullName.errors?.maxlength)">
-        O nome completo deve ter
-        de {{validation.fullName.minLength}}
-        a {{validation.fullName.maxLength}}
+      </p>
+      <p class="caption status-danger" *ngIf="fullName.errors?.minlength || fullName.errors?.maxlength">
+        Nome completo deve ter
+        de {{getConfigValue('forms.validation.fullName.minLength')}}
+        a {{getConfigValue('forms.validation.fullName.maxLength')}}
         caracteres
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="input-email" class="sr-only">Endereço de email</label>
-      <input name="email" [(ngModel)]="user.email" id="input-email" #email="ngModel"
-             class="form-control" placeholder="Endereço de email" pattern=".+@.+\..+"
-             [class.form-control-danger]="email.invalid && email.touched"
-             [required]="validation.email.required">
-      <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
-        É necessário preencher o endereço de email
-      </small>
-      <small class="form-text error"
-             *ngIf="email.invalid && email.touched && email.errors?.pattern">
-        Endereço de email inválido!
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="input-password" class="sr-only">Password</label>
-      <input name="password" [(ngModel)]="user.password" type="password" id="input-password"
-             class="form-control" placeholder="Senha" #password="ngModel"
-             [class.form-control-danger]="password.invalid && password.touched"
-             [required]="validation.password.required"
-             [minlength]="validation.password.minLength"
-             [maxlength]="validation.password.maxLength">
-      <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
-        É necessário preencher a senha!
-      </small>
-      <small
-        class="form-text error"
-        *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
-        A senha deve conter
-        de {{ validation.password.minLength }}
-        a {{ validation.password.maxLength }}
-        caracteres
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="input-re-password" class="sr-only">Senha novamente</label>
-      <input
-        name="rePass" [(ngModel)]="user.confirmPassword" type="password" id="input-re-password"
-        class="form-control" placeholder="Senha novamente" #rePass="ngModel"
-        [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched"
-        [required]="validation.password.required">
-      <small class="form-text error"
-             *ngIf="rePass.invalid && rePass.touched && rePass.errors?.required">
-        É necessário preencher a senha novamente!
-      </small>
-      <small
-        class="form-text error"
-        *ngIf="rePass.touched && password.value != rePass.value && !rePass.errors?.required">
-        As senhas digitadas são diferentes!
-      </small>
-    </div>
-    <div class="form-group accept-group col-sm-12" *ngIf="getConfigValue('forms.register.terms')">
-      <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">
-        Aceito os <a href="#" target="_blank"><strong>Termos & condições</strong></a>
-      </nb-checkbox>
-    </div>
-    <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success"
-            [class.btn-pulse]="submitted">
-      Cadastrar
-    </button>
-  </form>
-  <div class="links">
-    <ng-container *ngIf="socialLinks && socialLinks.length > 0">
-      <small class="form-text">Ou conecte-se com:</small>
-      <div class="socials">
-        <ng-container *ngFor="let socialLink of socialLinks">
-        <a (click)="loginSocial(socialLink.name)"
-              [attr.class]="socialLink.icon"
-              [class.with-icon]="socialLink.icon" style="cursor: pointer;">{{ socialLink.title }}</a>
-        </ng-container>
-      </div>
+      </p>
     </ng-container>
-    <small class="form-text">
-      Já possui uma conta? <a routerLink="../login"><strong>Fazer login</strong></a>
-    </small>
   </div>
-</nb-auth-block>
+
+  <div class="form-control-group">
+    <label class="label" for="input-email">Endereço de email:</label>
+    <input nbInput
+           [(ngModel)]="user.email"
+           #email="ngModel"
+           id="input-email"
+           name="email"
+           pattern=".+@.+..+"
+           placeholder="Endereço de email"
+           fullWidth
+           fieldSize="large"
+           [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : 'basic'"
+           [required]="getConfigValue('forms.validation.email.required')"
+           [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+    <ng-container *ngIf="email.invalid && email.touched">
+      <p class="caption status-danger" *ngIf="email.errors?.required">
+        É necessário preencher o endereço de email!
+      </p>
+      <p class="caption status-danger" *ngIf="email.errors?.pattern">
+        Endereço de email inválido!
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group">
+    <label class="label" for="input-password">Senha:</label>
+    <input nbInput
+           [(ngModel)]="user.password"
+           #password="ngModel"
+           type="password"
+           id="input-password"
+           name="password"
+           placeholder="Senha"
+           fullWidth
+           fieldSize="large"
+           [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : 'basic'"
+           [required]="getConfigValue('forms.validation.password.required')"
+           [minlength]="getConfigValue('forms.validation.password.minLength')"
+           [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+           [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+    <ng-container *ngIf="password.invalid && password.touched">
+      <p class="caption status-danger" *ngIf="password.errors?.required">
+        É necessário preencher a senha!
+      </p>
+      <p class="caption status-danger" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+        A senha deve ter
+        de {{ getConfigValue('forms.validation.password.minLength') }}
+        a {{ getConfigValue('forms.validation.password.maxLength') }}
+        caracteres
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group">
+    <label class="label" for="input-re-password">Senha novamente:</label>
+    <input nbInput
+           [(ngModel)]="user.confirmPassword"
+           #rePass="ngModel"
+           type="password"
+           id="input-re-password"
+           name="rePass"
+           placeholder="Senha novamente"
+           fullWidth
+           fieldSize="large"
+           [status]="rePass.dirty ? (rePass.invalid || password.value != rePass.value  ? 'danger' : 'success') : 'basic'"
+           [required]="getConfigValue('forms.validation.password.required')"
+           [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null">
+    <ng-container *ngIf="rePass.invalid && rePass.touched">
+      <p class="caption status-danger" *ngIf="rePass.errors?.required">
+        É necessário preencher a senha novamente!
+      </p>
+      <p class="caption status-danger" *ngIf="password.value != rePass.value && !rePass.errors?.required">
+        As senhas digitadas são diferentes!
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group accept-group" *ngIf="getConfigValue('forms.register.terms')">
+    <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">
+      Aceito os <a href="#" target="_blank"><strong>Termos & condições</strong></a>
+    </nb-checkbox>
+  </div>
+
+  <button nbButton
+          fullWidth
+          status="primary"
+          size="large"
+          [disabled]="submitted || !form.valid"
+          [class.btn-pulse]="submitted">
+    Cadastrar
+  </button>
+</form>
+
+<section class="another-action" aria-label="Sign in">
+  Já possui uma conta? <a class="text-link" routerLink="../login">Entre</a>
+</section>
