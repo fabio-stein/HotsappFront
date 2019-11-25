@@ -19,6 +19,7 @@ export class LoginComponent {
   showMessages: any = {};
   submitted: boolean = false;
   socialLinks: NbAuthSocialLink[] = [];
+  rememberMe;
 
   validation: any = {};
 
