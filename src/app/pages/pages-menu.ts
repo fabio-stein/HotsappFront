@@ -34,6 +34,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ]
   },
   {
+    title: 'Assinatura',
+    icon: 'credit-card',
+    children: [
+      {
+        title: 'Minha Assinatura',
+        link: '/pages/subscription'
+      },
+      {
+        title: 'Planos',
+        link: '/pages/subscription/plans'
+      },
+      {
+        title: 'Cancelamento',
+        link: '/pages/subscription/cancel'
+      }
+    ]
+  },
+  {
     title: 'Wallet',
     icon: 'wallet',
     link: '/pages/wallet',

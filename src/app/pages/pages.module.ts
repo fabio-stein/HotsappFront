@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbChatModule, NbSelectModule, NbRadioModule, NbProgressBarModule, NbStepperModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
+import { NbMenuModule, NbTabsetModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbListModule, NbActionsModule, NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbChatModule, NbSelectModule, NbRadioModule, NbProgressBarModule, NbStepperModule, NbSpinnerModule, NbTooltipModule, NbAlertModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -19,6 +19,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-messaging-campaign/bulk-messaging-campaign.component';
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 import { ConnectorService } from './numbers/number-connector/connector.service';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { CancelSubscriptionComponent } from './subscription/cancel-subscription/cancel-subscription.component';
+import { PlansComponent } from './subscription/plans/plans.component';
+import { NoActiveSubscriptionComponent } from './subscription/components/no-active-subscription/no-active-subscription.component';
 
 @NgModule({
   imports: [
@@ -43,7 +47,8 @@ import { ConnectorService } from './numbers/number-connector/connector.service';
     NbStepperModule,
     ReactiveFormsModule,
     NbSpinnerModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbAlertModule
   ],
   declarations: [
     PagesComponent,
@@ -57,6 +62,10 @@ import { ConnectorService } from './numbers/number-connector/connector.service';
     DashboardComponent,
     BulkMessagingCampaignComponent,
     NumberConnectorComponent,
+    SubscriptionComponent,
+    CancelSubscriptionComponent,
+    PlansComponent,
+    NoActiveSubscriptionComponent,
   ],
   providers: [
     WalletService,
