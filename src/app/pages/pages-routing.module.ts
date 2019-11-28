@@ -10,6 +10,9 @@ import { ChatComponent } from './chat/chat.component';
 import { BulkMessagingComponent } from './bulk-messaging/bulk-messaging.component';
 import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-messaging-campaign/bulk-messaging-campaign.component';
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { CancelSubscriptionComponent } from './subscription/cancel-subscription/cancel-subscription.component';
+import { PlansComponent } from './subscription/plans/plans.component';
 
 const routes: Routes = [{
   path: '',
@@ -65,6 +68,21 @@ const routes: Routes = [{
       path: 'bulk_messaging/:id',
       pathMatch: 'full',
       component: BulkMessagingCampaignComponent
+    },
+    {
+      path: 'subscription',
+      pathMatch: 'full',
+      component: SubscriptionComponent
+    },
+    {
+      path: 'subscription/cancel',
+      pathMatch: 'full',
+      component: CancelSubscriptionComponent
+    },
+    {
+      path: 'subscription/plans',
+      pathMatch: 'full',
+      component: PlansComponent
     }
   ],
 }];

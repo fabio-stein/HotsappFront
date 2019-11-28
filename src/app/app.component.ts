@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
-import { NbIconLibraries } from '@nebular/theme';
+import { NbIconLibraries, NbThemeService } from '@nebular/theme';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -9,12 +9,17 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService, private iconLibraries: NbIconLibraries) {
+  constructor(private analytics: AnalyticsService, private iconLibraries: NbIconLibraries, private themeService: NbThemeService) {
     this.iconLibraries.registerFontPack('font-awesome', { packClass: 'fas', iconClassPrefix: 'fa' });
     this.iconLibraries.setDefaultPack('font-awesome');
 
     let clientId = environment.paypalClientId;
     this.loadExternalScript("https://www.paypal.com/sdk/js?client-id=" + clientId + "&currency=BRL");
+
+    let theme = localStorage.getItem("currentTheme");
+    if(theme!=null){
+      themeService.changeTheme(theme);
+    }
   }
 
   private loadExternalScript(scriptUrl: string) {

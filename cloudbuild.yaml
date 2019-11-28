@@ -1,7 +1,0 @@
-steps:
-- name: "gcr.io/cloud-builders/docker"
-entrypoint: "bash"
-args: ["-c", "docker login --username=fabiolux --password=5thK9zM3uFhg0DI"]
-- name: "gcr.io/cloud-builders/docker"
-args: ["build", "-t", "[DOCKER_USER_ID]/[IMAGE]:[TAG]", "."]
-images: "[DOCKER_USER_ID]/[IMAGE]:[TAG]"

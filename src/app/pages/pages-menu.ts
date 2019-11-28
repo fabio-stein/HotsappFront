@@ -18,18 +18,36 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/bulk_messaging'
   },*/
   {
-    title: 'Numbers',
+    title: 'Números',
     icon: 'mobile-alt',
     children: [
       {
-        title: 'My Numbers',
+        title: 'Meus Números',
         link: '/pages/number/my'
       }, {
-        title: 'Add Number',
+        title: 'Adicionar Número',
         link: '/pages/number/connector'
-      }, {
-        title: 'Buy New',
+      }/*, {
+        title: 'Comprar Novo',
         link: '/pages/number/buy'
+      }*/
+    ]
+  },
+  {
+    title: 'Assinatura',
+    icon: 'credit-card',
+    children: [
+      {
+        title: 'Minha Assinatura',
+        link: '/pages/subscription'
+      },
+      {
+        title: 'Planos',
+        link: '/pages/subscription/plans'
+      },
+      {
+        title: 'Cancelamento',
+        link: '/pages/subscription/cancel'
       }
     ]
   },

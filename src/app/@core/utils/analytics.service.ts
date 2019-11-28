@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 declare const ga: any;
 
@@ -10,7 +11,7 @@ export class AnalyticsService {
   private enabled: boolean;
 
   constructor(private location: Location, private router: Router) {
-    this.enabled = false;
+    this.enabled = environment.production;
   }
 
   trackPageViews() {

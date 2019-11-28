@@ -1,11 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NB_AUTH_OPTIONS, NbAuthSocialLink, NbAuthService, getDeepFromObject } from '@nebular/auth';
-import { FirebaseAuthOption } from '../strategy/firebase-strategy';
+import { FirebaseAuthOption } from '../../strategy/firebase-strategy';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['login.component.scss']
 })
 export class LoginComponent {
 
@@ -18,6 +19,7 @@ export class LoginComponent {
   showMessages: any = {};
   submitted: boolean = false;
   socialLinks: NbAuthSocialLink[] = [];
+  rememberMe;
 
   validation: any = {};
 
@@ -35,7 +37,7 @@ export class LoginComponent {
     });
   }
 
-  loginEmail() {
+  login() {
     this.errors = this.messages = [];
     this.submitted = true;
     this.authProviderLogin('email', { email: this.user.email, password: this.user.password });
