@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     this.iconLibraries.setDefaultPack('font-awesome');
 
     let clientId = environment.paypalClientId;
-    this.loadExternalScript("https://www.paypal.com/sdk/js?client-id=" + clientId + "&currency=BRL");
+    this.loadExternalScript("https://www.paypal.com/sdk/js?client-id=" + clientId + "&currency=BRL&vault=true");
 
     let theme = localStorage.getItem("currentTheme");
     if(theme!=null){

@@ -20,9 +20,9 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 import { ConnectorService } from './numbers/number-connector/connector.service';
 import { SubscriptionComponent } from './subscription/subscription.component';
-import { CancelSubscriptionComponent } from './subscription/cancel-subscription/cancel-subscription.component';
 import { PlansComponent } from './subscription/plans/plans.component';
 import { NoActiveSubscriptionComponent } from './subscription/components/no-active-subscription/no-active-subscription.component';
+import { SubscriptionService } from './subscription/subscription.service';
 
 @NgModule({
   imports: [
@@ -63,7 +63,6 @@ import { NoActiveSubscriptionComponent } from './subscription/components/no-acti
     BulkMessagingCampaignComponent,
     NumberConnectorComponent,
     SubscriptionComponent,
-    CancelSubscriptionComponent,
     PlansComponent,
     NoActiveSubscriptionComponent,
   ],
@@ -71,7 +70,8 @@ import { NoActiveSubscriptionComponent } from './subscription/components/no-acti
     WalletService,
     NumberService,
     ChatService,
-    ConnectorService
+    ConnectorService,
+    SubscriptionService
   ],
 })
 export class PagesModule {
