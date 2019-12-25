@@ -6,8 +6,6 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteTabsetComponent } from '../@theme/components';
-import { WalletComponent } from './wallet/wallet.component';
-import { WalletService } from './wallet/wallet.service';
 import { MyNumbersComponent } from './numbers/my-numbers/my-numbers.component';
 import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
 import { ChatComponent } from './chat/chat.component';
@@ -53,7 +51,6 @@ import { SubscriptionService } from './subscription/subscription.service';
   declarations: [
     PagesComponent,
     RouteTabsetComponent,
-    WalletComponent,
     MyNumbersComponent,
     BuyNumberComponent,
     ChatComponent,
@@ -67,7 +64,6 @@ import { SubscriptionService } from './subscription/subscription.service';
     NoActiveSubscriptionComponent,
   ],
   providers: [
-    WalletService,
     NumberService,
     ChatService,
     ConnectorService,

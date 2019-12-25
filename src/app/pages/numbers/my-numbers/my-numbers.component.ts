@@ -21,7 +21,8 @@ export class MyNumbersComponent implements OnInit {
   numbers:any[];
 
   async DeleteNumber(numberId){
-    await this._service.DeleteNumber(numberId);
+    //await this._service.DeleteNumber(numberId);
+    alert("Not implemented");
     await this.UpdateList();
   }
 
