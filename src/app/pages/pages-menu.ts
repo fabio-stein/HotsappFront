@@ -44,10 +44,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Planos',
         link: '/pages/subscription/plans'
-      },
-      {
-        title: 'Cancelamento',
-        link: '/pages/subscription/cancel'
       }
     ]
   },

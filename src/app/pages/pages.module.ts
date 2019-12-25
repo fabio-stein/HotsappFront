@@ -6,8 +6,6 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteTabsetComponent } from '../@theme/components';
-import { WalletComponent } from './wallet/wallet.component';
-import { WalletService } from './wallet/wallet.service';
 import { MyNumbersComponent } from './numbers/my-numbers/my-numbers.component';
 import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
 import { ChatComponent } from './chat/chat.component';
@@ -20,9 +18,9 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 import { ConnectorService } from './numbers/number-connector/connector.service';
 import { SubscriptionComponent } from './subscription/subscription.component';
-import { CancelSubscriptionComponent } from './subscription/cancel-subscription/cancel-subscription.component';
 import { PlansComponent } from './subscription/plans/plans.component';
 import { NoActiveSubscriptionComponent } from './subscription/components/no-active-subscription/no-active-subscription.component';
+import { SubscriptionService } from './subscription/subscription.service';
 
 @NgModule({
   imports: [
@@ -53,7 +51,6 @@ import { NoActiveSubscriptionComponent } from './subscription/components/no-acti
   declarations: [
     PagesComponent,
     RouteTabsetComponent,
-    WalletComponent,
     MyNumbersComponent,
     BuyNumberComponent,
     ChatComponent,
@@ -63,15 +60,14 @@ import { NoActiveSubscriptionComponent } from './subscription/components/no-acti
     BulkMessagingCampaignComponent,
     NumberConnectorComponent,
     SubscriptionComponent,
-    CancelSubscriptionComponent,
     PlansComponent,
     NoActiveSubscriptionComponent,
   ],
   providers: [
-    WalletService,
     NumberService,
     ChatService,
-    ConnectorService
+    ConnectorService,
+    SubscriptionService
   ],
 })
 export class PagesModule {
