@@ -52,6 +52,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     messages.forEach(item => {
 
       let user = null;
+
+
       if (item.isInternal) {
         user = {
           name: 'Eu'
@@ -65,7 +67,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
       let msg = {
         text: item.content,
-        date: item.dateTimeUTC,
+        date: new Date(item.dateTimeUTC),
         reply: item.isInternal,
         type: 'text',
         user
@@ -99,7 +101,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       user: { name: "Eu" }
     };
 
-    this.messages.push(msg);
+    if (this.messages.length > 0) {//Otherwise it will be sent back by api only the first message
+      this.messages.push(msg);
+    }
 
     await this.service.SendMessage(data);
   }
