@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ngx-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
-    <span class="created-by">Hotsapp &copy; 2019</span>
+    <span class="created-by">Hotsapp &copy; 2020</span>
     
     <div class="socials">
       <a href="https://www.facebook.com/hotsappbrasil" target="_blank"><i class="fab fa-facebook"></i></a>
