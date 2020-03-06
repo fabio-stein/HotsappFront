@@ -21,6 +21,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { PlansComponent } from './subscription/plans/plans.component';
 import { NoActiveSubscriptionComponent } from './subscription/components/no-active-subscription/no-active-subscription.component';
 import { SubscriptionService } from './subscription/subscription.service';
+import { WalletComponent } from './wallet/wallet.component';
+import { WalletService } from './wallet/wallet.service';
 
 @NgModule({
   imports: [
@@ -62,12 +64,14 @@ import { SubscriptionService } from './subscription/subscription.service';
     SubscriptionComponent,
     PlansComponent,
     NoActiveSubscriptionComponent,
+    WalletComponent,
   ],
   providers: [
     NumberService,
     ChatService,
     ConnectorService,
-    SubscriptionService
+    SubscriptionService,
+    WalletService,
   ],
 })
 export class PagesModule {

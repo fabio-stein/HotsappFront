@@ -11,6 +11,7 @@ import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-m
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { PlansComponent } from './subscription/plans/plans.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 const routes: Routes = [{
   path: '',
@@ -71,7 +72,12 @@ const routes: Routes = [{
       path: 'subscription/plans',
       pathMatch: 'full',
       component: PlansComponent
-    }
+    },
+    {
+      path: 'wallet',
+      component: WalletComponent
+    },
+
   ],
 }];
 

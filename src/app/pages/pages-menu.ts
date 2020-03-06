@@ -46,5 +46,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/subscription/plans'
       }
     ]
-  }
+  },
+  {
+    title: 'Wallet',
+    icon: 'wallet',
+    link: '/pages/wallet',
+  },
 ];

@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-md-6">
+          <nb-card>
+            <nb-card-header>
+              Carteira
+            </nb-card-header>
+            <nb-card-body>
+              <h6 i18n>Saldo Atual:</h6>
+              <h2>{{Balance}} Créditos</h2>
+  
+              <button [disabled]="Updating" class="btn btn-primary" (click)="Update()">Atualizar</button>
+              <button class="btn btn-primary ml-2" (click)="AddBalance()">Adicionar Saldo</button>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-4">
+      <nb-card>
+        <nb-card-header>
+          Comprar Créditos
+        </nb-card-header>
+        <nb-card-body>
+          <h6>Créditos:</h6>
+          <h2>5.00</h2>
+          <h6>Preço:</h6>
+          <h3>R$5,00</h3>
+          <div id="paypal-button-container-5"></div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  
+    <div class="col-md-4">
+      <nb-card>
+        <nb-card-header>
+          Comprar Créditos
+        </nb-card-header>
+        <nb-card-body>
+          <h6>Créditos:</h6>
+          <h2>25.00</h2>
+          <h6>Preço:</h6>
+          <h3>R$20,00</h3>
+          <div id="paypal-button-container-20"></div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  
+    <div class="col-md-4">
+      <nb-card>
+        <nb-card-header>
+          Comprar Créditos
+        </nb-card-header>
+        <nb-card-body>
+          <h6>Créditos:</h6>
+          <h2>70.00</h2>
+          <h6>Preço:</h6>
+          <h3>R$50,00</h3>
+          <div id="paypal-button-container-50"></div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
