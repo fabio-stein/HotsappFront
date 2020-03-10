@@ -8,6 +8,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Campanhas',
+    icon: 'clipboard',
+    link: '/pages/bulk_messaging'
+  },
+  {
     title: 'Chat',
     icon: 'comments',
     link: '/pages/chat'
