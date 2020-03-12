@@ -12,9 +12,9 @@ import { ChatComponent } from './chat/chat.component';
 import { ContactListComponent } from './chat/components/contact-list/contact-list.component';
 import { NumberService } from './numbers/number.service';
 import { ChatService } from './chat/chat.service';
-import { BulkMessagingComponent } from './bulk-messaging/bulk-messaging.component';
+import { CampaignListComponent } from './campaign/campaign-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-messaging-campaign/bulk-messaging-campaign.component';
+import { CampaignEditorComponent } from './campaign/campaign-editor/campaign-editor.component';
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 import { ConnectorService } from './numbers/number-connector/connector.service';
 import { SubscriptionComponent } from './subscription/subscription.component';
@@ -23,6 +23,8 @@ import { NoActiveSubscriptionComponent } from './subscription/components/no-acti
 import { SubscriptionService } from './subscription/subscription.service';
 import { WalletComponent } from './wallet/wallet.component';
 import { WalletService } from './wallet/wallet.service';
+import { CampaignStatusComponent } from './campaign/campaign-status/campaign-status.component';
+import { CampaignService } from './campaign/campaign.service';
 
 @NgModule({
   imports: [
@@ -57,14 +59,15 @@ import { WalletService } from './wallet/wallet.service';
     BuyNumberComponent,
     ChatComponent,
     ContactListComponent,
-    BulkMessagingComponent,
+    CampaignListComponent,
     DashboardComponent,
-    BulkMessagingCampaignComponent,
+    CampaignEditorComponent,
     NumberConnectorComponent,
     SubscriptionComponent,
     PlansComponent,
     NoActiveSubscriptionComponent,
     WalletComponent,
+    CampaignStatusComponent,
   ],
   providers: [
     NumberService,
@@ -72,6 +75,7 @@ import { WalletService } from './wallet/wallet.service';
     ConnectorService,
     SubscriptionService,
     WalletService,
+    CampaignService
   ],
 })
 export class PagesModule {

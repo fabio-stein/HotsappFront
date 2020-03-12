@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+        <nb-card *ngIf="status">
+            <nb-card-header>{{status.title}}</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-12">
+                        <nb-progress-bar [value]="status.percentageComplete" size="giant" [displayValue]="true">
+                        </nb-progress-bar>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <h5>Status: <span
+                                [class.blink]="status.status=='running'">{{statusResolver(status.status)}}</span></h5>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <th class="text-nowrap" scope="row">Contatos na lista</th>
+                                    <td>{{status.total}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-nowrap" scope="row">Mensagens enviadas</th>
+                                    <td>{{status.sent}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-nowrap" scope="row">Mensagens com falha</th>
+                                    <td>{{status.failed}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-nowrap" scope="row">Mensagens restantes</th>
+                                    <td>{{status.remaining}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <button *ngIf="status.status == 'running'" nbButton status="primary" class="w-100"
+                            (click)="pause()">Pausar</button>
+                        <button *ngIf="status.status == 'paused' || status.status == 'canceled'" [disabled]="status.status == 'canceled'" nbButton status="success" class="w-100"
+                            (click)="start()">Iniciar</button>
+                    </div>
+                    <div class="col-6">
+                        <button nbButton status="danger" [disabled]="status.status == 'canceled'" class="w-100" (click)="cancel()">Cancelar</button>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

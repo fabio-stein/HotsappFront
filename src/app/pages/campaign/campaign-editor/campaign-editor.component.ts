@@ -1,23 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { CampaignModel } from '../model/CampaignModel';
+import { CampaignService } from '../campaign.service';
+import { Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
-  selector: 'bulk-messaging-campaign',
-  templateUrl: './bulk-messaging-campaign.component.html',
-  styleUrls: ['./bulk-messaging-campaign.component.scss']
+  selector: 'campaign-editor',
+  templateUrl: './campaign-editor.component.html',
+  styleUrls: ['./campaign-editor.component.scss']
 })
-export class BulkMessagingCampaignComponent implements OnInit {
+export class CampaignEditorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: CampaignService, private router: Router, private toastr: NbToastrService) { }
 
   ngOnInit() {
   }
 
-  OnSubmit(e: CampaignModel) {
+  async OnSubmit(e: CampaignModel) {
     var message = this.validateCampaign(e);
     if (message != null) {
-      alert(message);
+      this.toastr.warning(message, "Atenção");
       return;
+    }
+
+    try {
+      let result = await this.service.Create(e);
+      this.toastr.success("Campanha criada com sucesso", "Sucesso");
+      this.router.navigate(['/pages/campaign/' + result]);
+    } catch (e) {
+      console.log(e);
+      this.toastr.danger("Falha ao criar campanha", "Erro");
     }
   }
 

@@ -6,12 +6,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyNumbersComponent } from './numbers/my-numbers/my-numbers.component';
 import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
 import { ChatComponent } from './chat/chat.component';
-import { BulkMessagingComponent } from './bulk-messaging/bulk-messaging.component';
-import { BulkMessagingCampaignComponent } from './bulk-messaging/campaign/bulk-messaging-campaign/bulk-messaging-campaign.component';
+import { CampaignListComponent } from './campaign/campaign-list.component';
+import { CampaignEditorComponent } from './campaign/campaign-editor/campaign-editor.component';
 import { NumberConnectorComponent } from './numbers/number-connector/number-connector.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { PlansComponent } from './subscription/plans/plans.component';
 import { WalletComponent } from './wallet/wallet.component';
+import { CampaignStatusComponent } from './campaign/campaign-status/campaign-status.component';
 
 const routes: Routes = [{
   path: '',
@@ -50,18 +51,17 @@ const routes: Routes = [{
       component: ChatComponent
     },
     {
-      path: 'bulk_messaging',
-      component: BulkMessagingComponent
+      path: 'campaign',
+      component: CampaignListComponent
     },
     {
-      path: 'bulk_messaging/:id',
-      pathMatch: 'full',
-      component: BulkMessagingCampaignComponent
+      path: 'campaign/new',
+      component: CampaignEditorComponent
     },
     {
-      path: 'bulk_messaging/:id',
+      path: 'campaign/:id',
       pathMatch: 'full',
-      component: BulkMessagingCampaignComponent
+      component: CampaignStatusComponent
     },
     {
       path: 'subscription',

@@ -10,18 +10,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Campanhas',
     icon: 'clipboard',
-    link: '/pages/bulk_messaging'
+    link: '/pages/campaign'
   },
   {
     title: 'Chat',
     icon: 'comments',
     link: '/pages/chat'
-  },/*
-  {
-    title: 'Bulk Messaging',
-    icon: 'copy',
-    link: '/pages/bulk_messaging'
-  },*/
+  },
   {
     title: 'Números',
     icon: 'mobile-alt',
