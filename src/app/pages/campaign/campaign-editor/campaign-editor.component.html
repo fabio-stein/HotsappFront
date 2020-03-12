@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6">
+        <nb-card>
+            <nb-card-header>Editar Campanha</nb-card-header>
+            <nb-card-body>
+                <form #dataForm="ngForm" (ngSubmit)="OnSubmit(dataForm.value)">
+                    <div class="form-group">
+                        <label for="title" class="label">Nome da Campanha</label>
+                        <input type="text" nbInput fullWidth id="title" name="title" ngModel>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactList" class="label">Lista de Contatos (Um por linha)</label>
+                        <br>
+                        <textarea nbInput id="contactList" name="contactList" ngModel style="max-width: none !important; width: 100%;height: 100px;"
+                            [placeholder]="'11 99999-9999\n(31) 99999 9999\n1699999-9999'"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageText" class="label">Mensagem</label>
+                        <br>
+                        <textarea nbInput id="messageText" style="max-width: none !important; width: 100%;" name="message" ngModel></textarea>
+                    </div>
+                    <button type="submit" nbButton status="success">Salvar</button>
+                    <button class="ml-2" nbButton status="danger" routerLink="/pages/bulk_messaging">Cancelar</button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>

@@ -8,15 +8,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Campanhas',
+    icon: 'clipboard',
+    link: '/pages/campaign'
+  },
+  {
     title: 'Chat',
     icon: 'comments',
     link: '/pages/chat'
-  },/*
-  {
-    title: 'Bulk Messaging',
-    icon: 'copy',
-    link: '/pages/bulk_messaging'
-  },*/
+  },
   {
     title: 'Números',
     icon: 'mobile-alt',
@@ -46,5 +46,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/subscription/plans'
       }
     ]
-  }
+  },
+  {
+    title: 'Wallet',
+    icon: 'wallet',
+    link: '/pages/wallet',
+  },
 ];
