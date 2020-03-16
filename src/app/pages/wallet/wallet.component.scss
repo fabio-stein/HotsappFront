@@ -1,0 +1,39 @@
+@import "../../@theme/styles/themes";
+
+@include nb-install-component() {
+  @each $status in nb-get-statuses() {
+    .bg-status-#{$status} {
+      background: nb-theme(text-#{$status}-color);
+      min-width: 86px;
+      min-height: 60px;
+      border-top-right-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      text-align: center;
+      display: inline-flex;
+      padding: 26px;
+    }
+  }
+
+  .discount {
+    font-size: 26px;
+  }
+
+  .bottom-row {
+    justify-content: space-between;
+  }
+
+  .bottom-row > * {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .price {
+    font-weight: bold;
+    font-size: 28px;
+  }
+  .old-price {
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: line-through;
+  }
+}

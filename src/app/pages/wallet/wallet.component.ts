@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WalletService } from './wallet.service';
+import { OrderModel } from './model/OrderModel';
+import { NbToastrService } from '@nebular/theme';
 declare var window: any;
 @Component({
   selector: 'wallet',
@@ -10,8 +12,10 @@ export class WalletComponent implements OnInit {
 
   Balance = 0;
   Updating = false;
+  optionSelected = 1;
+  Order: OrderModel;
 
-  constructor(private _service: WalletService) { }
+  constructor(private _service: WalletService, private toastr: NbToastrService) { }
 
   async Update() {
     this.Updating = true;
@@ -24,63 +28,47 @@ export class WalletComponent implements OnInit {
     await this._service.CaptureOrder(orderId);
   }
 
-  async AddBalance() {
-    await this._service.AddBalance();
-    await this.Update();
-  }
-
   ngOnInit() {
-    this.Update()
+    this.Update();
+    this.SelectOption(1);
 
     let ref = this;
 
-    window.paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '5'
-            }
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        console.log(data);
-        ref.CaptureOrder(data.orderID);
-      }
-    }).render('#paypal-button-container-5');
+    setTimeout(() => {
+      window.paypal.Buttons({
+        createOrder: async function (data, actions) {
+          return await ref.CompleteOrder();
+        },
+        onApprove: async function (data, actions) {
+          console.log(data);
+          await ref.CaptureOrder(data.orderID);
+          ref.toastr.success("Créditos adicionados com sucess", "Sucesso");
+          location.reload();
+        }
+      }).render('#paypal-button-container-5');
+    }, 1000);
+  }
 
-    window.paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '5'
-            }
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        console.log(data);
-        ref.CaptureOrder(data.orderID);
-      }
-    }).render('#paypal-button-container-20');
+  async SelectOption(option) {
+    this.optionSelected = option;
+    this.Order = await this._service.StartOrder(option);
+  }
 
-    window.paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '5'
-            }
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        console.log(data);
-        ref.CaptureOrder(data.orderID);
-      }
-    }).render('#paypal-button-container-50');
+  async ApplyCoupon(code) {
+    let order = await this._service.ApplyCoupon(this.Order, code);
+    this.Order = order;
+    this.toastr.success("Cupom aplicado!", "Sucesso");
+  }
+
+  async RemoveCoupon() {
+    this.Order = await this._service.RemoveCoupon(this.Order);
+    this.toastr.success("Cupom removido!", "Sucesso");
+  }
+
+  async CompleteOrder() {
+    let paypalOrderid = await this._service.CompleteOrder(this.Order);
+    console.log("PaypalOrderId: " + paypalOrderid.id);
+    return paypalOrderid.id;
   }
 
 }
