@@ -1,7 +1,12 @@
 <div class="row">
     <div class="col-md-6">
         <nb-card *ngIf="status">
-            <nb-card-header>{{status.title}}</nb-card-header>
+            <nb-card-header class="d-flex">
+                <nav class="navigation mr-3" nbTooltip="Voltar"><a class="link back-link btn-link" href="javascript:;"
+                        (click)="goBack()">
+                        <nb-icon icon="arrow-left"></nb-icon>
+                    </a></nav>{{status.title}}
+            </nb-card-header>
             <nb-card-body>
                 <div class="row">
                     <div class="col-12">
@@ -35,13 +40,14 @@
                         </table>
                     </div>
                     <div class="col-6">
-                        <button *ngIf="status.status == 'running'" nbButton status="primary" class="w-100"
-                            (click)="pause()">Pausar</button>
-                        <button *ngIf="status.status == 'paused' || status.status == 'canceled'" [disabled]="status.status == 'canceled'" nbButton status="success" class="w-100"
-                            (click)="start()">Iniciar</button>
+                        <button
+                            [disabled]="status.status == 'running' || status.status == 'canceled' || status.status == 'finished'"
+                            nbButton status="success" class="w-100" (click)="start()">Iniciar</button>
                     </div>
                     <div class="col-6">
-                        <button nbButton status="danger" [disabled]="status.status == 'canceled'" class="w-100" (click)="cancel()">Cancelar</button>
+                        <button nbButton status="danger"
+                            [disabled]="status.status == 'canceled' || status.status == 'running' || status.status == 'finished'"
+                            class="w-100" (click)="cancel()">Cancelar</button>
                     </div>
                 </div>
             </nb-card-body>
