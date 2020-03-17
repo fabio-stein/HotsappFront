@@ -61,6 +61,7 @@ export class CampaignStatusComponent implements OnInit, OnDestroy {
     let credits = await this.walletService.GetCurrentBalance();
     let pricePerUnit = 0.15;
     let totalPrice = this.status.total * pricePerUnit;
+    totalPrice = Math.round(totalPrice*100)/100;
     if (credits >= totalPrice) {
       let ref = this.dialog.open(ConfirmDialogComponent, { context: { Title: "Iniciar Campanha", Content: "Atenção!\n\nVocê possui:\n" + credits + " crédito(s)\nEssa campanha deve utilizar:\n" + totalPrice + " crédito(s).\n\nO valor das mensagens não enviadas será devolvido automaticamente\npara sua carteira quando a campanha for encerrada.\n\nDeseja Continuar?" } });
       ref.componentRef.instance.OnConfirm.subscribe(async e => {
