@@ -2,33 +2,35 @@
     <div class="col-lg-8">
         <nb-card>
             <nb-card-header>
-                <span>Campanhas</span>
+                <span>Channels</span>
             </nb-card-header>
             <nb-card-body class="p-0">
                 <nb-actions size="large">
                     <nb-action class="pl-0">
                         <button nbButton ghost routerLink="new">
                             <nb-icon icon="plus-circle"></nb-icon>
-                            <span class="ml-2">Nova Campanha</span>
+                            <span class="ml-2">Create Channel</span>
                         </button>
                     </nb-action>
                     <nb-action class="ml-auto">
-                        <nb-checkbox (checkedChange)="toggleFinished($event)" [value]="hideFinished">Ocultar
-                            Finalizados</nb-checkbox>
+                        <nb-checkbox (checkedChange)="toggleFinished($event)" [value]="hideFinished">Todo</nb-checkbox>
                     </nb-action>
                 </nb-actions>
                 <nb-list>
-                    <nb-list-item *ngFor="let campaign of campaigns" class="d-flex">
+                    <nb-list-item class="d-flex">
                         <nb-actions size="medium" class="w-100">
-                            <nb-action icon="info-circle" [link]="'/pages/campaign/'+campaign.id"
-                                nbTooltip="Visualizar"></nb-action>
-                            <nb-action nbTooltip="Nome da Campanha">
-                                {{campaign.title}}
+                            <nb-action icon="info-circle" [link]="'/pages/channel/1'" nbTooltip="Visualizar">
+                            </nb-action>
+                            <nb-action nbTooltip="Channel Title">
+                                Title
                             </nb-action>
                             <nb-action class="ml-auto" nbTooltip="Data de Criação">
-                                {{campaign.createDateUtc | date:'shortDate'}}
+                                2019-04-26
+                                <!-- {{campaign.createDateUtc | date:'shortDate'}} -->
                             </nb-action>
-                            <nb-action [nbTooltip]="'Status: ' + statusResolver(campaign)"><nb-icon [icon]="iconResolver(campaign)" [ngClass]="classResolver(campaign)"></nb-icon></nb-action>
+                            <nb-action [nbTooltip]="'Status: OK'">
+                                <nb-icon [icon]="'star'" [ngClass]="'text-success'"></nb-icon>
+                            </nb-action>
                         </nb-actions>
                     </nb-list-item>
                 </nb-list>
