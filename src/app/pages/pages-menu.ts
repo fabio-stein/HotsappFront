@@ -12,6 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'clipboard',
     link: '/pages/campaign'
   },
+  {
+    title: 'Channels',
+    icon: 'clipboard',
+    link: '/pages/channel'
+  },
   // {
   //   title: 'Chat',
   //   icon: 'comments',
