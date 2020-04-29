@@ -1,0 +1,35 @@
+<div class="col-12">
+  <nb-progress-bar [value]="50" [displayValue]="true">
+  </nb-progress-bar>
+</div>
+<div class="col-12 mt-2">
+  <h5>Status: <span [class.blink]="true==true">Status1</span></h5>
+</div>
+<div class="col-12">
+  <table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <th class="text-nowrap" scope="row">Contatos na lista</th>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Mensagens enviadas</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Mensagens com falha</th>
+        <td>3</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Mensagens restantes</th>
+        <td>4</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-6">
+  <button nbButton status="success" class="w-100" (click)="start()">Iniciar</button>
+</div>
+<div class="col-6">
+  <button nbButton status="danger" class="w-100" (click)="cancel()">Cancelar</button>
+</div>

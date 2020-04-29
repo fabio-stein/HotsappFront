@@ -12,6 +12,10 @@ import { CampaignStatusComponent } from './campaign/campaign-status/campaign-sta
 import { ChannelListComponent } from './channel/channel-list.component';
 import { ChannelEditorComponent } from './channel/channel-editor/channel-editor.component';
 import { ChannelDashboardComponent } from './channel/channel-dashboard/channel-dashboard.component';
+import { ChannelPageDashboardComponent } from './channel/views/channel-page-dashboard/channel-page-dashboard.component';
+import { ChannelPagePlaylistComponent } from './channel/views/channel-page-playlist/channel-page-playlist.component';
+import { ChannelPageMediaComponent } from './channel/views/channel-page-media/channel-page-media.component';
+import { ChannelPageConfigurationComponent } from './channel/views/channel-page-configuration/channel-page-configuration.component';
 
 const routes: Routes = [{
   path: '',
@@ -49,8 +53,30 @@ const routes: Routes = [{
     },
     {
       path: 'channel/:id',
-      pathMatch: 'full',
-      component: ChannelDashboardComponent
+      component: ChannelDashboardComponent,
+      children: [
+        {
+          path: '',
+          redirectTo: 'dashboard',
+          pathMatch: 'full'
+        },
+        {
+          path: 'dashboard',
+          component: ChannelPageDashboardComponent
+        },
+        {
+          path: 'playlist',
+          component: ChannelPagePlaylistComponent
+        },
+        {
+          path: 'media',
+          component: ChannelPageMediaComponent
+        },
+        {
+          path: 'config',
+          component: ChannelPageConfigurationComponent
+        }
+      ]
     },
     {
       path: 'subscription',

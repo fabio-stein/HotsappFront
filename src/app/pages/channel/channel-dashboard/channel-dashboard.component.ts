@@ -14,12 +14,36 @@ import { WalletService } from '../../wallet/wallet.service';
 export class ChannelDashboardComponent implements OnInit, OnDestroy {
 
   id;
+  tabs: any[] = [
+  ];
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService, private router: Router, private dialog: NbDialogService,
     private walletService: WalletService, private toastr: NbToastrService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+
+    let base_route = '/pages/channel/' + this.id;
+
+    this.tabs.push({
+      title: 'Dashboard',
+      route: base_route + '/dashboard',
+    })
+
+    this.tabs.push({
+      title: 'Playlist',
+      route: base_route + '/playlist',
+    })
+
+    this.tabs.push({
+      title: 'Media',
+      route: base_route + '/media',
+    })
+
+    this.tabs.push({
+      title: 'Configuration',
+      route: base_route + '/config',
+    })
   }
 
   ngOnDestroy() {

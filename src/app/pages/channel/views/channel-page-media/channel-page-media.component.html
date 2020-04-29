@@ -1,0 +1,22 @@
+<nb-actions size="large">
+  <nb-action class="pl-0">
+    <button nbButton ghost (click)="addMediaClick()">
+      <nb-icon icon="plus-circle"></nb-icon>
+      <span class="ml-2">Add Media</span>
+    </button>
+  </nb-action>
+</nb-actions>
+<nb-list>
+  <nb-list-item class="d-flex">
+    <nb-actions size="medium" class="w-100">
+      <nb-action icon="share-square" (click)="sendToPlaylist()" nbTooltip="Send to Playlist">
+      </nb-action>
+      <nb-action nbTooltip="Media Title">
+        Title
+      </nb-action>
+      <nb-action class="ml-auto" (click)="deleteMedia()" nbTooltip="Delete">
+        <nb-icon icon="trash-alt" ngClass="text-danger" style="cursor: pointer;"></nb-icon>
+      </nb-action>
+    </nb-actions>
+  </nb-list-item>
+</nb-list>
