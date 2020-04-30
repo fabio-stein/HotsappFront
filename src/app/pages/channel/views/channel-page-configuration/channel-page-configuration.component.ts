@@ -3,6 +3,7 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../../../@theme/components/confirm-dialog/confirm-dialog.component';
 import { ChannelService } from '../../channel.service';
+import { ConfirmDialogService } from '../../../../@theme/components/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'channel-page-configuration',
@@ -12,7 +13,7 @@ import { ChannelService } from '../../channel.service';
 export class ChannelPageConfigurationComponent implements OnInit {
 
   Channel: number;
-  constructor(private activatedRoute: ActivatedRoute, private dialog: NbDialogService, private router: Router, private service: ChannelService, private toastr: NbToastrService) {
+  constructor(private activatedRoute: ActivatedRoute, private dialog: NbDialogService, private router: Router, private service: ChannelService, private toastr: NbToastrService, private confirmDialog: ConfirmDialogService) {
     this.activatedRoute.parent.paramMap.subscribe(params => {
       let id = params.get("channelId");
       this.Channel = Number(id);
@@ -22,16 +23,12 @@ export class ChannelPageConfigurationComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteClick() {
-    let ref = this.dialog.open(ConfirmDialogComponent, { context: { Title: "Delete Channel", Content: "Are you sure?" } });
-    ref.componentRef.instance.OnConfirm.subscribe(e => {
-      this.deleteChannel();
-    })
-  }
-  deleteChannel() {
-    // this.service.DeleteChannel(this.Channel).then(e => {
-    //   this.toastr.success("Channel deleted successfully", "Delete Channel");
-    //   this.router.navigate(["/pages/channel"]);
-    // })
+  async deleteClick() {
+    let confirm = await this.confirmDialog.ConfirmAsync("Delete Channel", "Are you sure?");
+    if (confirm == true) {
+      this.toastr.success("Channel successfully deleted", "Success");
+    } else {
+      this.toastr.danger("Failed to delete channel", "Error");
+    }
   }
 }
