@@ -28,21 +28,29 @@ export class ChannelDashboardComponent implements OnInit, OnDestroy {
     this.tabs.push({
       title: 'Dashboard',
       route: base_route + '/dashboard',
+      responsive: true,
+      icon: 'home'
     })
 
     this.tabs.push({
       title: 'Playlist',
       route: base_route + '/playlist',
+      responsive: true,
+      icon: 'list'
     })
 
     this.tabs.push({
       title: 'Media',
       route: base_route + '/media',
+      responsive: true,
+      icon: 'image'
     })
 
     this.tabs.push({
       title: 'Configuration',
       route: base_route + '/config',
+      responsive: true,
+      icon: 'cog'
     })
   }
 
