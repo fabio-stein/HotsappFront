@@ -1,7 +1,12 @@
-<nb-card>
-  <nb-card-header>Playlist</nb-card-header>
-  <nb-card-body class="p-0">
-    <!-- <channel-playlist [Channel]="Channel"></channel-playlist> -->
-    TODO
-  </nb-card-body>
-</nb-card>
+<nb-list>
+  <nb-list-item class="d-flex">
+    <nb-actions size="medium" class="w-100">
+      <nb-action nbTooltip="Media Title">
+        Title
+      </nb-action>
+      <nb-action class="ml-auto" (click)="removeItem()" nbTooltip="Remove">
+        <nb-icon icon="trash-alt" ngClass="text-danger" style="cursor: pointer;"></nb-icon>
+      </nb-action>
+    </nb-actions>
+  </nb-list-item>
+</nb-list>
