@@ -8,50 +8,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Campanhas',
-    icon: 'clipboard',
-    link: '/pages/campaign'
-  },
-  {
     title: 'Channels',
     icon: 'clipboard',
     link: '/pages/channel'
   },
-  // {
-  //   title: 'Chat',
-  //   icon: 'comments',
-  //   link: '/pages/chat'
-  // },
-  // {
-  //   title: 'Números',
-  //   icon: 'mobile-alt',
-  //   children: [
-  //     {
-  //       title: 'Meus Números',
-  //       link: '/pages/number/my'
-  //     }, {
-  //       title: 'Adicionar Número',
-  //       link: '/pages/number/connector'
-  //     }, {
-  //       title: 'Comprar Novo',
-  //       link: '/pages/number/buy'
-  //     }
-  //   ]
-  // },
-  // {
-  //   title: 'Assinatura',
-  //   icon: 'credit-card',
-  //   children: [
-  //     {
-  //       title: 'Minha Assinatura',
-  //       link: '/pages/subscription'
-  //     },
-  //     {
-  //       title: 'Planos',
-  //       link: '/pages/subscription/plans'
-  //     }
-  //   ]
-  // },
   {
     title: 'Carteira',
     icon: 'wallet',
