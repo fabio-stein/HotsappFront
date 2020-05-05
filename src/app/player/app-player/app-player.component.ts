@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { PlayerService } from '../player.service';
+import { timer } from 'rxjs';
 declare let videojs: any;
 @Component({
   selector: 'app-player',
@@ -11,6 +12,7 @@ export class AppPlayerComponent implements OnInit, OnDestroy {
 
   playerObj: any;
   @ViewChild('appplayer', null) vid: ElementRef;
+  isMuted = true;
 
   async initialize(videoId: string, thumbUrl: string) {
     return new Promise((res, rej) => {
@@ -18,27 +20,52 @@ export class AppPlayerComponent implements OnInit, OnDestroy {
         controls: false,
         //autoplay: true,
         preload: 'auto',
-        muted: true,
+        muted: this.isMuted,
         poster: thumbUrl,
         sources: [{ src: 'https://www.youtube.com/watch?v=' + videoId, type: 'video/youtube' }],
         techOrder: ['youtube'],
       };
+      let ctx = this;
+      let updated = false;
       this.playerObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
         res();
       });
     })
   }
 
-  playVideo() {
-    this.playerObj.src({ src: 'https://www.youtube.com/watch?v=ZeHKjBLOjOc', type: 'video/youtube' });
-    this.playerObj.offset({
-      start: 10,
-      end: 300,
-      restart_beginning: false
-    })
+  async playVideo(videoId: string, startTime?: number) {
+    this.playerObj.muted(true);
+    this.playerObj.src({ src: 'https://www.youtube.com/watch?v=' + videoId, type: 'video/youtube' });
     this.playerObj.play();
-
+    if (startTime != null) {
+      await this.setCurrentTime(startTime, 30000);
+    }
+    this.playerObj.muted(this.isMuted);
   }
+
+  setMuted(muted: boolean) {
+    this.isMuted = muted;
+    this.playerObj.muted(this.isMuted);
+  }
+
+  async setCurrentTime(newTime: number, timeoutMs: number) {
+    let limit = timeoutMs;
+    let interval = 100;
+    while (limit > 0) {
+      await timer(interval).take(1).toPromise();
+      let time = this.playerObj.currentTime()
+      if (time > 0) {
+        this.playerObj.currentTime(newTime);
+        break;
+      }
+      this.playerObj.play();
+      limit -= interval;
+    }
+    if (limit <= 0) {
+      throw new Error("Video load timeout");
+    }
+  }
+
 
 
 
@@ -46,22 +73,12 @@ export class AppPlayerComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    //ctx.playerObj.currentTime(60)
-    // await this._service.Connect(this.Channel);
-    // this._service.OnUpdate.subscribe(ret => {
-    //   console.log(ret);
-    //   //this.vidObj.src({ src: 'https://www.youtube.com/watch?v=ZeHKjBLOjOc', type: ret.SourceType });
-    //   //this.vidObj.play();
-    //   console.log("CHANGE SOURCE")
-    //   console.log(ret)
-    //   this.vidObj.src({ src: ret.source, type: 'video/youtube' })
-    //   this.vidObj.load();
-    //   this.vidObj.play();
-    // })
   }
 
   ngOnDestroy() {
-    //this._service.Disconnect();
+    if (this.playerObj) {
+      this.playerObj.dispose();
+    }
   }
 
 }

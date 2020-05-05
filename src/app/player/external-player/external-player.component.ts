@@ -18,9 +18,9 @@ export class ExternalPlayerComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.player.initialize("KWjV25q34Hw",
+    await this.player.initialize("U03lLvhBzOw",
       "https://img.youtube.com/vi/KWjV25q34Hw/hqdefault.jpg")
-    this.player.playVideo();
+    await this.player.playVideo("U03lLvhBzOw", 20);
   }
 
   ngOnDestroy() {
