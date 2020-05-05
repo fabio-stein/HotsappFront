@@ -7,38 +7,46 @@ declare let videojs: any;
   styleUrls: ['./app-player.component.scss']
 })
 export class AppPlayerComponent implements OnInit, OnDestroy {
-
-  @Input()
-  Channel: string = "1";
-
   constructor(private _service: PlayerService) { }
 
-  vidObj: any;
-  @ViewChild('myvid', null) vid: ElementRef;
+  playerObj: any;
+  @ViewChild('appplayer', null) vid: ElementRef;
 
-  ngAfterViewInit() {
-    const options = {
-      controls: false,
-      autoplay: true,
-      preload: 'auto',
-      muted: true,
-      poster: 'https://images.pexels.com/photos/34407/pexels-photo.jpg?cs=srgb&dl=app-apple-hand-34407.jpg&fm=jpg',
-      sources: [{ src: 'https://www.youtube.com/watch?v=KWjV25q34Hw', type: 'video/youtube' }],
-      techOrder: ['youtube'],
-    };
+  async initialize(videoId: string, thumbUrl: string) {
+    return new Promise((res, rej) => {
+      const options = {
+        controls: false,
+        //autoplay: true,
+        preload: 'auto',
+        muted: true,
+        poster: thumbUrl,
+        sources: [{ src: 'https://www.youtube.com/watch?v=' + videoId, type: 'video/youtube' }],
+        techOrder: ['youtube'],
+      };
+      this.playerObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
+        res();
+      });
+    })
+  }
 
-    let ctx = this;
-    this.vidObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
-      videojs.log('Your player is ready!');
-      ctx.vidObj.currentTime(60)
-      ctx.vidObj.play()
-    });
-
+  playVideo() {
+    this.playerObj.src({ src: 'https://www.youtube.com/watch?v=ZeHKjBLOjOc', type: 'video/youtube' });
+    this.playerObj.offset({
+      start: 10,
+      end: 300,
+      restart_beginning: false
+    })
+    this.playerObj.play();
 
   }
 
-  async ngOnInit() {
 
+
+  ngAfterViewInit() {
+  }
+
+  async ngOnInit() {
+    //ctx.playerObj.currentTime(60)
     // await this._service.Connect(this.Channel);
     // this._service.OnUpdate.subscribe(ret => {
     //   console.log(ret);
