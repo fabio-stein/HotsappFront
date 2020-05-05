@@ -23,14 +23,15 @@ export class AppPlayerComponent implements OnInit, OnDestroy {
       preload: 'auto',
       muted: true,
       poster: 'https://images.pexels.com/photos/34407/pexels-photo.jpg?cs=srgb&dl=app-apple-hand-34407.jpg&fm=jpg',
-      sources: [{ src: 'https://www.youtube.com/watch?v=ZeHKjBLOjOc', type: 'video/youtube' }],
+      sources: [{ src: 'https://www.youtube.com/watch?v=KWjV25q34Hw', type: 'video/youtube' }],
       techOrder: ['youtube'],
-      
     };
 
     let ctx = this;
     this.vidObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
       videojs.log('Your player is ready!');
+      ctx.vidObj.currentTime(60)
+      ctx.vidObj.play()
     });
 
 
