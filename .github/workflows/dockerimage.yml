@@ -24,4 +24,5 @@ jobs:
       
     - name: Publish
       run: |
+        cat ~/GH_TOKEN.txt | docker login docker.pkg.github.com -u Fabioluxx --password-stdin
         docker push docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${{steps.date.outputs.date}}
