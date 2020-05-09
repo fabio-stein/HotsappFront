@@ -1,6 +1,4 @@
 name: Docker Image CI
-env:
-  build-tag: $(date +%s)
 
 on:
   push:
@@ -16,10 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +%s)"
+      
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag frontend:${build-tag}
+      run: docker build . --file Dockerfile --tag frontend:${{ steps.current-time.outputs.time }}
       
     - name: Publish
       run: |
-        docker push docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${build-tag}
+        docker push docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${{ steps.current-time.outputs.time }}
