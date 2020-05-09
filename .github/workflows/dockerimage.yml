@@ -20,7 +20,7 @@ jobs:
       
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag frontend:${{steps.date.outputs.date}}
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${{steps.date.outputs.date}}
       
     - name: Publish
       run: |
