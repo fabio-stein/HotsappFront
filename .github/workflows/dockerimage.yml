@@ -1,4 +1,6 @@
 name: Docker Image CI
+env:
+  build-tag: $(date +%s)
 
 on:
   push:
@@ -15,4 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hotsapp-front:$(date +%s)
+      run: docker build . --file Dockerfile --tag frontend:${build-tag}
+      
+    - name: Publish
+      run: |
+        docker push docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${build-tag}
