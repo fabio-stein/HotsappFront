@@ -7,13 +7,14 @@ import { AppPlayerComponent } from './app-player/app-player.component';
 import { FormsModule } from '@angular/forms';
 import { ThemeModule } from '../@theme/theme.module';
 import { NbAuthModule } from '@nebular/auth';
-import { PlayerService } from './player.service';
 import { NbLayoutModule } from '@nebular/theme';
+import { TestPlayerComponent } from './test-player/test-player.component';
 
 @NgModule({
   declarations: [
     ExternalPlayerComponent,
-    AppPlayerComponent
+    AppPlayerComponent,
+    TestPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +28,6 @@ import { NbLayoutModule } from '@nebular/theme';
     AppPlayerComponent
   ],
   providers: [
-    PlayerService
   ]
 })
 export class PlayerModule { }

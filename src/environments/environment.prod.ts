@@ -11,4 +11,5 @@ export const environment = {
     messagingSenderId: "60689039891",
     appId: "1:60689039891:web:52b68b48b4f13ca2fbb5e6"
   },
+  playerMuted: false
 };

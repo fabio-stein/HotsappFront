@@ -1,30 +1,22 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppPlayerComponent } from '../app-player/app-player.component';
 import { WebStreamerService } from '../web-streamer/web-streamer.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'external-player',
-  templateUrl: './external-player.component.html',
-  styleUrls: ['./external-player.component.scss']
+  selector: 'test-player',
+  templateUrl: './test-player.component.html',
+  styleUrls: ['./test-player.component.scss']
 })
-
-export class ExternalPlayerComponent implements OnInit {
+export class TestPlayerComponent implements OnInit {
   @ViewChild(AppPlayerComponent, null) player: AppPlayerComponent;
-  channelId: string;
+  StreamerId = "test-player-id";
+
   StreamerService: WebStreamerService;
-  constructor(private route: ActivatedRoute) {
-  }
-
-  ngAfterViewInit() {
-
+  constructor() {
+    this.StreamerService = new WebStreamerService("http://localhost:5000/streamhub?channelId=9fc680b0-a6cd-11ea-87a6-02dd375f4dba");
   }
 
   async ngOnInit() {
-    this.channelId = this.route.snapshot.paramMap.get('id');
-
-    this.StreamerService = new WebStreamerService("http://localhost:5000/streamhub?channelId=" + this.channelId);
-
     await this.player.initialize("U03lLvhBzOw",
       "https://img.youtube.com/vi/KWjV25q34Hw/hqdefault.jpg")
     //await this.player.playVideo("U03lLvhBzOw", 20);
@@ -50,9 +42,6 @@ export class ExternalPlayerComponent implements OnInit {
       this.player.playVideo(data.mediaId, diff);
       console.log("PlayEvent Received: " + data.mediaId);
     })
-  }
-
-  ngOnDestroy() {
   }
 
 }

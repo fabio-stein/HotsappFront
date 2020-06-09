@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ExternalPlayerComponent } from './external-player/external-player.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
 import { NbAuthComponent } from '@nebular/auth';
+import { TestPlayerComponent } from './test-player/test-player.component';
 
 const routes: Routes = [
   {
@@ -10,10 +11,14 @@ const routes: Routes = [
     component: AppPlayerComponent
   },
   {
+    path: 'testplayer',
+    component: TestPlayerComponent
+  },
+  {
     path: ':id',
     pathMatch: 'full',
     component: ExternalPlayerComponent
-  }
+  },
 ];
 
 @NgModule({
