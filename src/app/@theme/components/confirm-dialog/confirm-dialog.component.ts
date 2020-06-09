@@ -9,8 +9,8 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class ConfirmDialogComponent implements OnInit {
 
-  Title:string;
-  Content:string;
+  Title: string;
+  Content: string;
 
   OnConfirm$: Subject<any> = new Subject();
   public OnConfirm: Observable<any> = this.OnConfirm$.asObservable();

@@ -1,0 +1,77 @@
+<div class="m-3">
+  <div class="mt-3">
+    <div class="d-flex">
+      <div class="d-flex m-auto">
+        <h5>Status: <span [class.blink]="true==true" class="text-primary">Playing</span></h5>
+        <h5 class="ml-4 text-hint" nbTooltip="People watching now">
+          <nb-icon icon="users"></nb-icon> <span class="ml-2">5</span>
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <strong>Playing Now: </strong><span>Dua Lipa - Physical (Directors Cut)
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <strong>Next Media: </strong><span>Dua Lipa - IDGAF (Official Music Video)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <div class="row">
+      <div class="col-md-6">
+        <img class="img-fluid mx-auto d-block" src="https://img.youtube.com/vi/7MRJcZCVxjI/hqdefault.jpg">
+      </div>
+      <div class="col-md-6">
+        <img class="img-fluid mx-auto d-block" src="https://img.youtube.com/vi/Mgfe5tIwOj0/hqdefault.jpg">
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <div>
+      <h5>Remaining Time: <span>03:05:00</span></h5>
+    </div>
+    <nb-progress-bar [value]="50" [displayValue]="true">
+    </nb-progress-bar>
+  </div>
+  <div class="mt-4">
+    <div>
+      <h5>Statistics</h5>
+    </div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th class="text-nowrap" scope="row">Contatos na lista</th>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th class="text-nowrap" scope="row">Mensagens enviadas</th>
+          <td>2</td>
+        </tr>
+        <tr>
+          <th class="text-nowrap" scope="row">Mensagens com falha</th>
+          <td>3</td>
+        </tr>
+        <tr>
+          <th class="text-nowrap" scope="row">Mensagens restantes</th>
+          <td>4</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <button nbButton status="success" class="w-100" (click)="start()">Start</button>
+    </div>
+    <div class="col-6">
+      <button nbButton status="danger" class="w-100" (click)="cancel()">Stop</button>
+    </div>
+  </div>
+</div>

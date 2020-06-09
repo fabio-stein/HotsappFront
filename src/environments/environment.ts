@@ -11,5 +11,6 @@ export const environment = {
     storageBucket: "",
     messagingSenderId: "927528493911",
     appId: "1:927528493911:web:2240bf2db5adc56ca15412"
-  }
+  },
+  playerMuted: true
 };
