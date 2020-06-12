@@ -5,5 +5,7 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: hotsapp/appfront
+      pushRemote: true
+      registry: 127.0.0.1:34308
 timeout: 60
 notification: {}
