@@ -6,6 +6,6 @@ stages:
       buildContext: .
       tag: hotsapp/appfront
       pushRemote: true
-      registry: 127.0.0.1:34308
+      registry: regcred
 timeout: 60
 notification: {}
