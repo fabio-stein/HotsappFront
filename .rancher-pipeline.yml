@@ -6,6 +6,6 @@ stages:
       buildContext: .
       tag: hotsapp/appfront
       pushRemote: true
-      registry: regcred
+      registry: index.docker.io
 timeout: 60
 notification: {}
