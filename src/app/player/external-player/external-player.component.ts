@@ -23,7 +23,7 @@ export class ExternalPlayerComponent implements OnInit {
   async ngOnInit() {
     this.channelId = this.route.snapshot.paramMap.get('id');
 
-    this.StreamerService = new WebStreamerService("http://localhost:5000/streamhub?channelId=" + this.channelId);
+    this.StreamerService = new WebStreamerService("https://api.hotsapp.net/streamer/streamhub?channelId=" + this.channelId);
 
     await this.player.initialize("U03lLvhBzOw",
       "https://img.youtube.com/vi/KWjV25q34Hw/hqdefault.jpg")
