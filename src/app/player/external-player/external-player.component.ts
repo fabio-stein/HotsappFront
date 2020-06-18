@@ -1,7 +1,11 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { AppPlayerComponent } from '../app-player/app-player.component';
-import { WebStreamerService } from '../web-streamer/web-streamer.service';
 import { ActivatedRoute } from '@angular/router';
+import { WebStreamerService } from '../services/web-streamer/web-streamer.service';
+import { YoutubeDataService } from '../services/youtube/youtube-data.service';
+import { Title } from '@angular/platform-browser';
+import { ChannelInfoService } from '../services/channel/channel-info.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'external-player',
@@ -12,7 +16,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ExternalPlayerComponent implements OnInit {
   @ViewChild(AppPlayerComponent, null) player: AppPlayerComponent;
   channelId: string;
-  constructor(private route: ActivatedRoute, private _streamerService: WebStreamerService) {
+  backgroundCover = "";
+  mediaId = "";
+  mediaTitle = "";
+  channelTitle = ""
+
+  constructor(private route: ActivatedRoute, private _streamerService: WebStreamerService, private _ytDataService: YoutubeDataService,
+    private _title: Title, private _channelInfoService: ChannelInfoService) {
   }
 
   ngAfterViewInit() {
@@ -22,9 +32,12 @@ export class ExternalPlayerComponent implements OnInit {
   async ngOnInit() {
     this.channelId = this.route.snapshot.paramMap.get('id');
 
-    await this.player.initialize("U03lLvhBzOw",
-      "https://img.youtube.com/vi/KWjV25q34Hw/hqdefault.jpg")
-    //await this.player.playVideo("U03lLvhBzOw", 20);
+    await this.updateChannelInfo();
+
+    this.updateTitle();
+
+    await this.player.initialize("gkEcoZyHI9s",
+      "https://img.youtube.com/vi/gkEcoZyHI9s/hqdefault.jpg")
     try {
       await this._streamerService.Connect(this.channelId);
     } catch (e) {
@@ -45,9 +58,49 @@ export class ExternalPlayerComponent implements OnInit {
       }
 
       console.log("DIFF: " + diff);
+
+      this.updateMediaInfo(data.mediaId);
+
       this.player.playVideo(data.mediaId, diff);
       console.log("PlayEvent Received: " + data.mediaId);
     })
+  }
+
+  async updateMediaInfo(id: string) {
+    this.backgroundCover = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
+    this.mediaId = id;
+
+    try {
+      let info = await this._ytDataService.GetInfo(id);
+      this.mediaTitle = info.title;
+    } catch (e) {
+      console.error(e);
+      this.mediaTitle = "";
+    }
+
+    this.updateTitle();
+  }
+
+  async updateChannelInfo() {
+    try {
+      let info = await this._channelInfoService.GetChannelInfo(this.channelId);
+      this.channelTitle = info.title;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  updateTitle() {
+    let title = "";
+    if (this.mediaTitle != null && this.mediaTitle != "") {
+      title += this.mediaTitle + " - ";
+    }
+    if (this.channelTitle != null && this.channelTitle != "") {
+      title += this.channelTitle + " - ";
+    }
+    title += "Hotsapp.net";
+
+    this._title.setTitle(title);
   }
 
   ngOnDestroy() {

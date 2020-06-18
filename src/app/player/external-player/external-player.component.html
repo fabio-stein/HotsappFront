@@ -2,14 +2,12 @@
   <div class="frame-container col-sm-12 col-md-10 col-lg-6">
     <div class="d-flex">
       <div>
-        <span class="text-white h6">Channel Title Big Name</span>
+        <span class="text-white h6" [innerHTML]="channelTitle"></span>
         <br>
-        <a href="https://www.youtube.com/watch?v=KWjV25q34Hw" target="_blank" class="text-secondary"><u>Meduza,
-            Goodboys - Piece
-            Of Your Heart (Visualizer) ft.
-            Goodboys</u></a>
+        <a [href]="'https://www.youtube.com/watch?v='+mediaId" target="_blank" class="text-secondary"><u
+            [innerHTML]=mediaTitle></u></a>
       </div>
-      <div class="ml-auto mt-auto">
+      <div hidden class="ml-auto mt-auto">
         <span class="text-white"><i class="fa fa-users"></i> 312</span>
       </div>
     </div>
@@ -23,6 +21,6 @@
     </div>
   </div>
 </div>
-<div class="background-cover">
+<div class="background-cover" [ngStyle]="{ 'background-image': 'url(' + backgroundCover + ')'}">
 </div>
 <nb-layout style="display: none"></nb-layout>

@@ -36,8 +36,9 @@
     z-index: -1;
     background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 48, 50, 1) 73%);
-    background-image: url("https://img.youtube.com/vi/Mgfe5tIwOj0/hqdefault.jpg");
+    //background-image: url("https://img.youtube.com/vi/Mgfe5tIwOj0/hqdefault.jpg");
     background-size: cover;
+    background-color: black;
     filter: blur(10px);
     -webkit-filter: blur(10px);
     background-position: center;

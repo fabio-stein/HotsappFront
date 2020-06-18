@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppPlayerComponent } from '../app-player/app-player.component';
-import { WebStreamerService } from '../web-streamer/web-streamer.service';
+import { WebStreamerService } from '../services/web-streamer/web-streamer.service';
 
 @Component({
   selector: 'test-player',

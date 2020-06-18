@@ -9,7 +9,9 @@ import { ThemeModule } from '../@theme/theme.module';
 import { NbAuthModule } from '@nebular/auth';
 import { NbLayoutModule } from '@nebular/theme';
 import { TestPlayerComponent } from './test-player/test-player.component';
-import { WebStreamerService } from './web-streamer/web-streamer.service';
+import { WebStreamerService } from './services/web-streamer/web-streamer.service';
+import { YoutubeDataService } from './services/youtube/youtube-data.service';
+import { ChannelInfoService } from './services/channel/channel-info.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { WebStreamerService } from './web-streamer/web-streamer.service';
     AppPlayerComponent
   ],
   providers: [
-    WebStreamerService
+    WebStreamerService,
+    YoutubeDataService,
+    ChannelInfoService
   ]
 })
 export class PlayerModule { }

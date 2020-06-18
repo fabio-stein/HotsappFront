@@ -3,7 +3,7 @@ import { Observable, Subscriber, Subject, timer } from 'rxjs';
 import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
 import { OnPlayEventModel } from './stream-models';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class WebStreamerService {
