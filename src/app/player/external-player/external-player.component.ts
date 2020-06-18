@@ -12,8 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ExternalPlayerComponent implements OnInit {
   @ViewChild(AppPlayerComponent, null) player: AppPlayerComponent;
   channelId: string;
-  StreamerService: WebStreamerService;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private _streamerService: WebStreamerService) {
   }
 
   ngAfterViewInit() {
@@ -23,17 +22,16 @@ export class ExternalPlayerComponent implements OnInit {
   async ngOnInit() {
     this.channelId = this.route.snapshot.paramMap.get('id');
 
-    this.StreamerService = new WebStreamerService("https://api.hotsapp.net/streamer/streamhub?channelId=" + this.channelId);
-
     await this.player.initialize("U03lLvhBzOw",
       "https://img.youtube.com/vi/KWjV25q34Hw/hqdefault.jpg")
     //await this.player.playVideo("U03lLvhBzOw", 20);
     try {
-      await this.StreamerService.Connect();
+      await this._streamerService.Connect(this.channelId);
     } catch (e) {
+      console.error(e);
       alert("Failed to connect: " + e);
     }
-    this.StreamerService.OnPlayEvent.subscribe(data => {
+    this._streamerService.OnPlayEvent.subscribe(data => {
       let now = new Date();
       let start = new Date(data.startDateUTC);
       let diff = Math.ceil((now.getTime() - start.getTime()) / 1000);
