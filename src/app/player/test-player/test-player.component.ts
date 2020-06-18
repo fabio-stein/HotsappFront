@@ -21,7 +21,7 @@ export class TestPlayerComponent implements OnInit {
       "https://img.youtube.com/vi/KWjV25q34Hw/hqdefault.jpg")
     //await this.player.playVideo("U03lLvhBzOw", 20);
     try {
-      await this.StreamerService.Connect();
+      await this.StreamerService.Connect(this.StreamerId);
     } catch (e) {
       alert("Failed to connect: " + e);
     }
