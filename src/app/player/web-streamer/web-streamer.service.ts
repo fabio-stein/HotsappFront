@@ -55,7 +55,7 @@ export class WebStreamerService {
     }
 
     async ConnectInternal() {
-        let data = await this._http.get<any>(environment.GATEWAY_ENDPOINT + '?channelId=' + this.channelId).toPromise();
+        let data = await this._http.get<any>(environment.API_ENDPOINT + '/api/gateway?channelId=' + this.channelId).toPromise();
         let url = data.url;
         console.log("Received new Streamer Url: ");
         this.connection.baseUrl = url;

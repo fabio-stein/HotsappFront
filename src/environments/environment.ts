@@ -2,7 +2,6 @@ export const environment = {
   production: false,
   version: '0.0.1',
   API_ENDPOINT: 'http://localhost:5000',
-  GATEWAY_ENDPOINT: 'http://localhost:5000/gateway',
   paypalClientId: 'ARnf-tKM_M-ehARaSDnjzn2Ioy4yZ4O7PfSCHtRhzn5Wk71eDR7Syqk4FejMg7fa3Zx4vpFPJPTzcn0U',
   firebase: {
     apiKey: "AIzaSyBwXsFNGmRzVQ48d_462QkqCMUC7BwYMTI",
