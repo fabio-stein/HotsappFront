@@ -17,19 +17,19 @@
                     </nb-action>
                 </nb-actions>
                 <nb-list>
-                    <nb-list-item class="d-flex">
+                    <nb-list-item class="d-flex" *ngFor="let channel of channels">
                         <nb-actions size="medium" class="w-100">
-                            <nb-action icon="info-circle" [link]="'/pages/channel/1'" nbTooltip="Visualizar">
+                            <nb-action icon="cog" [link]="'/pages/channel/'+channel.id" nbTooltip="Go to Dashboard">
                             </nb-action>
                             <nb-action nbTooltip="Channel Title">
-                                Title
+                                {{channel.title}}
                             </nb-action>
-                            <nb-action class="ml-auto" nbTooltip="Data de Criação">
-                                2019-04-26
-                                <!-- {{campaign.createDateUtc | date:'shortDate'}} -->
+                            <nb-action class="ml-auto" nbTooltip="Creation date">
+                                {{channel.createDateUTC | date:'shortDate'}}
                             </nb-action>
-                            <nb-action [nbTooltip]="'Status: OK'">
-                                <nb-icon [icon]="'star'" [ngClass]="'text-success'"></nb-icon>
+                            <nb-action nbTooltip="Status">
+                                <nb-icon [icon]="'play'"
+                                    [ngClass]="channel.status == 'RUNNING' ? 'text-success' : 'text-danger'"></nb-icon>
                             </nb-action>
                         </nb-actions>
                     </nb-list-item>

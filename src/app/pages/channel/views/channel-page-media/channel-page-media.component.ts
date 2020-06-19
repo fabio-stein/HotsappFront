@@ -20,7 +20,7 @@ export class ChannelPageMediaComponent {
   constructor(private activatedRoute: ActivatedRoute, private toastr: NbToastrService, private confirmDialog: ConfirmDialogService,
     private mediaDialog: AddMediaDialogService) {
     this.activatedRoute.parent.paramMap.subscribe(params => {
-      let id = params.get("channelId");
+      let id = params.get("id");
       this.Channel = Number(id);
     });
   }

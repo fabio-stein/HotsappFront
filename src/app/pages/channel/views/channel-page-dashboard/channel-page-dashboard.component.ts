@@ -10,7 +10,7 @@ export class ChannelPageDashboardComponent implements OnInit {
   Channel: number;
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.parent.paramMap.subscribe(params => {
-      let id = params.get("channelId");
+      let id = params.get("id");
       this.Channel = Number(id);
     });
   }

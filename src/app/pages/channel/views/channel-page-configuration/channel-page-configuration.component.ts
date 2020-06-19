@@ -12,11 +12,11 @@ import { ConfirmDialogService } from '../../../../@theme/components/confirm-dial
 })
 export class ChannelPageConfigurationComponent implements OnInit {
 
-  Channel: number;
+  Channel: string;
   constructor(private activatedRoute: ActivatedRoute, private dialog: NbDialogService, private router: Router, private service: ChannelService, private toastr: NbToastrService, private confirmDialog: ConfirmDialogService) {
     this.activatedRoute.parent.paramMap.subscribe(params => {
-      let id = params.get("channelId");
-      this.Channel = Number(id);
+      let id = params.get("id");
+      this.Channel = id;
     });
   }
 
@@ -25,9 +25,14 @@ export class ChannelPageConfigurationComponent implements OnInit {
 
   async deleteClick() {
     let confirm = await this.confirmDialog.ConfirmAsync("Delete Channel", "Are you sure?");
-    if (confirm == true) {
+    if (confirm != true) { return; }
+
+    try {
+      let result = await this.service.Delete(this.Channel)
       this.toastr.success("Channel successfully deleted", "Success");
-    } else {
+      this.router.navigate(['/pages/channel']);
+    } catch (e) {
+      console.error(e);
       this.toastr.danger("Failed to delete channel", "Error");
     }
   }

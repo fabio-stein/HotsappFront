@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignModel } from '../model/ChannelModel';
 import { ChannelService } from '../channel.service';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
+import { ChannelForm } from '../model/ChannelModel';
 
 @Component({
   selector: 'channel-editor',
@@ -16,7 +16,7 @@ export class ChannelEditorComponent implements OnInit {
   ngOnInit() {
   }
 
-  async OnSubmit(e: CampaignModel) {
+  async OnSubmit(e: ChannelForm) {
     try {
       let result = await this.service.Create(e);
       this.toastr.success("Channel created successfully", "Success");

@@ -15,7 +15,7 @@ export class ChannelPagePlaylistComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private toastr: NbToastrService, private confirmDialog: ConfirmDialogService) {
     this.activatedRoute.parent.paramMap.subscribe(params => {
-      let id = params.get("channelId");
+      let id = params.get("id");
       this.Channel = Number(id);
     });
   }
