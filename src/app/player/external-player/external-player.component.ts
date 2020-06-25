@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { AppPlayerComponent } from '../app-player/app-player.component';
 import { ActivatedRoute } from '@angular/router';
 import { WebStreamerService } from '../services/web-streamer/web-streamer.service';
-import { YoutubeDataService } from '../services/youtube/youtube-data.service';
 import { Title } from '@angular/platform-browser';
 import { ChannelInfoService } from '../services/channel/channel-info.service';
 import { stringify } from 'querystring';
@@ -21,7 +20,7 @@ export class ExternalPlayerComponent implements OnInit {
   mediaTitle = "";
   channelTitle = ""
 
-  constructor(private route: ActivatedRoute, private _streamerService: WebStreamerService, private _ytDataService: YoutubeDataService,
+  constructor(private route: ActivatedRoute, private _streamerService: WebStreamerService,
     private _title: Title, private _channelInfoService: ChannelInfoService) {
   }
 
@@ -70,13 +69,7 @@ export class ExternalPlayerComponent implements OnInit {
     this.backgroundCover = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
     this.mediaId = id;
 
-    try {
-      let info = await this._ytDataService.GetInfo(id);
-      this.mediaTitle = info.title;
-    } catch (e) {
-      console.error(e);
-      this.mediaTitle = "";
-    }
+    await this.updateChannelInfo();
 
     this.updateTitle();
   }
@@ -85,6 +78,7 @@ export class ExternalPlayerComponent implements OnInit {
     try {
       let info = await this._channelInfoService.GetChannelInfo(this.channelId);
       this.channelTitle = info.title;
+      this.mediaTitle = info.lastMediaTitle;
     } catch (e) {
       console.error(e);
     }

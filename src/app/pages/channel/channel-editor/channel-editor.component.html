@@ -6,7 +6,7 @@
                 <form #dataForm="ngForm" (ngSubmit)="OnSubmit(dataForm.value)">
                     <div class="form-group">
                         <label for="title" class="label">Channel Title</label>
-                        <input type="text" nbInput fullWidth id="title" name="channelTitle" ngModel>
+                        <input type="text" nbInput fullWidth id="title" name="channelTitle" autocomplete="off" ngModel>
                     </div>
                     <div class="form-group">
                         <label for="channelDescription" class="label">Channel Description</label>

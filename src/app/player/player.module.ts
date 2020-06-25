@@ -10,7 +10,6 @@ import { NbAuthModule } from '@nebular/auth';
 import { NbLayoutModule } from '@nebular/theme';
 import { TestPlayerComponent } from './test-player/test-player.component';
 import { WebStreamerService } from './services/web-streamer/web-streamer.service';
-import { YoutubeDataService } from './services/youtube/youtube-data.service';
 import { ChannelInfoService } from './services/channel/channel-info.service';
 
 @NgModule({
@@ -32,7 +31,6 @@ import { ChannelInfoService } from './services/channel/channel-info.service';
   ],
   providers: [
     WebStreamerService,
-    YoutubeDataService,
     ChannelInfoService
   ]
 })
