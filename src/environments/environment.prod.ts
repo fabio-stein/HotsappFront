@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_ENDPOINT: 'https://api.hotsapp.net',
+  API_ENDPOINT: 'https://api.hotsapp.net/webapi',
   paypalClientId: 'AQdu2Q3IOgK-68-H4JgKIyadz9PJAZqyFkHFZCdAxxyiKm6L0yf6ZJKZMFrHIjp9KzrT1W9w4lISj7cW',
   firebase: {
     apiKey: "AIzaSyBwp44GfqNAUZnhAT4zTrkS2t68CHbNN2M",
@@ -11,4 +11,5 @@ export const environment = {
     messagingSenderId: "60689039891",
     appId: "1:60689039891:web:52b68b48b4f13ca2fbb5e6"
   },
+  playerMuted: false
 };

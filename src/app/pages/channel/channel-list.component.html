@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-lg-8">
+        <nb-card>
+            <nb-card-header>
+                <span>Channels</span>
+            </nb-card-header>
+            <nb-card-body class="p-0">
+                <nb-actions size="large">
+                    <nb-action class="pl-0">
+                        <button nbButton ghost routerLink="new">
+                            <nb-icon icon="plus-circle"></nb-icon>
+                            <span class="ml-2">Create Channel</span>
+                        </button>
+                    </nb-action>
+                    <nb-action class="ml-auto">
+                        <nb-checkbox [value]="true">Todo</nb-checkbox>
+                    </nb-action>
+                </nb-actions>
+                <nb-list>
+                    <nb-list-item class="d-flex" *ngFor="let channel of channels">
+                        <nb-actions size="medium" class="w-100">
+                            <nb-action icon="cog" [link]="'/pages/channel/'+channel.id" nbTooltip="Go to Dashboard">
+                            </nb-action>
+                            <nb-action nbTooltip="Channel Title">
+                                {{channel.title}}
+                            </nb-action>
+                            <nb-action class="ml-auto" nbTooltip="Creation date">
+                                {{channel.createDateUTC | date:'shortDate'}}
+                            </nb-action>
+                            <nb-action nbTooltip="Status">
+                                <nb-icon [icon]="'play'"
+                                    [ngClass]="channel.status == 'RUNNING' ? 'text-success' : 'text-danger'"></nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </nb-list-item>
+                </nb-list>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

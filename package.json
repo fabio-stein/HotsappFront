@@ -38,6 +38,7 @@
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
     "@fortawesome/fontawesome-free": "^5.10.2",
+    "@microsoft/signalr": "^3.1.4",
     "@nebular/auth": "4.1.2",
     "@nebular/security": "4.1.2",
     "@nebular/theme": "4.1.2",
@@ -54,6 +55,8 @@
     "rxjs": "6.5.2",
     "rxjs-compat": "6.3.0",
     "typeface-exo": "0.0.22",
+    "video.js": "^7.7.5",
+    "videojs-youtube": "^2.6.1",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
     "zone.js": "~0.9.1"
   },

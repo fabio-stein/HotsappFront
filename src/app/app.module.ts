@@ -31,7 +31,6 @@ import { Router } from '@angular/router';
 import { HttpErrorInterceptor } from './@core/interceptors/HttpErrorInterceptor';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { ConfirmDialogComponent } from './@theme/components';
 
 registerLocaleData(localePt, "pt")
 
@@ -79,9 +78,6 @@ registerLocaleData(localePt, "pt")
     },
     { provide: LOCALE_ID, useValue: 'pt' }
   ],
-  entryComponents: [
-    ConfirmDialogComponent
-  ]
 })
 export class AppModule {
 }

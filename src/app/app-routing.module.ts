@@ -12,12 +12,17 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: 'app/auth/auth.module#AuthModule',
   },
+  {
+    path: 'player',
+    loadChildren: 'app/player/player.module#PlayerModule'
+  },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
 
 const config: ExtraOptions = {
   useHash: false,
+  paramsInheritanceStrategy: 'always'
 };
 
 @NgModule({

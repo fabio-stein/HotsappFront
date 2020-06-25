@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: 
+     - master
+     - release/*
+     - release_app
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${{steps.date.outputs.date}}
+      
+    - name: Publish
+      run: |
+        cat ~/GH_TOKEN.txt | docker login docker.pkg.github.com -u Fabioluxx --password-stdin
+        docker push docker.pkg.github.com/fabioluxx/hotsappfront/frontend:${{steps.date.outputs.date}}

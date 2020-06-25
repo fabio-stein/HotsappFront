@@ -13,6 +13,7 @@ import {
   NbIconModule,
   NbThemeModule,
   NbCardModule,
+  NbCheckboxModule,
 } from '@nebular/theme';
 import { NbSecurityModule } from '@nebular/security';
 
@@ -41,8 +42,14 @@ import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
 import { UserService } from '../@core/data/users.service';
+import { ConfirmDialogService } from './components/confirm-dialog/confirm-dialog.service';
+import { FormsModule } from '@angular/forms';
+import { AddMediaDialogComponent } from '../pages/channel/views/add-media-dialog/add-media-dialog.component';
+import { AddMediaDialogService } from '../pages/channel/views/add-media-dialog/add-media-dialog.service';
 
 const NB_MODULES = [
+  FormsModule,
+  NbCheckboxModule,
   NbLayoutModule,
   NbMenuModule,
   NbUserModule,
@@ -65,7 +72,8 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  ConfirmDialogComponent
+  ConfirmDialogComponent,
+  AddMediaDialogComponent,
 ];
 const PIPES = [
   CapitalizePipe,
@@ -79,6 +87,10 @@ const PIPES = [
   imports: [CommonModule, ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
+  entryComponents: [
+    AddMediaDialogComponent,
+    ConfirmDialogComponent,
+  ]
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
@@ -89,9 +101,11 @@ export class ThemeModule {
           {
             name: 'default',
           },
-          [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ],
+          [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME],
         ).providers,
         UserService,
+        ConfirmDialogService,
+        AddMediaDialogService
       ],
     };
   }
