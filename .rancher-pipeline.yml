@@ -1,0 +1,11 @@
+stages:
+- name: comp
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: hotsapp/appfront
+      pushRemote: true
+      registry: index.docker.io
+timeout: 60
+notification: {}

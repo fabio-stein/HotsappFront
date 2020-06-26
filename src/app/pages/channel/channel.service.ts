@@ -19,4 +19,8 @@ export class ChannelService {
     Delete(channelId: string) {
         return this._http.delete(environment.API_ENDPOINT + "/api/channel/" + channelId).toPromise();
     }
+
+    GetLiveStatus(channelId: string) {
+        return this._http.get<any[]>(environment.API_ENDPOINT + "/api/channel/live-status/" + channelId).toPromise();
+    }
 }

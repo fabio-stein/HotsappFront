@@ -61,7 +61,7 @@ const NB_MODULES = [
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
-  NbCardModule
+  NbCardModule,
 ];
 const COMPONENTS = [
   SwitcherComponent,
