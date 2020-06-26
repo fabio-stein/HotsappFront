@@ -20,6 +20,7 @@ import { ChannelPageDashboardComponent } from './channel/views/channel-page-dash
 import { ChannelPagePlaylistComponent } from './channel/views/channel-page-playlist/channel-page-playlist.component';
 import { ChannelPageMediaComponent } from './channel/views/channel-page-media/channel-page-media.component';
 import { ChannelPageConfigurationComponent } from './channel/views/channel-page-configuration/channel-page-configuration.component';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   imports: [
@@ -47,7 +48,9 @@ import { ChannelPageConfigurationComponent } from './channel/views/channel-page-
     NbTooltipModule,
     NbAlertModule,
     NbDialogModule,
-    NbRouteTabsetModule
+    NbRouteTabsetModule,
+
+    CountdownModule 
   ],
   declarations: [
     PagesComponent,
