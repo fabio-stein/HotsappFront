@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChannelService } from './channel.service';
+import { ChannelService } from './channel-services/channel.service';
 
 @Component({
   selector: 'channel-list',

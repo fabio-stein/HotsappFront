@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChannelService } from '../channel.service';
+import { ChannelService } from '../channel-services/channel.service';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { ChannelForm } from '../model/ChannelModel';
