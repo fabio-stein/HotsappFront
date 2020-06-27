@@ -1,10 +1,10 @@
-<nb-list>
-  <nb-list-item class="d-flex">
+<nb-list *ngIf="playlist">
+  <nb-list-item *ngFor="let item of playlist; let i = index" class="d-flex">
     <nb-actions size="medium" class="w-100">
       <nb-action nbTooltip="Media Title">
-        Title
+        {{item.title}}
       </nb-action>
-      <nb-action class="ml-auto" (click)="removeItem()" nbTooltip="Remove">
+      <nb-action class="ml-auto" (click)="removeItem(i)" nbTooltip="Remove">
         <nb-icon icon="trash-alt" ngClass="text-danger" style="cursor: pointer;"></nb-icon>
       </nb-action>
     </nb-actions>

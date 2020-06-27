@@ -15,12 +15,14 @@ import { WalletService } from './wallet/wallet.service';
 import { ChannelListComponent } from './channel/channel-list.component';
 import { ChannelDashboardComponent } from './channel/channel-dashboard/channel-dashboard.component';
 import { ChannelEditorComponent } from './channel/channel-editor/channel-editor.component';
-import { ChannelService } from './channel/channel.service';
+import { ChannelService } from './channel/channel-services/channel.service';
 import { ChannelPageDashboardComponent } from './channel/views/channel-page-dashboard/channel-page-dashboard.component';
 import { ChannelPagePlaylistComponent } from './channel/views/channel-page-playlist/channel-page-playlist.component';
-import { ChannelPageMediaComponent } from './channel/views/channel-page-media/channel-page-media.component';
 import { ChannelPageConfigurationComponent } from './channel/views/channel-page-configuration/channel-page-configuration.component';
 import { CountdownModule } from 'ngx-countdown';
+import { ChannelPageLibraryComponent } from './channel/views/channel-page-library/channel-page-library.component';
+import { ChannelLibraryService } from './channel/channel-services/channel-library.service';
+import { ChannelPlaylistService } from './channel/channel-services/channel-playlist.service';
 
 @NgModule({
   imports: [
@@ -64,7 +66,7 @@ import { CountdownModule } from 'ngx-countdown';
     ChannelEditorComponent,
     ChannelPageDashboardComponent,
     ChannelPagePlaylistComponent,
-    ChannelPageMediaComponent,
+    ChannelPageLibraryComponent,
     ChannelPageConfigurationComponent,
   ],
   entryComponents: [
@@ -73,6 +75,8 @@ import { CountdownModule } from 'ngx-countdown';
     SubscriptionService,
     WalletService,
     ChannelService,
+    ChannelLibraryService,
+    ChannelPlaylistService
   ],
 })
 export class PagesModule {

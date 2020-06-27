@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ChannelService } from '../channel.service';
+import { ChannelService } from '../channel-services/channel.service';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { WalletService } from '../../wallet/wallet.service';
 
@@ -40,8 +40,8 @@ export class ChannelDashboardComponent implements OnInit, OnDestroy {
     })
 
     this.tabs.push({
-      title: 'Media',
-      route: base_route + '/media',
+      title: 'library',
+      route: base_route + '/library',
       responsive: true,
       icon: 'image'
     })

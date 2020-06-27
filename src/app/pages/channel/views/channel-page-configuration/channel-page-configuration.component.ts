@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../../../@theme/components/confirm-dialog/confirm-dialog.component';
-import { ChannelService } from '../../channel.service';
+import { ChannelService } from '../../channel-services/channel.service';
 import { ConfirmDialogService } from '../../../../@theme/components/confirm-dialog/confirm-dialog.service';
 
 @Component({

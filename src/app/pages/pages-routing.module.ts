@@ -11,8 +11,8 @@ import { ChannelEditorComponent } from './channel/channel-editor/channel-editor.
 import { ChannelDashboardComponent } from './channel/channel-dashboard/channel-dashboard.component';
 import { ChannelPageDashboardComponent } from './channel/views/channel-page-dashboard/channel-page-dashboard.component';
 import { ChannelPagePlaylistComponent } from './channel/views/channel-page-playlist/channel-page-playlist.component';
-import { ChannelPageMediaComponent } from './channel/views/channel-page-media/channel-page-media.component';
 import { ChannelPageConfigurationComponent } from './channel/views/channel-page-configuration/channel-page-configuration.component';
+import { ChannelPageLibraryComponent } from './channel/views/channel-page-library/channel-page-library.component';
 
 const routes: Routes = [{
   path: '',
@@ -53,8 +53,8 @@ const routes: Routes = [{
           component: ChannelPagePlaylistComponent
         },
         {
-          path: 'media',
-          component: ChannelPageMediaComponent
+          path: 'library',
+          component: ChannelPageLibraryComponent
         },
         {
           path: 'config',

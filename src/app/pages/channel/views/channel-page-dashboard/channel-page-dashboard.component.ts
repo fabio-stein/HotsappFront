@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChannelService } from '../../channel.service';
+import { ChannelService } from '../../channel-services/channel.service';
 import { Observable, Subscription, timer, interval } from 'rxjs';
 
 @Component({
