@@ -40,11 +40,11 @@ export class ChannelPagePlaylistComponent implements OnInit {
       try {
         await this.channelPlaylistService.Delete(this.Channel, index, this.playlistHash);
         this.toastr.success("Media successfully removed", "Success");
-        await this.Update();
       } catch (e) {
         console.error(e);
         this.toastr.danger("Failed to remove media", "Error");
       }
+      await this.Update();
     }
   }
 }
