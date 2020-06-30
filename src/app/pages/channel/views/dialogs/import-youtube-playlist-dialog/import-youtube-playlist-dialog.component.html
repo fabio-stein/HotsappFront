@@ -1,0 +1,25 @@
+<div class="row dialog-container">
+    <div class="col-md-6 col-lg-4">
+        <nb-card>
+            <nb-card-header>
+                Import YouTube Playlist
+            </nb-card-header>
+            <nb-card-body>
+                <form (ngSubmit)="onSubmit()" #form="ngForm">
+                    <div class="form-group">
+                        <label for="mediaUrl">Playlist Url</label>
+                        <input class="form-control" [(ngModel)]="sourceUrl" id="mediaUrl" name="mediaUrl"
+                            placeholder="Ex: https://www.youtube.com/watch?v=Q4-jOuHO-z4&list=RDGMEMQ1dJ7wXfLlqCjwV0xfSNbA" type="url">
+                    </div>
+                    <div class="form-group">
+                        <nb-checkbox [(ngModel)]="checkSendPlaylist" name="checkSendPlaylist">Send to my channel
+                            playlist
+                        </nb-checkbox>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Confirm</button>
+                    <button class="btn btn-secondar ml-2" (click)="cancelClick()">Cancel</button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

@@ -18,4 +18,12 @@ export class ChannelLibraryService {
     SendToPlaylist(channelId: string, mediaId: string) {
         return this._http.post(environment.API_ENDPOINT + "/api/library/" + channelId + "/send-to-playlist?mediaId=" + mediaId, {}).toPromise();
     }
+
+    ImportYouTubePlaylist(channelId: string, playlistUrl: string, addToPlaylist: boolean) {
+        return this._http.post(environment.API_ENDPOINT + "/api/library/import-playlist", {
+            channelId,
+            playlistUrl,
+            addToPlaylist
+        }).toPromise();
+    }
 }

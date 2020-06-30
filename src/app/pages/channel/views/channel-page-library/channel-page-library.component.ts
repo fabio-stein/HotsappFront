@@ -5,8 +5,8 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../../../../@theme/components';
 import { ConfirmDialogService } from '../../../../@theme/components/confirm-dialog/confirm-dialog.service';
-import { AddMediaDialogService } from '../add-media-dialog/add-media-dialog.service';
 import { ChannelLibraryService } from '../../channel-services/channel-library.service';
+import { ImportYouTubePlaylistDialogService } from '../dialogs/import-youtube-playlist-dialog/import-youtube-playlist-dialog.service';
 
 @Component({
   selector: 'channel-page-library',
@@ -19,7 +19,7 @@ export class ChannelPageLibraryComponent implements OnInit {
   library: any[];
 
   constructor(private activatedRoute: ActivatedRoute, private toastr: NbToastrService, private confirmDialog: ConfirmDialogService,
-    private mediaDialog: AddMediaDialogService, private channelLibraryService: ChannelLibraryService) {
+    private mediaDialog: ImportYouTubePlaylistDialogService, private channelLibraryService: ChannelLibraryService) {
 
     this.activatedRoute.parent.paramMap.subscribe(params => {
       let id = params.get("id");
@@ -35,13 +35,19 @@ export class ChannelPageLibraryComponent implements OnInit {
     this.library = await this.channelLibraryService.GetAll(this.Channel);
   }
 
-  async addMediaClick() {
+  async importPlaylistClick() {
     let result = await this.mediaDialog.StartDialogAsync();
     if (result != null) {
-      this.toastr.success("Successfully added media: " + result.mediaUrl, "Success");
-    } else {
-      this.toastr.danger("Failed to add media", "Error");
+      try {
+        this.toastr.info("Processing your request", "Please Wait");
+        await this.channelLibraryService.ImportYouTubePlaylist(this.Channel, result.mediaUrl, result.addToPlaylist);
+        this.toastr.success("Playlist imported successfully", "Success");
+      } catch (e) {
+        console.error(e);
+        this.toastr.danger("Failed to import playlist", "Error");
+      }
     }
+    await this.Update();
   }
 
   async sendToPlaylist(mediaId: string) {

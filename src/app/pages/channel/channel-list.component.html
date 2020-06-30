@@ -27,7 +27,7 @@
                             <nb-action class="ml-auto" nbTooltip="Creation date">
                                 {{channel.createDateUTC | date:'shortDate'}}
                             </nb-action>
-                            <nb-action nbTooltip="Status">
+                            <nb-action nbTooltip="Status" [link]="'/pages/channel/'+channel.id">
                                 <nb-icon [icon]="'play'"
                                     [ngClass]="channel.status == 'RUNNING' ? 'text-success' : 'text-danger'"></nb-icon>
                             </nb-action>
