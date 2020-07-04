@@ -1,0 +1,45 @@
+.thumb {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.black-legend {
+    margin: 0;
+    margin-top: -23px;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color: #0000008a;
+    color: white;
+}
+
+.description-block {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.legend-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.text {
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; //number of lines to be displayed
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+}
+
+.primary-description {
+    font-weight: bold;
+    font-size: small;
+}
+
+.secondary-description {
+    font-size: smaller;
+}

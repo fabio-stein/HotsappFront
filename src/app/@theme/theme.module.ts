@@ -48,6 +48,7 @@ import { ImportYouTubePlaylistDialogService } from '../pages/channel/views/dialo
 import { ImportYouTubePlaylistDialogComponent } from '../pages/channel/views/dialogs/import-youtube-playlist-dialog/import-youtube-playlist-dialog.component';
 import { AddMediaDialogComponent } from '../pages/channel/views/dialogs/add-media-dialog/add-media-dialog.component';
 import { AddMediaDialogService } from '../pages/channel/views/dialogs/add-media-dialog/add-media-dialog.service';
+import { ThumbItemComponent } from './components/thumb-item/thumb-item.component';
 
 const NB_MODULES = [
   FormsModule,
@@ -76,7 +77,8 @@ const COMPONENTS = [
   TwoColumnsLayoutComponent,
   ConfirmDialogComponent,
   AddMediaDialogComponent,
-  ImportYouTubePlaylistDialogComponent
+  ImportYouTubePlaylistDialogComponent,
+  ThumbItemComponent
 ];
 const PIPES = [
   CapitalizePipe,
@@ -93,7 +95,8 @@ const PIPES = [
   entryComponents: [
     AddMediaDialogComponent,
     ConfirmDialogComponent,
-    ImportYouTubePlaylistDialogComponent
+    ImportYouTubePlaylistDialogComponent,
+    ThumbItemComponent
   ]
 })
 export class ThemeModule {
