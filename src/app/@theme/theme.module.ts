@@ -44,11 +44,14 @@ import { DARK_THEME } from './styles/theme.dark';
 import { UserService } from '../@core/data/users.service';
 import { ConfirmDialogService } from './components/confirm-dialog/confirm-dialog.service';
 import { FormsModule } from '@angular/forms';
-import { AddMediaDialogComponent } from '../pages/channel/views/add-media-dialog/add-media-dialog.component';
-import { AddMediaDialogService } from '../pages/channel/views/add-media-dialog/add-media-dialog.service';
+import { ImportYouTubePlaylistDialogService } from '../pages/channel/views/dialogs/import-youtube-playlist-dialog/import-youtube-playlist-dialog.service';
+import { ImportYouTubePlaylistDialogComponent } from '../pages/channel/views/dialogs/import-youtube-playlist-dialog/import-youtube-playlist-dialog.component';
+import { AddMediaDialogComponent } from '../pages/channel/views/dialogs/add-media-dialog/add-media-dialog.component';
+import { AddMediaDialogService } from '../pages/channel/views/dialogs/add-media-dialog/add-media-dialog.service';
+import { ThumbItemComponent } from './components/thumb-item/thumb-item.component';
+import { RouterModule } from '@angular/router';
 
 const NB_MODULES = [
-  FormsModule,
   NbCheckboxModule,
   NbLayoutModule,
   NbMenuModule,
@@ -63,6 +66,7 @@ const NB_MODULES = [
   NbIconModule,
   NbCardModule,
 ];
+
 const COMPONENTS = [
   SwitcherComponent,
   LayoutDirectionSwitcherComponent,
@@ -74,7 +78,10 @@ const COMPONENTS = [
   TwoColumnsLayoutComponent,
   ConfirmDialogComponent,
   AddMediaDialogComponent,
+  ImportYouTubePlaylistDialogComponent,
+  ThumbItemComponent
 ];
+
 const PIPES = [
   CapitalizePipe,
   PluralPipe,
@@ -84,12 +91,17 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule,
+    RouterModule,
+    FormsModule,
+    ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
   entryComponents: [
     AddMediaDialogComponent,
     ConfirmDialogComponent,
+    ImportYouTubePlaylistDialogComponent,
+    ThumbItemComponent
   ]
 })
 export class ThemeModule {
@@ -105,7 +117,8 @@ export class ThemeModule {
         ).providers,
         UserService,
         ConfirmDialogService,
-        AddMediaDialogService
+        AddMediaDialogService,
+        ImportYouTubePlaylistDialogService
       ],
     };
   }

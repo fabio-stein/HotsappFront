@@ -1,0 +1,10 @@
+@import "../../../../../@theme/styles/themes";
+
+@include nb-install-component() {
+    .dialog-container {
+        width: 100vw;
+    }
+    .dialog-container > * {
+        margin: auto;
+    }
+}
