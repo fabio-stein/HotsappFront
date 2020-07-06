@@ -49,9 +49,9 @@ import { ImportYouTubePlaylistDialogComponent } from '../pages/channel/views/dia
 import { AddMediaDialogComponent } from '../pages/channel/views/dialogs/add-media-dialog/add-media-dialog.component';
 import { AddMediaDialogService } from '../pages/channel/views/dialogs/add-media-dialog/add-media-dialog.service';
 import { ThumbItemComponent } from './components/thumb-item/thumb-item.component';
+import { RouterModule } from '@angular/router';
 
 const NB_MODULES = [
-  FormsModule,
   NbCheckboxModule,
   NbLayoutModule,
   NbMenuModule,
@@ -66,6 +66,7 @@ const NB_MODULES = [
   NbIconModule,
   NbCardModule,
 ];
+
 const COMPONENTS = [
   SwitcherComponent,
   LayoutDirectionSwitcherComponent,
@@ -80,6 +81,7 @@ const COMPONENTS = [
   ImportYouTubePlaylistDialogComponent,
   ThumbItemComponent
 ];
+
 const PIPES = [
   CapitalizePipe,
   PluralPipe,
@@ -89,7 +91,10 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule,
+    RouterModule,
+    FormsModule,
+    ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
   entryComponents: [

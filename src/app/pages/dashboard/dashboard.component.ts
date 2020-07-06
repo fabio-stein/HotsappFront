@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ThumbItemModel } from '../../@theme/components/thumb-item/ThumbItemModel';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -8,10 +10,22 @@ export class DashboardComponent implements OnInit {
   messages: any[] = [];
   lastId = 0;
 
-  constructor() {
+  data: ThumbItemModel[] = [];
+
+  constructor(private service: DashboardService) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let result = await this.service.Get();
+    result.forEach(r => {
+      this.data.push({
+        mainPictureUrl: "https://img.youtube.com/vi/" + r.mediaId + "/hqdefault.jpg",
+        secondaryPictureUrl: "https://img.youtube.com/vi/" + r.mediaId + "/hqdefault.jpg",
+        primaryDescription: r.title,
+        secondaryDescription: r.channelTitle,
+        link: "/player/" + r.channelId
+      });
+    });
   }
 }

@@ -30,9 +30,8 @@
     -webkit-line-clamp: 2; //number of lines to be displayed
     overflow: hidden;
     text-overflow: ellipsis;
-
-    /* autoprefixer: off */
     -webkit-box-orient: vertical;
+    /* autoprefixer: off */ //autoprefixer should be turned off to -webkit-box-orient work correctly
 }
 
 .primary-description {

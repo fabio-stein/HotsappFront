@@ -23,6 +23,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { ChannelPageLibraryComponent } from './channel/views/channel-page-library/channel-page-library.component';
 import { ChannelLibraryService } from './channel/channel-services/channel-library.service';
 import { ChannelPlaylistService } from './channel/channel-services/channel-playlist.service';
+import { DashboardService } from './dashboard/dashboard.service';
 
 @NgModule({
   imports: [
@@ -76,7 +77,8 @@ import { ChannelPlaylistService } from './channel/channel-services/channel-playl
     WalletService,
     ChannelService,
     ChannelLibraryService,
-    ChannelPlaylistService
+    ChannelPlaylistService,
+    DashboardService
   ],
 })
 export class PagesModule {

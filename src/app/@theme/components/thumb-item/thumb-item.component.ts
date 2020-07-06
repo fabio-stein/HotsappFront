@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ThumbItemModel } from './ThumbItemModel';
 
 @Component({
   selector: 'thumb-item',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./thumb-item.component.scss']
 })
 export class ThumbItemComponent implements OnInit {
+  @Input()
+  data: ThumbItemModel;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.data);
   }
 
 }
