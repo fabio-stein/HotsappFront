@@ -3,6 +3,7 @@ export const environment = {
   version: '0.0.1',
   API_ENDPOINT: 'http://localhost:5000',
   paypalClientId: 'ARnf-tKM_M-ehARaSDnjzn2Ioy4yZ4O7PfSCHtRhzn5Wk71eDR7Syqk4FejMg7fa3Zx4vpFPJPTzcn0U',
+  isProduction: false,
   firebase: {
     apiKey: "AIzaSyBwXsFNGmRzVQ48d_462QkqCMUC7BwYMTI",
     authDomain: "hotsapp-staging.firebaseapp.com",
