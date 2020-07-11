@@ -98,6 +98,7 @@ export class ExternalPlayerComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this._streamerService.Disconnect();
   }
 
 }

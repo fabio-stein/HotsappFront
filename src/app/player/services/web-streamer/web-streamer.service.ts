@@ -10,6 +10,7 @@ export class WebStreamerService {
     private connection: HubConnection;
     private channelId: string;
     private loopingConnection = false;
+    private disconnected = true;
 
     private OnPlayEvent$: Subject<OnPlayEventModel> = new Subject();
     public OnPlayEvent: Observable<OnPlayEventModel> = this.OnPlayEvent$.asObservable();
@@ -32,6 +33,7 @@ export class WebStreamerService {
 
     async Connect(channelId: string) {
         this.channelId = channelId;
+        this.disconnected = false;
 
         this.StartConnectionLoop();
     }
@@ -42,7 +44,7 @@ export class WebStreamerService {
         } else {
             this.loopingConnection = true;
         }
-        while (true) {
+        while (true && !this.disconnected) {
             try {
                 await this.ConnectInternal();
                 break;
@@ -66,6 +68,15 @@ export class WebStreamerService {
         }
         this.connection.baseUrl = url;
         return await this.connection.start();
+    }
+
+    public Disconnect() {
+        this.disconnected = true;
+        try {
+            this.connection.stop();
+        } catch (e) {
+            console.error(e);
+        }
     }
 
 }
