@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChannelService } from '../../channel-services/channel.service';
 import { Observable, Subscription, timer, interval } from 'rxjs';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'channel-page-dashboard',
@@ -10,7 +11,8 @@ import { Observable, Subscription, timer, interval } from 'rxjs';
 })
 export class ChannelPageDashboardComponent implements OnInit, OnDestroy {
   Channel: string;
-  constructor(private activatedRoute: ActivatedRoute, private channelService: ChannelService) {
+  constructor(private activatedRoute: ActivatedRoute, private channelService: ChannelService,
+    private _toastr: NbToastrService) {
     this.activatedRoute.parent.paramMap.subscribe(params => {
       let id = params.get("id");
       this.Channel = id;
@@ -28,7 +30,9 @@ export class ChannelPageDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.timer.unsubscribe();
+    if (this.timer != null) {
+      this.timer.unsubscribe();
+    }
   }
 
   async Update() {
@@ -46,6 +50,28 @@ export class ChannelPageDashboardComponent implements OnInit, OnDestroy {
     } else {
       this.remainingTime = 0;
     }
+  }
+
+  async startClick() {
+    try {
+      await this.channelService.Start(this.Channel);
+      this._toastr.success("Channel started successfully", "Success")
+    } catch (e) {
+      console.error(e);
+      this._toastr.danger("Failed to start channel", "Error");
+    }
+    await this.Update();
+  }
+
+  async stopClick() {
+    try {
+      await this.channelService.Stop(this.Channel);
+      this._toastr.success("Channel stopped successfully", "Success")
+    } catch (e) {
+      console.error(e);
+      this._toastr.danger("Failed to stop channel", "Error");
+    }
+    await this.Update();
   }
 
 }

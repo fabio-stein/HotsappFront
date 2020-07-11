@@ -23,4 +23,12 @@ export class ChannelService {
     GetLiveStatus(channelId: string) {
         return this._http.get<any[]>(environment.API_ENDPOINT + "/api/channel/live-status/" + channelId).toPromise();
     }
+
+    Start(channelId: string) {
+        return this._http.post(environment.API_ENDPOINT + "/api/channel/" + channelId + "/start", {}).toPromise();
+    }
+
+    Stop(channelId: string) {
+        return this._http.post(environment.API_ENDPOINT + "/api/channel/" + channelId + "/stop", {}).toPromise();
+    }
 }
