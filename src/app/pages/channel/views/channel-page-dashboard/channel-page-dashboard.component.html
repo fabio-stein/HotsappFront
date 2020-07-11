@@ -57,10 +57,12 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <button [disabled]="status?.channelStatus != 'STOPPED'" nbButton status="success" class="w-100">Start</button>
+      <button [disabled]="status?.channelStatus != 'STOPPED'" (click)="startClick()" nbButton status="success"
+        class="w-100">Start</button>
     </div>
     <div class="col-6">
-      <button [disabled]="status?.channelStatus != 'RUNNING'" nbButton status="danger" class="w-100">Stop</button>
+      <button [disabled]="status?.channelStatus != 'RUNNING'" (click)="stopClick()" nbButton status="danger"
+        class="w-100">Stop</button>
     </div>
   </div>
 </div>
