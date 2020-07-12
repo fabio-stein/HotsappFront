@@ -19,7 +19,7 @@ import { ChannelService } from './channel/channel-services/channel.service';
 import { ChannelPageDashboardComponent } from './channel/views/channel-page-dashboard/channel-page-dashboard.component';
 import { ChannelPagePlaylistComponent } from './channel/views/channel-page-playlist/channel-page-playlist.component';
 import { ChannelPageConfigurationComponent } from './channel/views/channel-page-configuration/channel-page-configuration.component';
-import { CountdownModule } from 'ngx-countdown';
+import { CountdownModule, CountdownGlobalConfig } from 'ngx-countdown';
 import { ChannelPageLibraryComponent } from './channel/views/channel-page-library/channel-page-library.component';
 import { ChannelLibraryService } from './channel/channel-services/channel-library.service';
 import { ChannelPlaylistService } from './channel/channel-services/channel-playlist.service';
@@ -78,7 +78,8 @@ import { DashboardService } from './dashboard/dashboard.service';
     ChannelService,
     ChannelLibraryService,
     ChannelPlaylistService,
-    DashboardService
+    DashboardService,
+    CountdownGlobalConfig
   ],
 })
 export class PagesModule {
