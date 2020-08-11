@@ -6,7 +6,7 @@
     <a href="#" (click)="navigateHome()">
       <img src="assets/images/main_icon.png" width="50">
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">Hotsapp.net</a>
+    <a class="logo" href="#" (click)="navigateHome()">plister.net</a>
   </div>
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>

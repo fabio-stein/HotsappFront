@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_ENDPOINT: 'https://api.hotsapp.net/webapi',
+  API_ENDPOINT: 'https://api.plister.net/webapi',
   paypalClientId: 'AQdu2Q3IOgK-68-H4JgKIyadz9PJAZqyFkHFZCdAxxyiKm6L0yf6ZJKZMFrHIjp9KzrT1W9w4lISj7cW',
   isProduction: true,
   firebase: {
