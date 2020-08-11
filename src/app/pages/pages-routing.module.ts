@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SubscriptionComponent } from './subscription/subscription.component';
-import { PlansComponent } from './subscription/plans/plans.component';
-import { WalletComponent } from './wallet/wallet.component';
 import { ChannelListComponent } from './channel/channel-list.component';
 import { ChannelEditorComponent } from './channel/channel-editor/channel-editor.component';
 import { ChannelDashboardComponent } from './channel/channel-dashboard/channel-dashboard.component';
@@ -62,20 +59,7 @@ const routes: Routes = [{
         }
       ]
     },
-    {
-      path: 'subscription',
-      pathMatch: 'full',
-      component: SubscriptionComponent
-    },
-    {
-      path: 'subscription/plans',
-      pathMatch: 'full',
-      component: PlansComponent
-    },
-    {
-      path: 'wallet',
-      component: WalletComponent
-    },
+
 
   ],
 }];

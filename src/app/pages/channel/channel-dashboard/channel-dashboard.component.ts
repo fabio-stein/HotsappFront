@@ -4,7 +4,6 @@ import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ChannelService } from '../channel-services/channel.service';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { WalletService } from '../../wallet/wallet.service';
 
 @Component({
   selector: 'channel-dashboard',
@@ -18,7 +17,7 @@ export class ChannelDashboardComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService, private router: Router, private dialog: NbDialogService,
-    private walletService: WalletService, private toastr: NbToastrService) { }
+  private toastr: NbToastrService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');

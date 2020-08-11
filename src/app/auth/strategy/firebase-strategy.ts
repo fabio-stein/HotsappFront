@@ -99,7 +99,7 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
     async checkValidEmailRequest(data: firebase.auth.UserCredential) {
         if (!data.user.emailVerified) {
             await data.user.sendEmailVerification();
-            throw new Error('Você precisa confirmar seu email primeiro! Um novo link foi enviado, verifique e tente novamente.');
+            throw new Error('You need to confirm your email first! A new link has been sent, check and try again.');
         }
     }
 
@@ -162,13 +162,13 @@ export class FirebaseAuthStrategy extends NbAuthStrategy {
                 uid: afUser.user.uid,
             },
         );
-        this._toastr.success('Conta criada com sucesso, por favor verifique seu email!', 'Cadastro', { duration: 5000 });
+        this._toastr.success('Account created successfully, please check your email!', 'Register', { duration: 5000 });
     }
 
     requestPassword(data?: any): Observable<NbAuthResult> {
         const subject = new Subject<NbAuthResult>();
         this._firebaseAuth.auth.sendPasswordResetEmail(data.email).then(() => {
-            subject.next(new NbAuthResult(true, null, null, null, ['Por favor verifique seu email para redefinir a senha']));
+            subject.next(new NbAuthResult(true, null, null, null, ['Please check your email to reset your password']));
             subject.complete();
         }).catch(e => {
             subject.next(this.errorResponse(e));

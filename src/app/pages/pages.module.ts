@@ -6,12 +6,6 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SubscriptionComponent } from './subscription/subscription.component';
-import { PlansComponent } from './subscription/plans/plans.component';
-import { NoActiveSubscriptionComponent } from './subscription/components/no-active-subscription/no-active-subscription.component';
-import { SubscriptionService } from './subscription/subscription.service';
-import { WalletComponent } from './wallet/wallet.component';
-import { WalletService } from './wallet/wallet.service';
 import { ChannelListComponent } from './channel/channel-list.component';
 import { ChannelDashboardComponent } from './channel/channel-dashboard/channel-dashboard.component';
 import { ChannelEditorComponent } from './channel/channel-editor/channel-editor.component';
@@ -58,10 +52,6 @@ import { DashboardService } from './dashboard/dashboard.service';
   declarations: [
     PagesComponent,
     DashboardComponent,
-    SubscriptionComponent,
-    PlansComponent,
-    NoActiveSubscriptionComponent,
-    WalletComponent,
     ChannelListComponent,
     ChannelDashboardComponent,
     ChannelEditorComponent,
@@ -73,8 +63,6 @@ import { DashboardService } from './dashboard/dashboard.service';
   entryComponents: [
   ],
   providers: [
-    SubscriptionService,
-    WalletService,
     ChannelService,
     ChannelLibraryService,
     ChannelPlaylistService,

@@ -8,13 +8,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Channels',
-    icon: 'clipboard',
+    title: 'My Channels',
+    icon: 'list',
     link: '/pages/channel'
-  },
-  {
-    title: 'Carteira',
-    icon: 'wallet',
-    link: '/pages/wallet',
-  },
+  }
 ];
