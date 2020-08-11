@@ -92,7 +92,7 @@ export class ExternalPlayerComponent implements OnInit {
     if (this.channelTitle != null && this.channelTitle != "") {
       title += this.channelTitle + " - ";
     }
-    title += "Hotsapp.net";
+    title += "plister.net";
 
     this._title.setTitle(title);
   }
