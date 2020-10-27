@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-lg-8">
+        <nb-card>
+            <nb-card-header>
+                <span>Atendimentos</span>
+            </nb-card-header>
+            <nb-card-body class="p-0">
+                <nb-actions size="large">
+                    <nb-action>
+                        <nb-checkbox (checkedChange)="toggleFinished($event)" [value]="hideFinished">Ocultar
+                            Finalizados</nb-checkbox>
+                    </nb-action>
+                </nb-actions>
+                <nb-list>
+                    <nb-list-item *ngFor="let chat of chats" class="d-flex">
+                        <nb-actions size="medium" class="w-100">
+                            <nb-action icon="info-circle" [link]="'/pages/chat/'+chat.id" nbTooltip="Visualizar">
+                            </nb-action>
+                            <nb-action nbTooltip="Nome do Usuário">
+                                {{chat.title}}
+                            </nb-action>
+                            <nb-action class="ml-auto" nbTooltip="Data de Criação">
+                                {{chat.createDateUtc | date:'shortDate'}}
+                            </nb-action>
+                            <nb-action [nbTooltip]="'Status: Finalizado'">
+                                <nb-icon icon="check" class="text-success"></nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </nb-list-item>
+                </nb-list>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

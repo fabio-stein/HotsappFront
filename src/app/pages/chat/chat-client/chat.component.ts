@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { ChatService } from './chat.service';
-import { ChatMessage } from './model/ChatMessage';
 import { Subscription, timer } from 'rxjs';
+import { ChatService } from '../chat.service';
+import { ChatMessage } from './model/ChatMessage';
 import { SendMessageRequest } from './model/SendMessageRequest';
 
 @Component({
@@ -14,9 +14,9 @@ import { SendMessageRequest } from './model/SendMessageRequest';
 export class ChatComponent implements OnInit, OnDestroy {
 
   messages = [];
-  currentNumber: string
+  chatId: Number;
   selectedContact: string;
-  lastUpdate: Date;
+  lastMessageId: Number = 0;
   subscription: Subscription;
   isUpdating = false;
 
@@ -24,11 +24,28 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    this.currentNumber = id;
+    this.chatId = Number.parseInt(id);
 
     this.subscription = timer(0, 1000).pipe(
       switchMap(() => this.getUpdate())
     ).subscribe();
+    // this.UpdateMessages([
+    //   {
+    //     content: 'Boa tarde',
+    //     dateTimeUTC: new Date(),
+    //     isInternal: false
+    //   },
+    //   {
+    //     content: 'Olá João, em que posso ajudar?',
+    //     dateTimeUTC: new Date(),
+    //     isInternal: true
+    //   },
+    //   {
+    //     content: 'Gostaria de solicitar um orçamento.',
+    //     dateTimeUTC: new Date(),
+    //     isInternal: false
+    //   },
+    // ]);
   }
 
   ngOnDestroy() {
@@ -39,8 +56,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (this.isUpdating) { return; }
     try {
       this.isUpdating = true;
-      let update = await this.service.GetChatUpdate(this.currentNumber, this.selectedContact, this.lastUpdate);
-      this.lastUpdate = update.lastUpdate;
+      let update = await this.service.GetChatUpdate(this.chatId, this.lastMessageId);
       this.UpdateMessages(update.messages);
     } catch (e) {
       console.log(e)
@@ -50,11 +66,12 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   UpdateMessages(messages: ChatMessage[]) {
     messages.forEach(item => {
-
+      console.log(item)
+      this.lastMessageId = item.MessageId;
       let user = null;
 
 
-      if (item.isInternal) {
+      if (item.IsFromMe) {
         user = {
           name: 'Eu'
         }
@@ -66,9 +83,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
 
       let msg = {
-        text: item.content,
-        date: new Date(item.dateTimeUTC),
-        reply: item.isInternal,
+        text: item.Body,
+        date: new Date(item.DateTimeUTC),
+        reply: item.IsFromMe,
         type: 'text',
         user
       };
@@ -78,7 +95,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   LoadChat(contactNumber: string) {
     this.messages = [];
-    this.lastUpdate = null;
+    this.lastMessageId = 0;
     this.selectedContact = contactNumber;
   }
 
@@ -88,9 +105,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   async sendMessage(e) {
     let data: SendMessageRequest = {
-      ContactNumber: this.selectedContact,
-      Content: e.message,
-      NumberId: this.currentNumber
+      Body: e.message,
+      ChatId: this.chatId
     }
 
     let msg = {
@@ -101,9 +117,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       user: { name: "Eu" }
     };
 
-    if (this.messages.length > 0) {//Otherwise it will be sent back by api only the first message
-      this.messages.push(msg);
-    }
+    // if (this.messages.length > 0) {//Otherwise it will be sent back by api only the first message
+    //   this.messages.push(msg);
+    // }
 
     await this.service.SendMessage(data);
   }

@@ -23,13 +23,13 @@ export class ContactListComponent implements OnInit, OnDestroy {
   constructor(private service: ChatService) { }
 
   ngOnInit() {
-    this.subscription = timer(0, 1000).pipe(
-      switchMap(() => this.getUpdate())
-    ).subscribe();
+    // this.subscription = timer(0, 1000).pipe(
+    //   switchMap(() => this.getUpdate())
+    // ).subscribe();
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
   async getUpdate() {

@@ -9,15 +9,7 @@ export class ConnectorService {
 
     }
 
-    StartFlow(countryCode, areaCode, phoneNumber) {
-        return this._http.post<string>(environment.API_ENDPOINT + "/api/connector/StartFlow", { countryCode, areaCode, phoneNumber }).toPromise();
-    }
-
-    ConfirmCode(flowId, code) {
-        return this._http.put(environment.API_ENDPOINT + "/api/connector/ConfirmCode/" + flowId + "/" + code, {}).toPromise();
-    }
-
-    CheckFlowStatus(flowId) {
-        return this._http.get<ConnectionFlow>(environment.API_ENDPOINT + "/api/connector/CheckFlowStatus/" + flowId).toPromise();
+    UpdateConnection(processId) {
+        return this._http.post<any>(environment.API_ENDPOINT + "/api/connector/UpdateConnection", { processId }).toPromise();
     }
 }

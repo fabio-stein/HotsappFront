@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteTabsetComponent } from '../@theme/components';
 import { MyNumbersComponent } from './numbers/my-numbers/my-numbers.component';
 import { BuyNumberComponent } from './numbers/buy-number/buy-number.component';
-import { ChatComponent } from './chat/chat.component';
 import { ContactListComponent } from './chat/components/contact-list/contact-list.component';
 import { NumberService } from './numbers/number.service';
 import { ChatService } from './chat/chat.service';
@@ -25,6 +24,11 @@ import { WalletComponent } from './wallet/wallet.component';
 import { WalletService } from './wallet/wallet.service';
 import { CampaignStatusComponent } from './campaign/campaign-status/campaign-status.component';
 import { CampaignService } from './campaign/campaign.service';
+import { QRCodeModule } from 'angularx-qrcode';
+import { ChatListComponent } from './chat/chat-list/chat-list.component';
+import { ChatComponent } from './chat/chat-client/chat.component';
+import { ChatOptionsComponent } from './chat/components/chat-options/chat-options.component';
+import { CompanyConfigComponent } from './company/company-config/company-config.component';
 
 @NgModule({
   imports: [
@@ -51,7 +55,8 @@ import { CampaignService } from './campaign/campaign.service';
     NbSpinnerModule,
     NbTooltipModule,
     NbAlertModule,
-    NbDialogModule
+    NbDialogModule,
+    QRCodeModule
   ],
   declarations: [
     PagesComponent,
@@ -69,6 +74,9 @@ import { CampaignService } from './campaign/campaign.service';
     NoActiveSubscriptionComponent,
     WalletComponent,
     CampaignStatusComponent,
+    ChatListComponent,
+    ChatOptionsComponent,
+    CompanyConfigComponent,
   ],
   providers: [
     NumberService,
