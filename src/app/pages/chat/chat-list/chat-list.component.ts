@@ -24,7 +24,7 @@ export class ChatListComponent implements OnInit {
       this.chats.push({
         id: e.Id,
         createDateUtc: new Date(e.StartDateUTC),
-        title: e.Id
+        title: e.AreaTitle + " - " + e.RemoteNumber.split("@")[0]
       })
     });
   }

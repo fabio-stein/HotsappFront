@@ -28,4 +28,8 @@ export class ChatService {
     SendMessage(data: SendMessageRequest) {
         return this._http.post<any[]>(environment.API_ENDPOINT + "/api/Chat/SendMessage", data).toPromise();
     }
+
+    CloseChat(chatId: number) {
+        return this._http.post<any[]>(environment.API_ENDPOINT + "/api/Chat/CloseChat/" + chatId, {}).toPromise();
+    }
 }
