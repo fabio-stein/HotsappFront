@@ -15,14 +15,17 @@
         </nb-actions>
         <nb-list>
           <nb-list-item *ngFor="let number of numbers" class="d-flex">
-              <nb-actions size="medium" class="w-100">
-                  <nb-action icon="comments" [link]="'/pages/chat/'+number.numberId" nbTooltip="Usar no chat"></nb-action>
-                  <nb-action>
-                    {{number.numberId}}
-                  </nb-action>
-                  <nb-action class="ml-auto" icon="cog"></nb-action>
-                  <nb-action icon="trash" (click)="DeleteNumber(number.numberId)" nbTooltip="Remover"></nb-action>
-                </nb-actions>
+            <nb-actions size="medium" class="w-100">
+              <nb-action>
+                {{number.number}}
+              </nb-action>
+              <nb-action *ngIf="number.isConnected">
+                Conectado
+              </nb-action>
+              <nb-action *ngIf="!number.isConnected">
+                Desconectado
+              </nb-action>
+            </nb-actions>
           </nb-list-item>
         </nb-list>
       </nb-card-body>

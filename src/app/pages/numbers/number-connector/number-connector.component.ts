@@ -43,6 +43,10 @@ export class NumberConnectorComponent implements OnInit, OnDestroy {
       this.qrCodeData = status.qrCodeData;
       this.processId = status.processId;
       console.log(status);
+
+      if(status.finished == true){
+        this.finish();
+      }
     } catch (e) {
       console.log(e);
     }
@@ -59,6 +63,7 @@ export class NumberConnectorComponent implements OnInit, OnDestroy {
   }
 
   finish() {
+    this.looping = false;
     this.router.navigate(['/pages/number/my']);
   }
 

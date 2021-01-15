@@ -9,7 +9,7 @@ export class NumberService {
     }
 
     GetMyNumbers() {
-        return this._http.get<any[]>(environment.API_ENDPOINT + "/api/Number/GetMyNumbers").toPromise();
+        return this._http.get<any[]>(environment.API_ENDPOINT + "/api/Number").toPromise();
     }
 
     ReserveNew() {
