@@ -5,6 +5,7 @@ import { WebStreamerService } from '../services/web-streamer/web-streamer.servic
 import { Title } from '@angular/platform-browser';
 import { ChannelInfoService } from '../services/channel/channel-info.service';
 import { stringify } from 'querystring';
+import { AnalyticsService } from '../../@core/utils';
 
 @Component({
   selector: 'external-player',
@@ -19,9 +20,10 @@ export class ExternalPlayerComponent implements OnInit {
   mediaId = "";
   mediaTitle = "";
   channelTitle = ""
+  showPlayPopup = true;
 
   constructor(private route: ActivatedRoute, private _streamerService: WebStreamerService,
-    private _title: Title, private _channelInfoService: ChannelInfoService) {
+    private _title: Title, private _channelInfoService: ChannelInfoService, private analytics: AnalyticsService) {
   }
 
   ngAfterViewInit() {
@@ -31,22 +33,32 @@ export class ExternalPlayerComponent implements OnInit {
   async ngOnInit() {
     this.channelId = this.route.snapshot.paramMap.get('id');
 
+    this.analytics.trackEvent('player_init');
+
     await this.updateChannelInfo();
 
     this.updateTitle();
 
     await this.player.initialize("gkEcoZyHI9s",
       "https://img.youtube.com/vi/gkEcoZyHI9s/hqdefault.jpg")
+
+  }
+
+  async initializePlayer() {
     try {
       await this._streamerService.Connect(this.channelId);
+      this.analytics.trackEvent('player_connect_success');
     } catch (e) {
       console.error(e);
       alert("Failed to connect: " + e);
+      this.analytics.trackEvent('player_connect_error');
     }
     this._streamerService.OnPlayEvent.subscribe(data => {
       let now = new Date();
       let start = new Date(data.startDateUTC);
       let diff = Math.ceil((now.getTime() - start.getTime()) / 1000);
+
+      this.analytics.trackEvent('player_play_event');
 
       if (diff > data.duration) {
         console.log("Media already ended, waiting next");
@@ -63,6 +75,11 @@ export class ExternalPlayerComponent implements OnInit {
       this.player.playVideo(data.mediaId, diff);
       console.log("PlayEvent Received: " + data.mediaId);
     })
+  }
+
+  playClick() {
+    this.showPlayPopup = false;
+    this.initializePlayer();
   }
 
   async updateMediaInfo(id: string) {
@@ -99,6 +116,7 @@ export class ExternalPlayerComponent implements OnInit {
 
   ngOnDestroy() {
     this._streamerService.Disconnect();
+    this.analytics.trackEvent('player_disconnect');
   }
 
 }

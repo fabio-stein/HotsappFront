@@ -58,14 +58,10 @@ export class WebStreamerService {
 
     async ConnectInternal() {
         let url = "";
-        if (environment.isProduction) {
-            let data = await this._http.get<any>(environment.API_ENDPOINT + '/api/gateway?channelId=' + this.channelId).toPromise();
-            url = data.url;
-            console.log("Received new Streamer Url from Gateway: ");
-        } else {
-            console.log("Using debug streamer url!");
-            url = "http://localhost:5000/streamhub?channelId=" + this.channelId;
-        }
+        let data = await this._http.get<any>(environment.API_ENDPOINT + '/api/gateway?channelId=' + this.channelId).toPromise();
+        url = data.url;
+        console.log("Received new Streamer Url from Gateway: ");
+        
         this.connection.baseUrl = url;
         return await this.connection.start();
     }

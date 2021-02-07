@@ -25,7 +25,7 @@ export class AppPlayerComponent implements OnInit, OnDestroy {
         techOrder: ['youtube'],
       };
       this.playerObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
-        res();
+        res(null);
       });
     })
   }
@@ -37,7 +37,8 @@ export class AppPlayerComponent implements OnInit, OnDestroy {
     if (startTime != null && startTime > 0) {
       await this.setCurrentTime(startTime, 30000);
     }
-    this.playerObj.muted(this.isMuted);
+
+    this.setMuted(this.isMuted);
   }
 
   async setMuted(muted: boolean) {

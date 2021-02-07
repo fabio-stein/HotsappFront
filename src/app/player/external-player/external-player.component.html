@@ -11,7 +11,12 @@
         <span class="text-white"><i class="fa fa-users"></i> 312</span>
       </div>
     </div>
-    <app-player></app-player>
+    <div class="player-container">
+      <app-player></app-player>
+      <div *ngIf="showPlayPopup == true" class="player-popup" (click)="playClick()">
+        <span class="fa fa-play-circle popup-play-button"></span>
+      </div>
+    </div>
     <div class="controls d-flex">
       <div class="d-flex my-auto">
         <div class="pulsating-circle"></div>
@@ -19,6 +24,15 @@
       </div>
       <div class="addthis_inline_share_toolbox ml-auto"></div>
     </div>
+  </div>
+  <div class="ads-container">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- d-ads-horizontal1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5194646680480115" data-ad-slot="9357538121"
+      data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 </div>
 <div class="background-cover" [ngStyle]="{ 'background-image': 'url(' + backgroundCover + ')'}">

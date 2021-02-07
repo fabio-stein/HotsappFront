@@ -105,3 +105,37 @@
     }
 }
 //END CIRCLE
+
+.ads-container {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+}
+
+.player-popup {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    display: flex;
+}
+
+.player-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.popup-play-button {
+    color: white;
+    font-size: 52pt;
+    margin: auto;
+}
+
+.player-popup:hover .popup-play-button {
+    color: gray;
+    transition: 0.1s;
+}
